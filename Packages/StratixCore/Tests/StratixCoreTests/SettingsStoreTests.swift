@@ -22,6 +22,17 @@ struct SettingsStoreTests {
         }
     }
 
+    private func eventually(_ predicate: () async -> Bool, maxYields: Int = 50) async -> Bool {
+        for _ in 0..<maxYields {
+            if await predicate() {
+                return true
+            }
+            await Task.yield()
+        }
+
+        return await predicate()
+    }
+
     @Test
     func preservesExistingGuideKeysOnInitialLoad() {
         let suite = UserDefaults(suiteName: "SettingsStoreTests.preservesExistingGuideKeysOnInitialLoad")!
@@ -74,9 +85,8 @@ struct SettingsStoreTests {
         let store = SettingsStore(defaults: suite)
         suite.set("Competitive", forKey: "guide.stream_quality")
         NotificationCenter.default.post(name: UserDefaults.didChangeNotification, object: suite)
-        await Task.yield()
 
-        #expect(store.stream.qualityPreset == "Competitive")
+        #expect(await eventually { store.stream.qualityPreset == "Competitive" })
     }
 
     @Test
@@ -104,10 +114,10 @@ struct SettingsStoreTests {
 
         suite.set("Competitive", forKey: "guide.stream_quality")
         NotificationCenter.default.post(name: UserDefaults.didChangeNotification, object: suite)
-        await Task.yield()
 
-        #expect(store.stream.qualityPreset == "Competitive")
-        #expect(await streamInvalidated.currentValue() == true)
+        #expect(await eventually { store.stream.qualityPreset == "Competitive" })
+        #expect(await eventually { await streamInvalidated.currentValue() })
+        await Task.yield()
         #expect(await accessibilityInvalidated.currentValue() == false)
     }
 

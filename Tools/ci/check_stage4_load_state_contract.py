@@ -13,11 +13,21 @@ required_paths = [
     rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModel.swift"),
     rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneStatusState.swift"),
 ]
-errors.extend(require_paths(required_paths))
-
-browse_presentation = rel(
-    "Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Presentation/CloudLibraryBrowsePresentation.swift"
+browse_presentation_candidates = [
+    rel(
+        "Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Presentation/CloudLibraryBrowseRoutePresentation.swift"
+    ),
+    rel(
+        "Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Presentation/CloudLibraryBrowsePresentation.swift"
+    ),
+]
+browse_presentation = next(
+    (path for path in browse_presentation_candidates if path.exists()),
+    browse_presentation_candidates[0],
 )
+errors.extend(require_paths([*required_paths, browse_presentation]))
+fail(errors)
+
 cloud_library_view = rel(
     "Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryView.swift"
 )
