@@ -1,0 +1,49 @@
+name: CI Shell Visual Regression
+
+on:
+  pull_request:
+    paths:
+      - 'Apps/Stratix/Sources/Stratix/Features/**'
+      - 'Apps/Stratix/Sources/Stratix/Shared/**'
+      - 'Apps/Stratix/Tools/shell-visual-regression/**'
+      - 'Docs/KNOWN_ISSUES.md'
+      - 'Docs/RELEASE_READINESS.md'
+      - 'Docs/TESTING.md'
+      - 'Docs/XCODE_VALIDATION_MATRIX.md'
+      - 'Tools/test/**'
+      - '.github/workflows/ci-shell-visual-regression.yml'
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  shell-visual-regression:
+    runs-on: macos-15
+    env:
+      CAPTURE_DIR: /tmp/stratix-shell-checkpoints
+      DIFF_DIR: /tmp/stratix-shell-checkpoints-diff
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Install ffmpeg
+        run: brew install ffmpeg
+
+      - name: Run shell visual regression
+        run: bash Tools/test/run_shell_regression_checks.sh
+
+      - name: Upload shell regression artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shell-visual-regression-artifacts
+          path: |
+            /tmp/stratix-shell-checkpoints
+            /tmp/stratix-shell-checkpoints-diff

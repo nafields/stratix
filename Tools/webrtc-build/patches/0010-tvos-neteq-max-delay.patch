@@ -1,0 +1,32 @@
+diff --git a/audio/channel_receive.cc b/audio/channel_receive.cc
+--- a/audio/channel_receive.cc
++++ b/audio/channel_receive.cc
+@@ -83,6 +83,11 @@
+ #include "rtc_base/trace_event.h"
+ #include "system_wrappers/include/metrics.h"
+ #include "system_wrappers/include/ntp_time.h"
++
++#if defined(__APPLE__)
++// For TARGET_OS_TV, available on Apple platforms only.
++#include <TargetConditionals.h>
++#endif
+ 
+ namespace webrtc {
+ namespace voe {
+@@ -584,6 +589,16 @@ ChannelReceive::ChannelReceive(
+       absolute_capture_time_interpolator_(&env_.clock()) {
+   RTC_DCHECK(audio_device_module);
+ 
++#if defined(TARGET_OS_TV) && TARGET_OS_TV
++  // Cap NetEQ maximum playout delay on tvOS. The Apple TV HDMI output causes
++  // NetEQ's adaptive algorithm to enter a runaway feedback loop: concealment
++  // advances the playout clock faster than real-time, subsequent packets
++  // appear late, NetEQ raises its target delay, causing more concealment.
++  // This reaches 900ms+ with only 4ms network jitter. Capping at 400ms breaks
++  // the loop while providing ample buffering above typical Apple TV jitter.
++  neteq_->SetMaximumDelay(400);
++#endif
++
+   rtp_receive_statistics_->EnableRetransmitDetection(remote_ssrc_, true);
+   RtpRtcpInterface::Configuration configuration;
+   configuration.audio = true;

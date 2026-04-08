@@ -1,0 +1,12 @@
+--- a/sdk/objc/components/renderer/metal/RTCMTLRenderer.h
++++ b/sdk/objc/components/renderer/metal/RTCMTLRenderer.h
+@@ -37,7 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
+  * for performing cleanups.
+  */
+
+-#if TARGET_OS_IOS
++#if TARGET_OS_IOS || TARGET_OS_TV
++// tvOS PATCH: tvOS uses UIView (UIKit), not NSView (AppKit).
+ - (BOOL)addRenderingDestination:(__kindof UIView *)view;
+ #else
+ - (BOOL)addRenderingDestination:(__kindof NSView *)view;

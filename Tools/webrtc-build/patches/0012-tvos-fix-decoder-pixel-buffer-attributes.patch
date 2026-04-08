@@ -1,0 +1,20 @@
+--- a/sdk/objc/components/video_codec/RTCVideoDecoderH264.mm
++++ b/sdk/objc/components/video_codec/RTCVideoDecoderH264.mm
+@@ -220,7 +220,7 @@ - (int)resetDecompressionSession {
+   // TODO(tkchin): Maybe only set OpenGL/IOSurface keys if we know that that
+   // we can pass CVPixelBuffers as native handles in decoder output.
+   NSDictionary *attributes = @{
+-#if defined(WEBRTC_IOS) && (TARGET_OS_MACCATALYST || TARGET_OS_SIMULATOR)
++#if defined(WEBRTC_IOS) && (TARGET_OS_MACCATALYST || TARGET_OS_SIMULATOR || TARGET_OS_TV)
+     (NSString *)kCVPixelBufferMetalCompatibilityKey : @(YES),
+ #elif defined(WEBRTC_IOS)
+     (NSString *)kCVPixelBufferOpenGLESCompatibilityKey : @(YES),
+@@ -231,7 +231,7 @@ - (int)resetDecompressionSession {
+     (NSString *)kCVPixelBufferIOSurfacePropertiesKey : @{},
+ #endif
+     (NSString *)kCVPixelBufferPixelFormatTypeKey :
+-        @(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange),
++        @(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange),
+   };
+
+   VTDecompressionOutputCallbackRecord record = {

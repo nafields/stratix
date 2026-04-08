@@ -1,0 +1,29 @@
+--- a/sdk/objc/components/audio/RTCAudioSessionConfiguration.m
++++ b/sdk/objc/components/audio/RTCAudioSessionConfiguration.m
+@@ -59,6 +59,15 @@ - (instancetype)init {
+     // By default, using this category implies that our app’s audio is
+     // nonmixable, hence activating the session will interrupt any other
+     // audio sessions which are also nonmixable.
++#if TARGET_OS_TV
++    // tvOS PATCH: Apple TV has no microphone. Use Playback-only category.
++    // No MixWithOthers - we must be the primary audio session to get full system volume.
++    // (MixWithOthers causes tvOS to assign a software volume of 0.0 to the session.)
++    // moviePlayback mode is correct for streaming video+audio content.
++    _category = AVAudioSessionCategoryPlayback;
++    _categoryOptions = 0;
++    _mode = AVAudioSessionModeMoviePlayback;
++#else
+     _category = AVAudioSessionCategoryPlayAndRecord;
+ #if defined(__IPHONE_26_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_26_0
+     _categoryOptions = AVAudioSessionCategoryOptionAllowBluetoothHFP;
+@@ -66,9 +75,9 @@ - (instancetype)init {
+     // Use the deprecated option on older SDKs.
+     _categoryOptions = AVAudioSessionCategoryOptionAllowBluetooth;
+ #endif
+-
+     // Specify mode for two-way voice communication (e.g. VoIP).
+     _mode = AVAudioSessionModeVoiceChat;
++#endif  // TARGET_OS_TV
+ 
+     // Use best sample rate and buffer duration if the CPU has more than one
+     // core.

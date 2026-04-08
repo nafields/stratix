@@ -1,0 +1,231 @@
+diff --git a/sdk/objc/native/src/audio/voice_processing_audio_unit.mm b/sdk/objc/native/src/audio/voice_processing_audio_unit.mm
+index 066f3b161c..cab2353ba6 100644
+--- a/sdk/objc/native/src/audio/voice_processing_audio_unit.mm
++++ b/sdk/objc/native/src/audio/voice_processing_audio_unit.mm
+@@ -59,6 +59,7 @@ static void LogStreamDescription(AudioStreamBasicDescription description) {
+ 
+ // Returns the automatic gain control (AGC) state on the processed microphone
+ // signal. Should be on by default for Voice Processing audio units.
++#if !TARGET_OS_TV
+ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+   RTC_DCHECK(audio_unit);
+   UInt32 size = sizeof(*enabled);
+@@ -72,6 +73,7 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+   RTCLog(@"VPIO unit AGC: %u", static_cast<unsigned int>(*enabled));
+   return result;
+ }
++#endif
+ 
+ VoiceProcessingAudioUnit::VoiceProcessingAudioUnit(
+     bool bypass_voice_processing,
+@@ -94,11 +96,16 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+ bool VoiceProcessingAudioUnit::Init() {
+   RTC_DCHECK_EQ(state_, kInitRequired);
+ 
+-  // Create an audio component description to identify the Voice Processing
+-  // I/O audio unit.
++  // Create an audio component description to identify the I/O audio unit.
++  // On tvOS, use RemoteIO output-only since Apple TV has no microphone and
++  // VoiceProcessingIO startup can fail when it tries to initialize input.
+   AudioComponentDescription vpio_unit_description;
+   vpio_unit_description.componentType = kAudioUnitType_Output;
++#if TARGET_OS_TV
++  vpio_unit_description.componentSubType = kAudioUnitSubType_RemoteIO;
++#else
+   vpio_unit_description.componentSubType = kAudioUnitSubType_VoiceProcessingIO;
++#endif
+   vpio_unit_description.componentManufacturer = kAudioUnitManufacturer_Apple;
+   vpio_unit_description.componentFlags = 0;
+   vpio_unit_description.componentFlagsMask = 0;
+@@ -116,8 +123,12 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+     return false;
+   }
+ 
+-  // Enable input on the input scope of the input element.
++  // Enable input on iOS, but disable it on tvOS (playback-only).
++#if TARGET_OS_TV
++  UInt32 enable_input = 0;
++#else
+   UInt32 enable_input = 1;
++#endif
+   result = AudioUnitSetProperty(vpio_unit_,
+                                 kAudioOutputUnitProperty_EnableIO,
+                                 kAudioUnitScope_Input,
+@@ -167,6 +178,7 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+     return false;
+   }
+ 
++#if !TARGET_OS_TV
+   // Disable AU buffer allocation for the recorder, we allocate our own.
+   // TODO(henrika): not sure that it actually saves resource to make this call.
+   UInt32 flag = 0;
+@@ -203,6 +215,7 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+                 (long)result);
+     return false;
+   }
++#endif
+ 
+   state_ = kUninitialized;
+   return true;
+@@ -223,6 +236,7 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+   LogStreamDescription(format);
+ #endif
+ 
++#if !TARGET_OS_TV
+   // Set the format on the output scope of the input element/bus.
+   result = AudioUnitSetProperty(vpio_unit_,
+                                 kAudioUnitProperty_StreamFormat,
+@@ -236,6 +250,7 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+                 (long)result);
+     return false;
+   }
++#endif
+ 
+   // Set the format on the input scope of the output element/bus.
+   result = AudioUnitSetProperty(vpio_unit_,
+@@ -278,6 +293,9 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+   }
+ 
+   if (detect_mute_speech_) {
++#if TARGET_OS_TV
++    RTCLog(@"Skipping muted speech listener on tvOS (no microphone path).");
++#else
+     if (@available(iOS 15, *)) {
+       // Set listener for muted speech event.
+       AUVoiceIOMutedSpeechActivityEventListener listener =
+@@ -297,8 +315,10 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+             (long)result);
+       }
+     }
++#endif
+   }
+ 
++#if !TARGET_OS_TV
+   if (bypass_voice_processing_) {
+     // Attempt to disable builtin voice processing.
+     UInt32 toggle = 1;
+@@ -375,6 +395,10 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+   RTC_HISTOGRAM_BOOLEAN("WebRTC.Audio.BuiltInAGCIsEnabled", agc_is_enabled);
+   RTCLog(@"WebRTC.Audio.BuiltInAGCIsEnabled: %u",
+          static_cast<unsigned int>(agc_is_enabled));
++#endif
++#if TARGET_OS_TV
++  (void)bypass_voice_processing_;
++#endif
+ 
+   state_ = kInitialized;
+   return true;
+@@ -430,6 +454,11 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+ bool VoiceProcessingAudioUnit::SetMicrophoneMute(bool enable) {
+   RTC_DCHECK_GE(state_, kUninitialized);
+ 
++#if TARGET_OS_TV
++  RTCLog(@"Ignoring microphone mute on tvOS (playback-only audio unit).");
++  return true;
++#endif
++
+   RTCLog(@"Setting microphone %s.", enable ? "mute" : "unmute");
+ 
+   OSStatus result = noErr;
+@@ -509,8 +538,100 @@ static OSStatus GetAGCState(AudioUnit audio_unit, UInt32* enabled) {
+     UInt32 bus_number,
+     UInt32 num_frames,
+     AudioBufferList* io_data) {
+-  return observer_->OnGetPlayoutData(
++  OSStatus result = observer_->OnGetPlayoutData(
+       flags, time_stamp, bus_number, num_frames, io_data);
++#if TARGET_OS_TV
++  if (result == noErr && io_data) {
++    static uint64_t s_tvos_playout_callback_count = 0;
++    static uint64_t s_tvos_last_callback_time_ns = 0;
++
++    // Timestamp for gap detection & throughput tracking.
++    uint64_t now_ns = clock_gettime_nsec_np(CLOCK_UPTIME_RAW);
++
++    // Gap detection bookkeeping: CoreAudio I/O thread should fire every ~20ms
++    // (960 samples @ 48kHz). Logging is intentionally disabled in production.
++    if (s_tvos_last_callback_time_ns > 0) {
++      uint64_t gap_ms = (now_ns - s_tvos_last_callback_time_ns) / 1000000ULL;
++      (void)gap_ms;
++    }
++    s_tvos_last_callback_time_ns = now_ns;
++
++    ++s_tvos_playout_callback_count;
++
++    // PCM throughput counter: track actual samples/sec for ground-truth playback rate.
++    // Accumulates on every callback (just an add — negligible cost on RT thread).
++    static uint64_t s_tvos_pcm_total_frames = 0;
++    static uint64_t s_tvos_pcm_epoch_ns = 0;
++    if (s_tvos_pcm_epoch_ns == 0) s_tvos_pcm_epoch_ns = now_ns;
++    s_tvos_pcm_total_frames += num_frames;
++
++    // Periodic diagnostics are intentionally disabled in production.
++    bool should_log = false;
++    if (should_log) {
++      // Analyze PCM buffer content (only on log callbacks).
++      bool has_samples = false;
++      int min_sample = 32767;
++      int max_sample = -32768;
++      uint64_t sum_abs = 0;
++      size_t total_samples = 0;
++
++      for (UInt32 i = 0; i < io_data->mNumberBuffers; ++i) {
++        const AudioBuffer& buffer = io_data->mBuffers[i];
++        if (!buffer.mData || buffer.mDataByteSize < sizeof(int16_t)) continue;
++        const int16_t* samples = reinterpret_cast<const int16_t*>(buffer.mData);
++        size_t sample_count = buffer.mDataByteSize / sizeof(int16_t);
++        if (sample_count == 0) continue;
++        has_samples = true;
++        total_samples += sample_count;
++        for (size_t j = 0; j < sample_count; ++j) {
++          int s = samples[j];
++          if (s < min_sample) min_sample = s;
++          if (s > max_sample) max_sample = s;
++          sum_abs += static_cast<uint64_t>(s < 0 ? -s : s);
++        }
++      }
++
++      // Compute throughput since last log epoch.
++      double epoch_sec = (now_ns > s_tvos_pcm_epoch_ns)
++          ? (double)(now_ns - s_tvos_pcm_epoch_ns) / 1e9 : 0;
++      double samples_per_sec = (epoch_sec > 0.001)
++          ? (double)s_tvos_pcm_total_frames / epoch_sec : 0;
++      double realtime_pct = (samples_per_sec / 48000.0) * 100.0;
++
++      // Capture all values for async logging (all scalars — safe to capture by value).
++      uint64_t cb = s_tvos_playout_callback_count;
++      UInt32 nf = num_frames;
++      unsigned long ts = static_cast<unsigned long>(total_samples);
++      unsigned int avg = (has_samples && total_samples > 0)
++          ? static_cast<unsigned int>(sum_abs / total_samples) : 0;
++      int mn = min_sample, mx = max_sample;
++      bool hs = has_samples;
++      double sps = samples_per_sec, rtp = realtime_pct;
++
++      // ── CRITICAL: Move NSLog OFF the real-time I/O thread. ──
++      // NSLog acquires a lock on Apple's logging subsystem and can block for
++      // 100ms+ under load — catastrophic on a 20ms-deadline RT thread.
++      // dispatch_async to a utility queue is lightweight (lock-free enqueue)
++      // and the actual I/O happens on a background thread.
++      dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
++        if (hs && ts > 0) {
++          NSLog(@"[WebRTC][tvOS] playout PCM callback=%llu numFrames=%u samples=%lu "
++                 @"avgAbs=%u min=%d max=%d throughput=%.0f/s (%.1f%%)",
++                (unsigned long long)cb, (unsigned int)nf, ts, avg, mn, mx, sps, rtp);
++        } else {
++          NSLog(@"[WebRTC][tvOS] playout PCM callback=%llu numFrames=%u no samples "
++                 @"throughput=%.0f/s (%.1f%%)",
++                (unsigned long long)cb, (unsigned int)nf, sps, rtp);
++        }
++      });
++
++      // Reset throughput counter after logging.
++      s_tvos_pcm_total_frames = 0;
++      s_tvos_pcm_epoch_ns = now_ns;
++    }
++  }
++#endif
++  return result;
+ }
+ 
+ OSStatus VoiceProcessingAudioUnit::NotifyDeliverRecordedData(

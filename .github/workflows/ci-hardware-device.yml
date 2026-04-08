@@ -1,0 +1,23 @@
+name: CI Hardware Device
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stratix-hardware-device
+  cancel-in-progress: false
+
+jobs:
+  hardware-shell:
+    runs-on: [self-hosted, macOS, xcode]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Shell checkpoints on hardware device
+        run: bash Tools/dev/run_hardware_shell_checks.sh

@@ -1,0 +1,61 @@
+name: Bug Report
+description: Report a reproducible bug in Stratix
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the bug clearly and concisely.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps To Reproduce
+      description: List exact reproduction steps.
+      placeholder: |
+        1. Launch ...
+        2. Navigate to ...
+        3. Start ...
+        4. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Apple TV model, tvOS version, simulator/device, and commit or tag.
+    validations:
+      required: true
+  - type: input
+    id: webrtc_version
+    attributes:
+      label: WebRTC Version
+      description: Contents of ThirdParty/WebRTC/webrtc-version.json (or "vendored default")
+  - type: input
+    id: validation_command
+    attributes:
+      label: Exact Validation Command
+      description: Include the exact command, scheme, or lane that reproduced the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs Or Screenshots
+      description: Include logs, screenshots, or trace evidence when available.

@@ -1,0 +1,32 @@
+--- a/sdk/BUILD.gn
++++ b/sdk/BUILD.gn
+@@ -275,16 +275,19 @@ if (is_ios || is_mac) {
+           "audio_codecs",  # TODO(bugs.webrtc.org/8396): Remove.
+           "environment_construction",
+         ]
+-        sources = [
+-          "objc/components/renderer/opengl/RTCDisplayLinkTimer.h",
+-          "objc/components/renderer/opengl/RTCDisplayLinkTimer.m",
+-          "objc/components/renderer/opengl/RTCEAGLVideoView.h",
+-          "objc/components/renderer/opengl/RTCEAGLVideoView.m",
+-        ]
+-
+-        # TODO(bugs.webrtc.org/12937): Remove OpenGL deprecation warning
+-        # workaround.
+-        defines = [ "GLES_SILENCE_DEPRECATION" ]
++        # tvOS PATCH: EAGL/OpenGL is not available on tvOS.
++        # RTCEAGLVideoView uses GLKit which is iOS-only.
++        if (target_platform != "tvos") {
++          sources = [
++            "objc/components/renderer/opengl/RTCDisplayLinkTimer.h",
++            "objc/components/renderer/opengl/RTCDisplayLinkTimer.m",
++            "objc/components/renderer/opengl/RTCEAGLVideoView.h",
++            "objc/components/renderer/opengl/RTCEAGLVideoView.m",
++          ]
++          # TODO(bugs.webrtc.org/12937): Remove OpenGL deprecation warning
++          # workaround.
++          defines = [ "GLES_SILENCE_DEPRECATION" ]
++        }
+         configs += [ "..:common_objc" ]
+         deps = [
+           ":base_objc",

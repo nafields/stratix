@@ -1,0 +1,33 @@
+--- a/sdk/objc/components/capturer/RTCCameraVideoCapturer.m
++++ b/sdk/objc/components/capturer/RTCCameraVideoCapturer.m
+@@ -1,3 +1,24 @@
++#if TARGET_OS_TV
++/*
++ * tvOS PATCH: Disable camera video capture.
++ * tvOS has no native camera (except Continuity Camera in tvOS 17+, which we don't use).
++ * AVCaptureSession is unavailable on tvOS < 17.
++ * This stub replaces all camera capture methods with no-ops.
++ */
++#import <Foundation/Foundation.h>
++#import "RTCCameraVideoCapturer.h"
++// Entire camera capturer is disabled on tvOS.
++@implementation RTC_OBJC_TYPE(RTCCameraVideoCapturer)
+++ (NSArray<AVCaptureDevice *> *)captureDevices { return @[]; }
+++ (NSArray<AVCaptureDeviceFormat *> *)supportedFormatsForDevice:(AVCaptureDevice *)device { return @[]; }
++- (FourCharCode)preferredOutputPixelFormat { return 0; }
++- (AVCaptureSession *)captureSession { return nil; }
++- (void)startCaptureWithDevice:(AVCaptureDevice *)device format:(AVCaptureDeviceFormat *)format fps:(NSInteger)fps {}
++- (void)startCaptureWithDevice:(AVCaptureDevice *)device format:(AVCaptureDeviceFormat *)format fps:(NSInteger)fps completionHandler:(nullable void (^)(NSError *))completionHandler { if (completionHandler) completionHandler(nil); }
++- (void)stopCapture {}
++- (void)stopCaptureWithCompletionHandler:(nullable void (^)(void))completionHandler { if (completionHandler) completionHandler(); }
++@end
++#else
+ /*
+  *  Copyright 2017 The WebRTC project authors. All Rights Reserved.
+  *
+@@ -574,3 +595,5 @@ - (void)updateOrientation {
+ }
+
+ @end
++
++#endif  // TARGET_OS_TV

@@ -1,0 +1,2461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0205DCA7B32DF4EEF4A7E7BA /* CloudLibrarySettingsControllerPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157CA9EDC0762B5961E30965 /* CloudLibrarySettingsControllerPane.swift */; };
+		053E2727237D39542CEDA185 /* AppBundleSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A100000000000000000002 /* AppBundleSmokeTests.swift */; };
+		17BF77B1FF5439ABD5983119 /* SideRailFocusCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11BBAEC597A5535EA76EDB /* SideRailFocusCoordinator.swift */; };
+		1833C5AEB96363A7DDB661D2 /* CloudLibraryHeroBackgroundState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190601F3C743065241C29E88 /* CloudLibraryHeroBackgroundState.swift */; };
+		1947B94F8D5BE18B025B37BE /* PostStreamFreshnessPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B205965A3141B221972DD3 /* PostStreamFreshnessPerformanceTests.swift */; };
+		1A9300000000000000000001 /* CloudLibraryDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9200000000000000000001 /* CloudLibraryDataSourceTests.swift */; };
+		1A9300000000000000000002 /* CloudLibraryLayoutPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9200000000000000000002 /* CloudLibraryLayoutPolicyTests.swift */; };
+		1A9300000000000000000003 /* ShellCheckpointStreamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9200000000000000000003 /* ShellCheckpointStreamUITests.swift */; };
+		1C365A778987F57C7A4508A0 /* CloudLibraryHomeFocusCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134EFFB5349BA177C62394E1 /* CloudLibraryHomeFocusCoordinatorTests.swift */; };
+		241C9AB6F293FB14F2CE9236 /* CloudLibrarySettingsVideoAudioPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23CB0AF4B8EB4CB55728009 /* CloudLibrarySettingsVideoAudioPane.swift */; };
+		3388096E54BA8F6CE6DCF0D7 /* ConsoleListFocusCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4345865DAA16EC6B800E47D /* ConsoleListFocusCoordinatorTests.swift */; };
+		38DFAE16DCDF1442ED356818 /* CloudLibrarySettingsSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6E4EA50BE46ED07D648CC /* CloudLibrarySettingsSidebar.swift */; };
+		3D9648E24A8340129851C966 /* CloudLibrarySettingsInterfacePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FEE4EF5691E33AEF87556F /* CloudLibrarySettingsInterfacePane.swift */; };
+		49B2A32EE930937BB5827FA7 /* SideRailFocusCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DE8F2C0AD8CAC40F170CD /* SideRailFocusCoordinatorTests.swift */; };
+		4A2D9F9F4B00000000000001 /* StreamGuideOverlayStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D9F9F4B00000000000002 /* StreamGuideOverlayStateTests.swift */; };
+		4A2D9F9F4B00000000000003 /* GamePassTitleDetailScreenStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D9F9F4B00000000000004 /* GamePassTitleDetailScreenStateTests.swift */; };
+		4C7DA624D3D27855B790A00B /* CloudLibrarySceneRouteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CA82EF9EED3E89AA59BA21 /* CloudLibrarySceneRouteState.swift */; };
+		55B057C75E003E312D059C51 /* ConsoleListFocusCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A596C5002ED815D2439FDFA3 /* ConsoleListFocusCoordinator.swift */; };
+		56842A49C9FB43A5FF2D6C77 /* RouteSwitchPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4721D522B8B7F0108DF33 /* RouteSwitchPerformanceTests.swift */; };
+		63FD68D75928BB2D7CF3B306 /* SideRailNavList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5708B9A6A9C66CD7282198D8 /* SideRailNavList.swift */; };
+		6409CE15C249D316B257ED29 /* StreamDebugLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CE2CBB90B20A39809963D /* StreamDebugLogging.swift */; };
+		66FE7D8823BB82790D7E3B0C /* SideRailActionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D3F1CF50395D721302B879 /* SideRailActionList.swift */; };
+		680338806F8CB4F6009E2B7F /* LaunchPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA10031943356C0F1BBAD79 /* LaunchPerformanceTests.swift */; };
+		7828D0624FE0DDB4E2EC13A3 /* PerformanceTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17BDA56E9B4DA19D8AC1F57 /* PerformanceTestSupport.swift */; };
+		8832E636848D100F611230B3 /* CloudLibraryHomeFocusCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E2D30991FBE460D81696C /* CloudLibraryHomeFocusCoordinator.swift */; };
+		98ECAF3ED6F8A0925ED33E31 /* CloudLibrarySceneStatusState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4DE7B861E7E3B401140ED2 /* CloudLibrarySceneStatusState.swift */; };
+		9A00E26133614CE254499CA3 /* SideRailAccountCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C9523CB9121F7CBF05C1E /* SideRailAccountCluster.swift */; };
+		A1B2C3D4E5F60718293A92 /* CloudLibraryActionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A93 /* CloudLibraryActionCoordinator.swift */; };
+		A1B2C3D4E5F60718293A98 /* CloudLibraryDiagnosticsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A99 /* CloudLibraryDiagnosticsOverlay.swift */; };
+		A1B2C3D4E5F60718293A9A /* StreamContextTypedIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A9B /* StreamContextTypedIDTests.swift */; };
+		A1B2C3D4E5F60718293AB0 /* WebRTCClientImplSafetyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293AB1 /* WebRTCClientImplSafetyTests.swift */; };
+		A275673B099A5FBD349D6FFA /* ConsoleGridSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1035C73AE30752482EBC14 /* ConsoleGridSection.swift */; };
+		A2D100000000000000000001 /* StratixLaunchMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000001 /* StratixLaunchMode.swift */; };
+		A2D100000000000000000002 /* StratixAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000002 /* StratixAppDelegate.swift */; };
+		A2D100000000000000000003 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000003 /* RootView.swift */; };
+		A2D100000000000000000004 /* CloudLibraryViewCacheMaintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000004 /* CloudLibraryViewCacheMaintenance.swift */; };
+		A2D100000000000000000005 /* CloudLibraryDataSourceHomeProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000005 /* CloudLibraryDataSourceHomeProjection.swift */; };
+		A2D100000000000000000006 /* CloudLibraryDataSourceDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000006 /* CloudLibraryDataSourceDetailState.swift */; };
+		A2D100000000000000000007 /* CloudLibraryDataSourceSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000007 /* CloudLibraryDataSourceSearchResults.swift */; };
+		A2D100000000000000000008 /* CloudLibraryUITestHarnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000053 /* CloudLibraryUITestHarnessView.swift */; };
+		A2D100000000000000000009 /* ShellUITestHarnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000008 /* ShellUITestHarnessView.swift */; };
+		A2D100000000000000000012 /* CloudLibraryViewModelDetailCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000011 /* CloudLibraryViewModelDetailCache.swift */; };
+		A2D100000000000000000013 /* CloudLibraryDataSourceLibraryIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D200000000000000000012 /* CloudLibraryDataSourceLibraryIndex.swift */; };
+		A30000000000000000000001 /* StratixDesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000011 /* StratixDesignTokens.swift */; };
+		A30000000000000000000002 /* RemoteImagePipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000012 /* RemoteImagePipeline.swift */; };
+		A30000000000000000000003 /* CachedRemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000013 /* CachedRemoteImage.swift */; };
+		A30000000000000000000004 /* AmbientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000014 /* AmbientBackground.swift */; };
+		A30000000000000000000005 /* RendererContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000015 /* RendererContainerView.swift */; };
+		A30000000000000000000006 /* SampleBufferDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000016 /* SampleBufferDisplayView.swift */; };
+		A30000000000000000000007 /* FrameProbeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000017 /* FrameProbeRenderer.swift */; };
+		A30000000000000000000018 /* ConsoleListStreamLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000019 /* ConsoleListStreamLaunchTests.swift */; };
+		A3000000000000000000001A /* ShellExitHandlingDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000000000000000000001B /* ShellExitHandlingDecision.swift */; };
+		A3000000000000000000001C /* ShellUITestHarnessFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3000000000000000000001D /* ShellUITestHarnessFixtures.swift */; };
+		A30000000000000000000021 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = A30000000000000000000023 /* AsyncAlgorithms */; };
+		A30000000000000000000028 /* CloudLibraryCatalogFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000025 /* CloudLibraryCatalogFixtures.swift */; };
+		A30000000000000000000029 /* CloudLibraryHomeScenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000027 /* CloudLibraryHomeScenario.swift */; };
+		A8D7F1073DD0448CE9C5B7B0 /* CloudLibraryHomeRailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58593824A953DB29901177B5 /* CloudLibraryHomeRailSection.swift */; };
+		A96B719B598FC9336E85A838 /* ConsoleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8233DC9DCA885115896F9D /* ConsoleCardView.swift */; };
+		AA0001000000000000000001 /* StratixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000001 /* StratixApp.swift */; };
+		AA0001000000000000000002 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000002 /* AuthView.swift */; };
+		AA0001000000000000000003 /* DeviceCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000003 /* DeviceCodeView.swift */; };
+		AA0001000000000000000004 /* AuthenticatedShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000004 /* AuthenticatedShellView.swift */; };
+		AA0001000000000000000005 /* ConsoleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000005 /* ConsoleListView.swift */; };
+		AA0001000000000000000007 /* StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000007 /* StreamView.swift */; };
+		AA0001000000000000000009 /* WebRTCClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000009 /* WebRTCClientImpl.swift */; };
+		AA0001000000000000000010 /* StratixModels in Frameworks */ = {isa = PBXBuildFile; productRef = AA0009000000000000000001 /* StratixModels */; };
+		AA0001000000000000000011 /* InputBridge in Frameworks */ = {isa = PBXBuildFile; productRef = AA0009000000000000000002 /* InputBridge */; };
+		AA0001000000000000000012 /* XCloudAPI in Frameworks */ = {isa = PBXBuildFile; productRef = AA0009000000000000000003 /* XCloudAPI */; };
+		AA0001000000000000000013 /* StreamingCore in Frameworks */ = {isa = PBXBuildFile; productRef = AA0009000000000000000004 /* StreamingCore */; };
+		AA0001000000000000000014 /* DiagnosticsKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA0009000000000000000005 /* DiagnosticsKit */; };
+		AA0001000000000000000016 /* StratixCore in Frameworks */ = {isa = PBXBuildFile; productRef = AA0009000000000000000007 /* StratixCore */; };
+		AA0001000000000000000017 /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000014 /* WebRTC.xcframework */; };
+		AA0001000000000000000018 /* WebRTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000014 /* WebRTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA0001000000000000000019 /* CloudLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000015 /* CloudLibraryView.swift */; };
+		AA0001000000000000000020 /* CloudLibraryShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000016 /* CloudLibraryShellView.swift */; };
+		AA0001000000000000000021 /* CloudLibraryHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000017 /* CloudLibraryHomeScreen.swift */; };
+		AA0001000000000000000022 /* CloudLibraryLibraryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000018 /* CloudLibraryLibraryScreen.swift */; };
+		AA0001000000000000000024 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000020 /* GlassCard.swift */; };
+		AA0001000000000000000025 /* MediaTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000021 /* MediaTileView.swift */; };
+		AA0001000000000000000026 /* SideRailNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000022 /* SideRailNavigationView.swift */; };
+		AA0001000000000000000027 /* ChipGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000023 /* ChipGroupView.swift */; };
+		AA0001000000000000000029 /* CloudLibraryPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000025 /* CloudLibraryPreviewData.swift */; };
+		AA0001000000000000000030 /* CloudLibraryViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000026 /* CloudLibraryViewState.swift */; };
+		AA0001000000000000000031 /* StreamGuideOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000027 /* StreamGuideOverlayView.swift */; };
+		AA0001000000000000000032 /* StratixBranding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000028 /* StratixBranding.swift */; };
+		AA0001000000000000000033 /* MetalVideoRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000029 /* MetalVideoRenderer.swift */; };
+		AA0001000000000000000034 /* CASShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000030 /* CASShader.metal */; };
+		AA0001000000000000000035 /* NavigationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000036 /* NavigationTypes.swift */; };
+		AA0001000000000000000039 /* StreamOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000040 /* StreamOverlay.swift */; };
+		AA0001000000000000000041 /* CloudLibrarySearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000042 /* CloudLibrarySearchScreen.swift */; };
+		AA0001000000000000000043 /* CloudLibraryStatusViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000044 /* CloudLibraryStatusViews.swift */; };
+		AA0001000000000000000045 /* CloudLibrary/CloudLibraryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000046 /* CloudLibrary/CloudLibraryDataSource.swift */; };
+		AA0001000000000000000050 /* CloudLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000050 /* CloudLibraryViewModel.swift */; };
+		AA0001000000000000000052 /* FocusSettleDebouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000052 /* FocusSettleDebouncer.swift */; };
+		AA0001000000000000000056 /* VideoRenderingKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA0009000000000000000008 /* VideoRenderingKit */; };
+		AA0001000000000000000057 /* CloudLibraryConsolesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000056 /* CloudLibraryConsolesView.swift */; };
+		AA0001000000000000000058 /* CloudLibraryProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000057 /* CloudLibraryProfileView.swift */; };
+		AA0001000000000000000059 /* CloudLibrarySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000058 /* CloudLibrarySettingsView.swift */; };
+		AA0001000000000000000060 /* CloudLibrarySettingsComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000059 /* CloudLibrarySettingsComponents.swift */; };
+		AA0001000000000000000061 /* CloudLibrarySceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000060 /* CloudLibrarySceneModel.swift */; };
+		AA0001000000000000000062 /* SampleBufferDisplayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000062 /* SampleBufferDisplayRenderer.swift */; };
+		AA0001000000000000000066 /* CloudLibraryHeroBackgroundContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000066 /* CloudLibraryHeroBackgroundContext.swift */; };
+		AA0001000000000000000068 /* DetailStateHotCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000068 /* DetailStateHotCache.swift */; };
+		AA0001000000000000000069 /* CloudLibrarySceneInputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000069 /* CloudLibrarySceneInputs.swift */; };
+		AB1003000000000000000001 /* ShellCheckpointUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1002000000000000000003 /* ShellCheckpointUITests.swift */; };
+		AB1100000000000000000001 /* ShellCheckpointLaunchSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000001 /* ShellCheckpointLaunchSupport.swift */; };
+		AB1100000000000000000002 /* ShellCheckpointNavigationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000002 /* ShellCheckpointNavigationSupport.swift */; };
+		AB1100000000000000000003 /* ShellCheckpointLandmarkSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000003 /* ShellCheckpointLandmarkSupport.swift */; };
+		AB1100000000000000000004 /* ShellCheckpointStreamSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000004 /* ShellCheckpointStreamSupport.swift */; };
+		AB1100000000000000000005 /* ShellCheckpointNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000005 /* ShellCheckpointNavigationUITests.swift */; };
+		AB1100000000000000000006 /* ShellCheckpointSmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000006 /* ShellCheckpointSmokeUITests.swift */; };
+		AB1100000000000000000007 /* ShellCheckpointCaptureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000007 /* ShellCheckpointCaptureUITests.swift */; };
+		AB1100000000000000000008 /* ShellCheckpointRouteBehaviorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000008 /* ShellCheckpointRouteBehaviorUITests.swift */; };
+		AB1100000000000000000009 /* ShellCheckpointReadinessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1200000000000000000009 /* ShellCheckpointReadinessUITests.swift */; };
+		AFFC4058D0F800746CFC16CF /* CloudLibrarySettingsPaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C93C62A55272162B40BEB /* CloudLibrarySettingsPaneTests.swift */; };
+		B3E100000000000000000002 /* CloudLibraryActionCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E200000000000000000002 /* CloudLibraryActionCoordinatorTests.swift */; };
+		B3F100000000000000000001 /* CloudLibraryViewModelSceneMutation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F200000000000000000001 /* CloudLibraryViewModelSceneMutation.swift */; };
+		B3F100000000000000000002 /* CloudLibraryViewModelSceneMutationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F200000000000000000002 /* CloudLibraryViewModelSceneMutationTests.swift */; };
+		B71000000000000000000001 /* StreamSurfaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72000000000000000000001 /* StreamSurfaceModel.swift */; };
+		B71000000000000000000002 /* StreamOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72000000000000000000002 /* StreamOverlayState.swift */; };
+		B71000000000000000000003 /* RenderSurfaceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72000000000000000000003 /* RenderSurfaceCoordinator.swift */; };
+		B71000000000000000000004 /* RendererAttachmentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72000000000000000000004 /* RendererAttachmentCoordinator.swift */; };
+		B71000000000000000000005 /* StreamSurfaceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72000000000000000000005 /* StreamSurfaceModelTests.swift */; };
+		B71000000000000000000006 /* StreamOverlayStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72000000000000000000006 /* StreamOverlayStateTests.swift */; };
+		B71000000000000000000007 /* RenderSurfaceCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72000000000000000000007 /* RenderSurfaceCoordinatorTests.swift */; };
+		C1F000000000000000000001 /* CloudLibraryShellVisibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F100000000000000000001 /* CloudLibraryShellVisibilityTests.swift */; };
+		C1F000000000000000000002 /* ConsoleListShellVisibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F100000000000000000002 /* ConsoleListShellVisibilityTests.swift */; };
+		C1F000000000000000000003 /* StratixAppExitHandlingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F100000000000000000003 /* StratixAppExitHandlingTests.swift */; };
+		C2A6F0A91A7D4F25B1C9F101 /* StoredAuthShellRestorePerformanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A6F0A91A7D4F25B1C9F100 /* StoredAuthShellRestorePerformanceUITests.swift */; };
+		C440E010E8AC87C303079CD8 /* CloudLibrarySettingsBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD888169C0334F1EB5F0362 /* CloudLibrarySettingsBindings.swift */; };
+		C61010000000000000000003 /* CloudLibraryViewModelHomeProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61020000000000000000003 /* CloudLibraryViewModelHomeProjection.swift */; };
+		C61010000000000000000004 /* CloudLibraryViewModelLibraryProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61020000000000000000004 /* CloudLibraryViewModelLibraryProjection.swift */; };
+		C61010000000000000000005 /* CloudLibraryViewModelSearchProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61020000000000000000005 /* CloudLibraryViewModelSearchProjection.swift */; };
+		C62010000000000000000004 /* CloudLibrarySceneModelMutationTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62020000000000000000004 /* CloudLibrarySceneModelMutationTracking.swift */; };
+		C7781C8BA57F324ABCD4D0DA /* ConsoleListEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE551A8F08C7BD82548E59B0 /* ConsoleListEmptyState.swift */; };
+		C7D100000000000000000001 /* CloudLibraryDetailPrewarmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D200000000000000000001 /* CloudLibraryDetailPrewarmCoordinator.swift */; };
+		C7D100000000000000000002 /* CloudLibraryDetailPrewarmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D200000000000000000002 /* CloudLibraryDetailPrewarmTests.swift */; };
+		C7D100000000000000000003 /* CloudLibraryShellInteractionCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D200000000000000000003 /* CloudLibraryShellInteractionCoordinatorTests.swift */; };
+		C8A100000000000000000001 /* AuthenticatedShellDynamicTypeSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A100000000000000000004 /* AuthenticatedShellDynamicTypeSmokeTests.swift */; };
+		CBC6BD78396E10A53E6ED62B /* CloudLibraryHomeHeroSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93067D5B02A271F6B7CBCA06 /* CloudLibraryHomeHeroSection.swift */; };
+		D08ACE55DCDD4E629F335C80 /* CloudLibrarySettingsOverviewPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B0435CA517D5BCA654AF93 /* CloudLibrarySettingsOverviewPane.swift */; };
+		D4F100000000000000000001 /* CloudLibraryLibraryScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F200000000000000000001 /* CloudLibraryLibraryScreenHeader.swift */; };
+		D4F100000000000000000002 /* CloudLibraryLibraryScreenFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F200000000000000000002 /* CloudLibraryLibraryScreenFocus.swift */; };
+		D4F100000000000000000003 /* CloudLibraryLibraryScreenControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F200000000000000000003 /* CloudLibraryLibraryScreenControls.swift */; };
+		DACD095874B988D0D0676B30 /* CloudLibrarySceneStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A6BC80EE7E175DA37D32DC /* CloudLibrarySceneStateTests.swift */; };
+		E123EE8A2F7DBCF900DA591E /* CloudLibraryDetailHydrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE292F7DBCF900DA591E /* CloudLibraryDetailHydrationView.swift */; };
+		E123EEA32F7DBCF900DA591E /* CloudLibraryTitleDetailPanels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE272F7DBCF900DA591E /* CloudLibraryTitleDetailPanels.swift */; };
+		E123EEAE2F7DBCF900DA591E /* CloudLibraryTitleDetailMediaReadiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE262F7DBCF900DA591E /* CloudLibraryTitleDetailMediaReadiness.swift */; };
+		E123EEBE2F7DBCF900DA591E /* CloudLibraryTitleDetailFullscreenMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE232F7DBCF900DA591E /* CloudLibraryTitleDetailFullscreenMedia.swift */; };
+		E123EEC52F7DBCF900DA591E /* CloudLibraryTitleDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE282F7DBCF900DA591E /* CloudLibraryTitleDetailScreen.swift */; };
+		E123EECC2F7DBCF900DA591E /* CloudLibraryTitleDetailHeroHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE252F7DBCF900DA591E /* CloudLibraryTitleDetailHeroHeader.swift */; };
+		E123EED12F7DBCF900DA591E /* CloudLibraryTitleDetailGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE242F7DBCF900DA591E /* CloudLibraryTitleDetailGallery.swift */; };
+		E12781B02F78896E005548D0 /* StreamOverlayComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781AF2F78896E005548D0 /* StreamOverlayComposition.swift */; };
+		E12781B22F78896E005548D0 /* StreamOverlayDiagnosticsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781B12F78896E005548D0 /* StreamOverlayDiagnosticsPanel.swift */; };
+		E12781B42F78896F005548D0 /* StreamOverlayHUDStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781B32F78896F005548D0 /* StreamOverlayHUDStats.swift */; };
+		E12781B62F788970005548D0 /* StreamOverlayDisconnectControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781B52F788970005548D0 /* StreamOverlayDisconnectControls.swift */; };
+		E12781B92F789CDA005548D0 /* GuidePaneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781B82F789CDA005548D0 /* GuidePaneModels.swift */; };
+		E12781BB2F789CDB005548D0 /* GuideSettingCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781BA2F789CDB005548D0 /* GuideSettingCatalog.swift */; };
+		E12781BD2F789CDC005548D0 /* GuidePaneSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781BC2F789CDC005548D0 /* GuidePaneSections.swift */; };
+		E12781BF2F789CDD005548D0 /* GuideRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781BE2F789CDD005548D0 /* GuideRows.swift */; };
+		E12781C12F789CDE005548D0 /* GuideOverlaySettingsAccessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781C02F789CDE005548D0 /* GuideOverlaySettingsAccessors.swift */; };
+		E12781C32F78A7CF005548D0 /* GuideOverlayComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12781C22F78A7CF005548D0 /* GuideOverlayComposition.swift */; };
+		E147F6F42F63A92400B960D0 /* NavigationPerformanceTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E147F6F32F63A92400B960D0 /* NavigationPerformanceTracker.swift */; };
+		E1652D9A2F65F66700A78E11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1652D992F65F66700A78E11 /* Assets.xcassets */; };
+		E50000000000000000000001 /* CloudLibraryHomeHeroComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50000000000000000000011 /* CloudLibraryHomeHeroComponents.swift */; };
+		E50000000000000000000002 /* CloudLibraryHomeRailComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50000000000000000000012 /* CloudLibraryHomeRailComponents.swift */; };
+		E60000000000000000000001 /* StreamCompactStatsHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60000000000000000000011 /* StreamCompactStatsHUD.swift */; };
+		E60000000000000000000002 /* StreamControllerInputHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60000000000000000000012 /* StreamControllerInputHost.swift */; };
+		EA5C4A4219F3E679EE78FC64 /* CloudLibrarySettingsDiagnosticsPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A899828FD2992D98D41153 /* CloudLibrarySettingsDiagnosticsPane.swift */; };
+		F0A1B2C3D4E5F60718293A40 /* WebRTCClientStateSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A41 /* WebRTCClientStateSupport.swift */; };
+		F0A1B2C3D4E5F60718293A42 /* WebRTCClientImplTVOSAudioBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A43 /* WebRTCClientImplTVOSAudioBootstrap.swift */; };
+		F0A1B2C3D4E5F60718293A46 /* WebRTCClientImplDataChannelDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A47 /* WebRTCClientImplDataChannelDelegateProxy.swift */; };
+		F0A1B2C3D4E5F60718293A4A /* WebRTCClientImplRTCAudioSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A4B /* WebRTCClientImplRTCAudioSessionDelegate.swift */; };
+		F0A1B2C3D4E5F60718293A4C /* WebRTCClientImplRTCPeerConnectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A4D /* WebRTCClientImplRTCPeerConnectionDelegate.swift */; };
+		F0A1B2C3D4E5F60718293A52 /* WebRTCClientImplDataChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A53 /* WebRTCClientImplDataChannels.swift */; };
+		F0A1B2C3D4E5F60718293A54 /* WebRTCClientImplStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A55 /* WebRTCClientImplStats.swift */; };
+		F0A1B2C3D4E5F60718293A56 /* WebRTCClientImplCallbackRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A57 /* WebRTCClientImplCallbackRouting.swift */; };
+		F0A1B2C3D4E5F60718293A5C /* CloudLibraryUtilityRouteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A5D /* CloudLibraryUtilityRouteActions.swift */; };
+		F0A1B2C3D4E5F60718293A5E /* CloudLibraryBrowseRouteHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A5F /* CloudLibraryBrowseRouteHost.swift */; };
+		F0A1B2C3D4E5F60718293A60 /* CloudLibraryBrowseRouteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A61 /* CloudLibraryBrowseRouteActions.swift */; };
+		F0A1B2C3D4E5F60718293A62 /* CloudLibraryBrowseRoutePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A63 /* CloudLibraryBrowseRoutePresentation.swift */; };
+		F0A1B2C3D4E5F60718293A64 /* CloudLibraryContentRouteHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A65 /* CloudLibraryContentRouteHost.swift */; };
+		F0A1B2C3D4E5F60718293A66 /* CloudLibraryDetailRouteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A67 /* CloudLibraryDetailRouteActions.swift */; };
+		F0A1B2C3D4E5F60718293A68 /* WebRTCClientImplTVOSAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A69 /* WebRTCClientImplTVOSAudio.swift */; };
+		F0A1B2C3D4E5F60718293A6A /* WebRTCClientImplBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A6B /* WebRTCClientImplBridge.swift */; };
+		F0A1B2C3D4E5F60718293A6C /* SampleBufferDisplayRendererLowLatencySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A6D /* SampleBufferDisplayRendererLowLatencySupport.swift */; };
+		F0A1B2C3D4E5F60718293A6E /* SampleBufferDisplayRendererLowLatencyFrameInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A6F /* SampleBufferDisplayRendererLowLatencyFrameInterpolation.swift */; };
+		F0A1B2C3D4E5F60718293A70 /* SampleBufferDisplayRendererLowLatencySuperResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A71 /* SampleBufferDisplayRendererLowLatencySuperResolution.swift */; };
+		F0A1B2C3D4E5F60718293A72 /* MetalVideoRendererDrawPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A73 /* MetalVideoRendererDrawPipeline.swift */; };
+		F0A1B2C3D4E5F60718293A74 /* MetalVideoRendererPresentationResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A75 /* MetalVideoRendererPresentationResources.swift */; };
+		F0A1B2C3D4E5F60718293A76 /* SampleBufferDisplayRendererLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A77 /* SampleBufferDisplayRendererLifecycle.swift */; };
+		F0A1B2C3D4E5F60718293A78 /* SampleBufferDisplayRendererPlainPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A79 /* SampleBufferDisplayRendererPlainPipeline.swift */; };
+		F0A1B2C3D4E5F60718293A80 /* WebRTCVideoSurfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A1B2C3D4E5F60718293A81 /* WebRTCVideoSurfaceView.swift */; };
+		F1E2D3C4B5A6978877665544 /* WebRTCVideoSurfaceViewBinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E2D3C4B5A6978877665545 /* WebRTCVideoSurfaceViewBinderTests.swift */; };
+		F4A100000000000000000001 /* CloudLibraryStateSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000001 /* CloudLibraryStateSnapshot.swift */; };
+		F4A100000000000000000002 /* CloudLibraryLoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000002 /* CloudLibraryLoadState.swift */; };
+		F4A100000000000000000003 /* CloudLibraryLoadStateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000003 /* CloudLibraryLoadStateBuilder.swift */; };
+		F4A100000000000000000004 /* CloudLibraryRouteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000004 /* CloudLibraryRouteState.swift */; };
+		F4A100000000000000000005 /* CloudLibraryFocusState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000005 /* CloudLibraryFocusState.swift */; };
+		F4A100000000000000000006 /* CloudLibraryLayoutPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000006 /* CloudLibraryLayoutPolicy.swift */; };
+		F4A100000000000000000007 /* CloudLibraryBackActionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000007 /* CloudLibraryBackActionPolicy.swift */; };
+		F4A100000000000000000008 /* CloudLibraryPresentationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000008 /* CloudLibraryPresentationStore.swift */; };
+		F4A100000000000000000009 /* CloudLibraryShellPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000009 /* CloudLibraryShellPresentation.swift */; };
+		F4A10000000000000000000B /* CloudLibraryUtilityRoutePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A20000000000000000000B /* CloudLibraryUtilityRoutePresentation.swift */; };
+		F4A10000000000000000000E /* CloudLibraryShellHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A20000000000000000000E /* CloudLibraryShellHost.swift */; };
+		F4A10000000000000000000F /* CloudLibraryBrowseRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A20000000000000000000F /* CloudLibraryBrowseRoute.swift */; };
+		F4A100000000000000000011 /* CloudLibraryShellInteractionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A200000000000000000011 /* CloudLibraryShellInteractionCoordinator.swift */; };
+		F4B100000000000000000001 /* CloudLibraryTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B200000000000000000001 /* CloudLibraryTestSupport.swift */; };
+		F4B100000000000000000002 /* CloudLibraryStateSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B200000000000000000002 /* CloudLibraryStateSnapshotTests.swift */; };
+		F4B100000000000000000003 /* CloudLibraryLoadStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B200000000000000000003 /* CloudLibraryLoadStateTests.swift */; };
+		F4B100000000000000000004 /* CloudLibraryRouteStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B200000000000000000004 /* CloudLibraryRouteStateTests.swift */; };
+		F4B100000000000000000005 /* CloudLibraryFocusStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B200000000000000000005 /* CloudLibraryFocusStateTests.swift */; };
+		F4B100000000000000000006 /* CloudLibraryBackActionPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B200000000000000000006 /* CloudLibraryBackActionPolicyTests.swift */; };
+		F4B100000000000000000008 /* CloudLibraryRoutePresentationBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B200000000000000000008 /* CloudLibraryRoutePresentationBuilderTests.swift */; };
+		F4B100000000000000000009 /* CloudLibraryShellHostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B200000000000000000009 /* CloudLibraryShellHostTests.swift */; };
+		F4B10000000000000000000A /* CloudLibraryShellHostActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B20000000000000000000A /* CloudLibraryShellHostActionTests.swift */; };
+		F6D29E9C36404A85E7043A11 /* CloudLibrarySettingsStreamPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7A3527B80A2A185E52474 /* CloudLibrarySettingsStreamPane.swift */; };
+		FC2D1BA53F0C7135A62C8681 /* ShellPerformanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB86F639E8A633FD39F3B4 /* ShellPerformanceUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		E18FBDEC2F6A6982004033D0 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.metal;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# metal\n";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		081C05A44A1F6BBB4BBBD2F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0008000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0005000000000000000001;
+			remoteInfo = Stratix;
+		};
+		A85A19418EDF3BF898560A5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0008000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0005000000000000000001;
+			remoteInfo = Stratix;
+		};
+		AB1009000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0008000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0005000000000000000001;
+			remoteInfo = Stratix;
+		};
+		CAC552942FE5DA29CE303D5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0008000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0005000000000000000001;
+			remoteInfo = Stratix;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA0003000000000000000002 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AA0001000000000000000018 /* WebRTC.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		051C93C62A55272162B40BEB /* CloudLibrarySettingsPaneTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsPaneTests.swift; sourceTree = "<group>"; };
+		07F4721D522B8B7F0108DF33 /* RouteSwitchPerformanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RouteSwitchPerformanceTests.swift; sourceTree = "<group>"; };
+		0D4DE7B861E7E3B401140ED2 /* CloudLibrarySceneStatusState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySceneStatusState.swift; sourceTree = "<group>"; };
+		134EFFB5349BA177C62394E1 /* CloudLibraryHomeFocusCoordinatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryHomeFocusCoordinatorTests.swift; sourceTree = "<group>"; };
+		157CA9EDC0762B5961E30965 /* CloudLibrarySettingsControllerPane.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsControllerPane.swift; sourceTree = "<group>"; };
+		16A6BC80EE7E175DA37D32DC /* CloudLibrarySceneStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySceneStateTests.swift; sourceTree = "<group>"; };
+		17D3F1CF50395D721302B879 /* SideRailActionList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SideRailActionList.swift; sourceTree = "<group>"; };
+		18B205965A3141B221972DD3 /* PostStreamFreshnessPerformanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PostStreamFreshnessPerformanceTests.swift; sourceTree = "<group>"; };
+		190601F3C743065241C29E88 /* CloudLibraryHeroBackgroundState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryHeroBackgroundState.swift; sourceTree = "<group>"; };
+		1AA7A3527B80A2A185E52474 /* CloudLibrarySettingsStreamPane.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsStreamPane.swift; sourceTree = "<group>"; };
+		1DBB86F639E8A633FD39F3B4 /* ShellPerformanceUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShellPerformanceUITests.swift; sourceTree = "<group>"; };
+		1A9200000000000000000001 /* CloudLibraryDataSourceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryDataSourceTests.swift; sourceTree = "<group>"; };
+		1A9200000000000000000002 /* CloudLibraryLayoutPolicyTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryLayoutPolicyTests.swift; sourceTree = "<group>"; };
+		1A9200000000000000000003 /* ShellCheckpointStreamUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShellCheckpointStreamUITests.swift; sourceTree = "<group>"; };
+		25B0435CA517D5BCA654AF93 /* CloudLibrarySettingsOverviewPane.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsOverviewPane.swift; sourceTree = "<group>"; };
+		2D1035C73AE30752482EBC14 /* ConsoleGridSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConsoleGridSection.swift; sourceTree = "<group>"; };
+		34A899828FD2992D98D41153 /* CloudLibrarySettingsDiagnosticsPane.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsDiagnosticsPane.swift; sourceTree = "<group>"; };
+		36CA82EF9EED3E89AA59BA21 /* CloudLibrarySceneRouteState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySceneRouteState.swift; sourceTree = "<group>"; };
+		3811D873071C792DD33D5E60 /* StratixPerformanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StratixPerformanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D8233DC9DCA885115896F9D /* ConsoleCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConsoleCardView.swift; sourceTree = "<group>"; };
+		3E7DE8F2C0AD8CAC40F170CD /* SideRailFocusCoordinatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SideRailFocusCoordinatorTests.swift; sourceTree = "<group>"; };
+		4A2D9F9F4B00000000000002 /* StreamGuideOverlayStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StreamGuideOverlayStateTests.swift; sourceTree = "<group>"; };
+		4A2D9F9F4B00000000000004 /* GamePassTitleDetailScreenStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GamePassTitleDetailScreenStateTests.swift; sourceTree = "<group>"; };
+		4E11BBAEC597A5535EA76EDB /* SideRailFocusCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SideRailFocusCoordinator.swift; sourceTree = "<group>"; };
+		5708B9A6A9C66CD7282198D8 /* SideRailNavList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SideRailNavList.swift; sourceTree = "<group>"; };
+		58593824A953DB29901177B5 /* CloudLibraryHomeRailSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryHomeRailSection.swift; sourceTree = "<group>"; };
+		61B6E4EA50BE46ED07D648CC /* CloudLibrarySettingsSidebar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsSidebar.swift; sourceTree = "<group>"; };
+		6A3CE2CBB90B20A39809963D /* StreamDebugLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamDebugLogging.swift; sourceTree = "<group>"; };
+		6F89883C42EA91599179C90A /* StratixPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StratixPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93067D5B02A271F6B7CBCA06 /* CloudLibraryHomeHeroSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryHomeHeroSection.swift; sourceTree = "<group>"; };
+		98FEE4EF5691E33AEF87556F /* CloudLibrarySettingsInterfacePane.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsInterfacePane.swift; sourceTree = "<group>"; };
+		A17BDA56E9B4DA19D8AC1F57 /* PerformanceTestSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PerformanceTestSupport.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A93 /* CloudLibraryActionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryActionCoordinator.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A99 /* CloudLibraryDiagnosticsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryDiagnosticsOverlay.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A9B /* StreamContextTypedIDTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StreamContextTypedIDTests.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293AB1 /* WebRTCClientImplSafetyTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplSafetyTests.swift; sourceTree = "<group>"; };
+		A2D200000000000000000001 /* StratixLaunchMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StratixLaunchMode.swift; sourceTree = "<group>"; };
+		A2D200000000000000000002 /* StratixAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StratixAppDelegate.swift; sourceTree = "<group>"; };
+		A2D200000000000000000003 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		A2D200000000000000000004 /* CloudLibraryViewCacheMaintenance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewCacheMaintenance.swift; sourceTree = "<group>"; };
+		A2D200000000000000000005 /* CloudLibraryDataSourceHomeProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryDataSourceHomeProjection.swift; sourceTree = "<group>"; };
+		A2D200000000000000000006 /* CloudLibraryDataSourceDetailState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryDataSourceDetailState.swift; sourceTree = "<group>"; };
+		A2D200000000000000000007 /* CloudLibraryDataSourceSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryDataSourceSearchResults.swift; sourceTree = "<group>"; };
+		A2D200000000000000000008 /* ShellUITestHarnessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellUITestHarnessView.swift; sourceTree = "<group>"; };
+		A2D200000000000000000011 /* CloudLibraryViewModelDetailCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewModelDetailCache.swift; sourceTree = "<group>"; };
+		A2D200000000000000000012 /* CloudLibraryDataSourceLibraryIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryDataSourceLibraryIndex.swift; sourceTree = "<group>"; };
+		A30000000000000000000011 /* StratixDesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StratixDesignTokens.swift; sourceTree = "<group>"; };
+		A30000000000000000000012 /* RemoteImagePipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImagePipeline.swift; sourceTree = "<group>"; };
+		A30000000000000000000013 /* CachedRemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedRemoteImage.swift; sourceTree = "<group>"; };
+		A30000000000000000000014 /* AmbientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientBackground.swift; sourceTree = "<group>"; };
+		A30000000000000000000015 /* RendererContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererContainerView.swift; sourceTree = "<group>"; };
+		A30000000000000000000016 /* SampleBufferDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBufferDisplayView.swift; sourceTree = "<group>"; };
+		A30000000000000000000017 /* FrameProbeRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameProbeRenderer.swift; sourceTree = "<group>"; };
+		A30000000000000000000019 /* ConsoleListStreamLaunchTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConsoleListStreamLaunchTests.swift; sourceTree = "<group>"; };
+		A3000000000000000000001B /* ShellExitHandlingDecision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellExitHandlingDecision.swift; sourceTree = "<group>"; };
+		A3000000000000000000001D /* ShellUITestHarnessFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellUITestHarnessFixtures.swift; sourceTree = "<group>"; };
+		A30000000000000000000025 /* CloudLibraryCatalogFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryCatalogFixtures.swift; sourceTree = "<group>"; };
+		A30000000000000000000027 /* CloudLibraryHomeScenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryHomeScenario.swift; sourceTree = "<group>"; };
+		A596C5002ED815D2439FDFA3 /* ConsoleListFocusCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConsoleListFocusCoordinator.swift; sourceTree = "<group>"; };
+		AA0002000000000000000001 /* StratixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StratixApp.swift; sourceTree = "<group>"; };
+		AA0002000000000000000002 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000003 /* DeviceCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCodeView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000004 /* AuthenticatedShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedShellView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000005 /* ConsoleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleListView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000007 /* StreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000009 /* WebRTCClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImpl.swift; sourceTree = "<group>"; };
+		AA0002000000000000000010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA0002000000000000000011 /* Stratix-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stratix-Bridging-Header.h"; sourceTree = "<group>"; };
+		AA0002000000000000000012 /* Stratix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Stratix.entitlements; sourceTree = "<group>"; };
+		AA0002000000000000000013 /* Stratix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stratix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0002000000000000000014 /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = WebRTC.xcframework; path = ../../ThirdParty/WebRTC/WebRTC.xcframework; sourceTree = "<group>"; };
+		AA0002000000000000000015 /* CloudLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000016 /* CloudLibraryShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryShellView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000017 /* CloudLibraryHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryHomeScreen.swift; sourceTree = "<group>"; };
+		AA0002000000000000000018 /* CloudLibraryLibraryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryLibraryScreen.swift; sourceTree = "<group>"; };
+		AA0002000000000000000020 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
+		AA0002000000000000000021 /* MediaTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTileView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000022 /* SideRailNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideRailNavigationView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000023 /* ChipGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000025 /* CloudLibraryPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryPreviewData.swift; sourceTree = "<group>"; };
+		AA0002000000000000000026 /* CloudLibraryViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewState.swift; sourceTree = "<group>"; };
+		AA0002000000000000000027 /* StreamGuideOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamGuideOverlayView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000028 /* StratixBranding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StratixBranding.swift; sourceTree = "<group>"; };
+		AA0002000000000000000029 /* MetalVideoRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoRenderer.swift; sourceTree = "<group>"; };
+		AA0002000000000000000030 /* CASShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CASShader.metal; sourceTree = "<group>"; };
+		AA0002000000000000000035 /* RemoteArtworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteArtworkView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000036 /* NavigationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTypes.swift; sourceTree = "<group>"; };
+		AA0002000000000000000040 /* StreamOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamOverlay.swift; sourceTree = "<group>"; };
+		AA0002000000000000000042 /* CloudLibrarySearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibrarySearchScreen.swift; sourceTree = "<group>"; };
+		AA0002000000000000000044 /* CloudLibraryStatusViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryStatusViews.swift; sourceTree = "<group>"; };
+		AA0002000000000000000046 /* CloudLibrary/CloudLibraryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibrary/CloudLibraryDataSource.swift; sourceTree = "<group>"; };
+		AA0002000000000000000050 /* CloudLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewModel.swift; sourceTree = "<group>"; };
+		AA0002000000000000000052 /* FocusSettleDebouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSettleDebouncer.swift; sourceTree = "<group>"; };
+		AA0002000000000000000053 /* CloudLibraryUITestHarnessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryUITestHarnessView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000056 /* CloudLibraryConsolesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryConsolesView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000057 /* CloudLibraryProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryProfileView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000058 /* CloudLibrarySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000059 /* CloudLibrarySettingsComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsComponents.swift; sourceTree = "<group>"; };
+		AA0002000000000000000060 /* CloudLibrarySceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibrarySceneModel.swift; sourceTree = "<group>"; };
+		AA0002000000000000000062 /* SampleBufferDisplayRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBufferDisplayRenderer.swift; sourceTree = "<group>"; };
+		AA0002000000000000000066 /* CloudLibraryHeroBackgroundContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryHeroBackgroundContext.swift; sourceTree = "<group>"; };
+		AA0002000000000000000068 /* DetailStateHotCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStateHotCache.swift; sourceTree = "<group>"; };
+		AA0002000000000000000069 /* CloudLibrarySceneInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibrarySceneInputs.swift; sourceTree = "<group>"; };
+		AB1002000000000000000002 /* StratixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StratixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB1002000000000000000003 /* ShellCheckpointUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointUITests.swift; sourceTree = "<group>"; };
+		AB1200000000000000000001 /* ShellCheckpointLaunchSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointLaunchSupport.swift; sourceTree = "<group>"; };
+		AB1200000000000000000002 /* ShellCheckpointNavigationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointNavigationSupport.swift; sourceTree = "<group>"; };
+		AB1200000000000000000003 /* ShellCheckpointLandmarkSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointLandmarkSupport.swift; sourceTree = "<group>"; };
+		AB1200000000000000000004 /* ShellCheckpointStreamSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointStreamSupport.swift; sourceTree = "<group>"; };
+		AB1200000000000000000005 /* ShellCheckpointNavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointNavigationUITests.swift; sourceTree = "<group>"; };
+		AB1200000000000000000006 /* ShellCheckpointSmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointSmokeUITests.swift; sourceTree = "<group>"; };
+		AB1200000000000000000007 /* ShellCheckpointCaptureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointCaptureUITests.swift; sourceTree = "<group>"; };
+		AB1200000000000000000008 /* ShellCheckpointRouteBehaviorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointRouteBehaviorUITests.swift; sourceTree = "<group>"; };
+		AB1200000000000000000009 /* ShellCheckpointReadinessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCheckpointReadinessUITests.swift; sourceTree = "<group>"; };
+		B3E200000000000000000002 /* CloudLibraryActionCoordinatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryActionCoordinatorTests.swift; sourceTree = "<group>"; };
+		B3F200000000000000000001 /* CloudLibraryViewModelSceneMutation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewModelSceneMutation.swift; sourceTree = "<group>"; };
+		B3F200000000000000000002 /* CloudLibraryViewModelSceneMutationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewModelSceneMutationTests.swift; sourceTree = "<group>"; };
+		B72000000000000000000001 /* StreamSurfaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSurfaceModel.swift; sourceTree = "<group>"; };
+		B72000000000000000000002 /* StreamOverlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamOverlayState.swift; sourceTree = "<group>"; };
+		B72000000000000000000003 /* RenderSurfaceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderSurfaceCoordinator.swift; sourceTree = "<group>"; };
+		B72000000000000000000004 /* RendererAttachmentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererAttachmentCoordinator.swift; sourceTree = "<group>"; };
+		B72000000000000000000005 /* StreamSurfaceModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StreamSurfaceModelTests.swift; sourceTree = "<group>"; };
+		B72000000000000000000006 /* StreamOverlayStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StreamOverlayStateTests.swift; sourceTree = "<group>"; };
+		B72000000000000000000007 /* RenderSurfaceCoordinatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RenderSurfaceCoordinatorTests.swift; sourceTree = "<group>"; };
+		C1F100000000000000000001 /* CloudLibraryShellVisibilityTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryShellVisibilityTests.swift; sourceTree = "<group>"; };
+		C1F100000000000000000002 /* ConsoleListShellVisibilityTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConsoleListShellVisibilityTests.swift; sourceTree = "<group>"; };
+		C1F100000000000000000003 /* StratixAppExitHandlingTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StratixAppExitHandlingTests.swift; sourceTree = "<group>"; };
+		C23CB0AF4B8EB4CB55728009 /* CloudLibrarySettingsVideoAudioPane.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsVideoAudioPane.swift; sourceTree = "<group>"; };
+		C2A6F0A91A7D4F25B1C9F100 /* StoredAuthShellRestorePerformanceUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StoredAuthShellRestorePerformanceUITests.swift; sourceTree = "<group>"; };
+		C4345865DAA16EC6B800E47D /* ConsoleListFocusCoordinatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConsoleListFocusCoordinatorTests.swift; sourceTree = "<group>"; };
+		C56C9523CB9121F7CBF05C1E /* SideRailAccountCluster.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SideRailAccountCluster.swift; sourceTree = "<group>"; };
+		C61020000000000000000003 /* CloudLibraryViewModelHomeProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewModelHomeProjection.swift; sourceTree = "<group>"; };
+		C61020000000000000000004 /* CloudLibraryViewModelLibraryProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewModelLibraryProjection.swift; sourceTree = "<group>"; };
+		C61020000000000000000005 /* CloudLibraryViewModelSearchProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryViewModelSearchProjection.swift; sourceTree = "<group>"; };
+		C62020000000000000000004 /* CloudLibrarySceneModelMutationTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibrarySceneModelMutationTracking.swift; sourceTree = "<group>"; };
+		C7D200000000000000000001 /* CloudLibraryDetailPrewarmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryDetailPrewarmCoordinator.swift; sourceTree = "<group>"; };
+		C7D200000000000000000002 /* CloudLibraryDetailPrewarmTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryDetailPrewarmTests.swift; sourceTree = "<group>"; };
+		C7D200000000000000000003 /* CloudLibraryShellInteractionCoordinatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryShellInteractionCoordinatorTests.swift; sourceTree = "<group>"; };
+		C8A100000000000000000002 /* AppBundleSmokeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppBundleSmokeTests.swift; sourceTree = "<group>"; };
+		C8A100000000000000000004 /* AuthenticatedShellDynamicTypeSmokeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthenticatedShellDynamicTypeSmokeTests.swift; sourceTree = "<group>"; };
+		CAA10031943356C0F1BBAD79 /* LaunchPerformanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LaunchPerformanceTests.swift; sourceTree = "<group>"; };
+		CE551A8F08C7BD82548E59B0 /* ConsoleListEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConsoleListEmptyState.swift; sourceTree = "<group>"; };
+		D4F200000000000000000001 /* CloudLibraryLibraryScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryLibraryScreenHeader.swift; sourceTree = "<group>"; };
+		D4F200000000000000000002 /* CloudLibraryLibraryScreenFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryLibraryScreenFocus.swift; sourceTree = "<group>"; };
+		D4F200000000000000000003 /* CloudLibraryLibraryScreenControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryLibraryScreenControls.swift; sourceTree = "<group>"; };
+		E123EE232F7DBCF900DA591E /* CloudLibraryTitleDetailFullscreenMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryTitleDetailFullscreenMedia.swift; sourceTree = "<group>"; };
+		E123EE242F7DBCF900DA591E /* CloudLibraryTitleDetailGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryTitleDetailGallery.swift; sourceTree = "<group>"; };
+		E123EE252F7DBCF900DA591E /* CloudLibraryTitleDetailHeroHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryTitleDetailHeroHeader.swift; sourceTree = "<group>"; };
+		E123EE262F7DBCF900DA591E /* CloudLibraryTitleDetailMediaReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryTitleDetailMediaReadiness.swift; sourceTree = "<group>"; };
+		E123EE272F7DBCF900DA591E /* CloudLibraryTitleDetailPanels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryTitleDetailPanels.swift; sourceTree = "<group>"; };
+		E123EE282F7DBCF900DA591E /* CloudLibraryTitleDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryTitleDetailScreen.swift; sourceTree = "<group>"; };
+		E123EE292F7DBCF900DA591E /* CloudLibraryDetailHydrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryDetailHydrationView.swift; sourceTree = "<group>"; };
+		E12781AF2F78896E005548D0 /* StreamOverlayComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamOverlayComposition.swift; sourceTree = "<group>"; };
+		E12781B12F78896E005548D0 /* StreamOverlayDiagnosticsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamOverlayDiagnosticsPanel.swift; sourceTree = "<group>"; };
+		E12781B32F78896F005548D0 /* StreamOverlayHUDStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamOverlayHUDStats.swift; sourceTree = "<group>"; };
+		E12781B52F788970005548D0 /* StreamOverlayDisconnectControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamOverlayDisconnectControls.swift; sourceTree = "<group>"; };
+		E12781B82F789CDA005548D0 /* GuidePaneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePaneModels.swift; sourceTree = "<group>"; };
+		E12781BA2F789CDB005548D0 /* GuideSettingCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideSettingCatalog.swift; sourceTree = "<group>"; };
+		E12781BC2F789CDC005548D0 /* GuidePaneSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePaneSections.swift; sourceTree = "<group>"; };
+		E12781BE2F789CDD005548D0 /* GuideRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRows.swift; sourceTree = "<group>"; };
+		E12781C02F789CDE005548D0 /* GuideOverlaySettingsAccessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideOverlaySettingsAccessors.swift; sourceTree = "<group>"; };
+		E12781C22F78A7CF005548D0 /* GuideOverlayComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideOverlayComposition.swift; sourceTree = "<group>"; };
+		E147F6F32F63A92400B960D0 /* NavigationPerformanceTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPerformanceTracker.swift; sourceTree = "<group>"; };
+		E1652D992F65F66700A78E11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E18B2A712F6D060100E1B1CB /* Stratix.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Stratix.xctestplan; sourceTree = "<group>"; };
+		E50000000000000000000011 /* CloudLibraryHomeHeroComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryHomeHeroComponents.swift; sourceTree = "<group>"; };
+		E50000000000000000000012 /* CloudLibraryHomeRailComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryHomeRailComponents.swift; sourceTree = "<group>"; };
+		E60000000000000000000011 /* StreamCompactStatsHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamCompactStatsHUD.swift; sourceTree = "<group>"; };
+		E60000000000000000000012 /* StreamControllerInputHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamControllerInputHost.swift; sourceTree = "<group>"; };
+		F03E2D30991FBE460D81696C /* CloudLibraryHomeFocusCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryHomeFocusCoordinator.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A41 /* WebRTCClientStateSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientStateSupport.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A43 /* WebRTCClientImplTVOSAudioBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplTVOSAudioBootstrap.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A47 /* WebRTCClientImplDataChannelDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplDataChannelDelegateProxy.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A4B /* WebRTCClientImplRTCAudioSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplRTCAudioSessionDelegate.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A4D /* WebRTCClientImplRTCPeerConnectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplRTCPeerConnectionDelegate.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A53 /* WebRTCClientImplDataChannels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplDataChannels.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A55 /* WebRTCClientImplStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplStats.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A57 /* WebRTCClientImplCallbackRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplCallbackRouting.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A5D /* CloudLibraryUtilityRouteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryUtilityRouteActions.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A5F /* CloudLibraryBrowseRouteHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryBrowseRouteHost.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A61 /* CloudLibraryBrowseRouteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryBrowseRouteActions.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A63 /* CloudLibraryBrowseRoutePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryBrowseRoutePresentation.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A65 /* CloudLibraryContentRouteHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryContentRouteHost.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A67 /* CloudLibraryDetailRouteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryDetailRouteActions.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A69 /* WebRTCClientImplTVOSAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplTVOSAudio.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A6B /* WebRTCClientImplBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCClientImplBridge.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A6D /* SampleBufferDisplayRendererLowLatencySupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBufferDisplayRendererLowLatencySupport.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A6F /* SampleBufferDisplayRendererLowLatencyFrameInterpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBufferDisplayRendererLowLatencyFrameInterpolation.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A71 /* SampleBufferDisplayRendererLowLatencySuperResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBufferDisplayRendererLowLatencySuperResolution.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A73 /* MetalVideoRendererDrawPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoRendererDrawPipeline.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A75 /* MetalVideoRendererPresentationResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoRendererPresentationResources.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A77 /* SampleBufferDisplayRendererLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBufferDisplayRendererLifecycle.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A79 /* SampleBufferDisplayRendererPlainPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBufferDisplayRendererPlainPipeline.swift; sourceTree = "<group>"; };
+		F0A1B2C3D4E5F60718293A81 /* WebRTCVideoSurfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCVideoSurfaceView.swift; sourceTree = "<group>"; };
+		F1E2D3C4B5A6978877665545 /* WebRTCVideoSurfaceViewBinderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebRTCVideoSurfaceViewBinderTests.swift; sourceTree = "<group>"; };
+		F4A200000000000000000001 /* CloudLibraryStateSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryStateSnapshot.swift; sourceTree = "<group>"; };
+		F4A200000000000000000002 /* CloudLibraryLoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryLoadState.swift; sourceTree = "<group>"; };
+		F4A200000000000000000003 /* CloudLibraryLoadStateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryLoadStateBuilder.swift; sourceTree = "<group>"; };
+		F4A200000000000000000004 /* CloudLibraryRouteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryRouteState.swift; sourceTree = "<group>"; };
+		F4A200000000000000000005 /* CloudLibraryFocusState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryFocusState.swift; sourceTree = "<group>"; };
+		F4A200000000000000000006 /* CloudLibraryLayoutPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryLayoutPolicy.swift; sourceTree = "<group>"; };
+		F4A200000000000000000007 /* CloudLibraryBackActionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryBackActionPolicy.swift; sourceTree = "<group>"; };
+		F4A200000000000000000008 /* CloudLibraryPresentationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryPresentationStore.swift; sourceTree = "<group>"; };
+		F4A200000000000000000009 /* CloudLibraryShellPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryShellPresentation.swift; sourceTree = "<group>"; };
+		F4A20000000000000000000B /* CloudLibraryUtilityRoutePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryUtilityRoutePresentation.swift; sourceTree = "<group>"; };
+		F4A20000000000000000000E /* CloudLibraryShellHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryShellHost.swift; sourceTree = "<group>"; };
+		F4A20000000000000000000F /* CloudLibraryBrowseRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryBrowseRoute.swift; sourceTree = "<group>"; };
+		F4A200000000000000000011 /* CloudLibraryShellInteractionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLibraryShellInteractionCoordinator.swift; sourceTree = "<group>"; };
+		F4B200000000000000000001 /* CloudLibraryTestSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryTestSupport.swift; sourceTree = "<group>"; };
+		F4B200000000000000000002 /* CloudLibraryStateSnapshotTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryStateSnapshotTests.swift; sourceTree = "<group>"; };
+		F4B200000000000000000003 /* CloudLibraryLoadStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryLoadStateTests.swift; sourceTree = "<group>"; };
+		F4B200000000000000000004 /* CloudLibraryRouteStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryRouteStateTests.swift; sourceTree = "<group>"; };
+		F4B200000000000000000005 /* CloudLibraryFocusStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryFocusStateTests.swift; sourceTree = "<group>"; };
+		F4B200000000000000000006 /* CloudLibraryBackActionPolicyTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryBackActionPolicyTests.swift; sourceTree = "<group>"; };
+		F4B200000000000000000008 /* CloudLibraryRoutePresentationBuilderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryRoutePresentationBuilderTests.swift; sourceTree = "<group>"; };
+		F4B200000000000000000009 /* CloudLibraryShellHostTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryShellHostTests.swift; sourceTree = "<group>"; };
+		F4B20000000000000000000A /* CloudLibraryShellHostActionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibraryShellHostActionTests.swift; sourceTree = "<group>"; };
+		FDD888169C0334F1EB5F0362 /* CloudLibrarySettingsBindings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudLibrarySettingsBindings.swift; sourceTree = "<group>"; };
+		FEB9DBA0F1D68DF25F27062A /* StratixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StratixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		525889D25BFE6C83B4C5C6D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0003000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A30000000000000000000021 /* AsyncAlgorithms in Frameworks */,
+				AA0001000000000000000010 /* StratixModels in Frameworks */,
+				AA0001000000000000000011 /* InputBridge in Frameworks */,
+				AA0001000000000000000012 /* XCloudAPI in Frameworks */,
+				AA0001000000000000000013 /* StreamingCore in Frameworks */,
+				AA0001000000000000000014 /* DiagnosticsKit in Frameworks */,
+				AA0001000000000000000016 /* StratixCore in Frameworks */,
+				AA0001000000000000000056 /* VideoRenderingKit in Frameworks */,
+				AA0001000000000000000017 /* WebRTC.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB1007000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC37E50255449579FB9E3E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEA92961C5BB9B7CD4E3A849 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E6C446056514533BD5BCC76 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				AA0004000000000000000013 /* Streaming */,
+				E12781B72F789CD9005548D0 /* Guide */,
+				AA0004000000000000000014 /* CloudLibrary */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		118D09ADE93D495FB06279D2 /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000004 /* AuthenticatedShellView.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000001 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA9C9433EFBAF5082F516B /* StratixTests */,
+				AB1004000000000000000001 /* StratixUITests */,
+				B596AA3E4F7BF21B30E13812 /* StratixPerformanceTests */,
+				1B227960EA4CD56851C861D0 /* StratixPerformanceUITests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		1B227960EA4CD56851C861D0 /* StratixPerformanceUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1A910000000000000000000C /* Shell */,
+			);
+			path = StratixPerformanceUITests;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000002 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C8A100000000000000000002 /* AppBundleSmokeTests.swift */,
+				C8A100000000000000000004 /* AuthenticatedShellDynamicTypeSmokeTests.swift */,
+				C1F100000000000000000003 /* StratixAppExitHandlingTests.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000003 /* CloudLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				F4B200000000000000000002 /* CloudLibraryStateSnapshotTests.swift */,
+				F4B200000000000000000003 /* CloudLibraryLoadStateTests.swift */,
+				F4B200000000000000000004 /* CloudLibraryRouteStateTests.swift */,
+				F4B200000000000000000005 /* CloudLibraryFocusStateTests.swift */,
+				F4B200000000000000000006 /* CloudLibraryBackActionPolicyTests.swift */,
+				F4B20000000000000000000A /* CloudLibraryShellHostActionTests.swift */,
+				F4B200000000000000000008 /* CloudLibraryRoutePresentationBuilderTests.swift */,
+				F4B200000000000000000009 /* CloudLibraryShellHostTests.swift */,
+				C1F100000000000000000001 /* CloudLibraryShellVisibilityTests.swift */,
+				C7D200000000000000000002 /* CloudLibraryDetailPrewarmTests.swift */,
+				C7D200000000000000000003 /* CloudLibraryShellInteractionCoordinatorTests.swift */,
+				B3E200000000000000000002 /* CloudLibraryActionCoordinatorTests.swift */,
+				B3F200000000000000000002 /* CloudLibraryViewModelSceneMutationTests.swift */,
+				16A6BC80EE7E175DA37D32DC /* CloudLibrarySceneStateTests.swift */,
+				134EFFB5349BA177C62394E1 /* CloudLibraryHomeFocusCoordinatorTests.swift */,
+				051C93C62A55272162B40BEB /* CloudLibrarySettingsPaneTests.swift */,
+				4A2D9F9F4B00000000000004 /* GamePassTitleDetailScreenStateTests.swift */,
+				1A9200000000000000000001 /* CloudLibraryDataSourceTests.swift */,
+				1A9200000000000000000002 /* CloudLibraryLayoutPolicyTests.swift */,
+			);
+			path = CloudLibrary;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000004 /* Consoles */ = {
+			isa = PBXGroup;
+			children = (
+				C1F100000000000000000002 /* ConsoleListShellVisibilityTests.swift */,
+				C4345865DAA16EC6B800E47D /* ConsoleListFocusCoordinatorTests.swift */,
+				A30000000000000000000019 /* ConsoleListStreamLaunchTests.swift */,
+			);
+			path = Consoles;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000005 /* Streaming */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F60718293A9B /* StreamContextTypedIDTests.swift */,
+				B72000000000000000000005 /* StreamSurfaceModelTests.swift */,
+				B72000000000000000000006 /* StreamOverlayStateTests.swift */,
+				B72000000000000000000007 /* RenderSurfaceCoordinatorTests.swift */,
+				F1E2D3C4B5A6978877665545 /* WebRTCVideoSurfaceViewBinderTests.swift */,
+				A1B2C3D4E5F60718293AB1 /* WebRTCClientImplSafetyTests.swift */,
+				4A2D9F9F4B00000000000002 /* StreamGuideOverlayStateTests.swift */,
+			);
+			path = Streaming;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000006 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3E7DE8F2C0AD8CAC40F170CD /* SideRailFocusCoordinatorTests.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000007 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				F4B200000000000000000001 /* CloudLibraryTestSupport.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000008 /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				AB1002000000000000000003 /* ShellCheckpointUITests.swift */,
+				AB1200000000000000000005 /* ShellCheckpointNavigationUITests.swift */,
+				AB1200000000000000000006 /* ShellCheckpointSmokeUITests.swift */,
+				AB1200000000000000000007 /* ShellCheckpointCaptureUITests.swift */,
+				AB1200000000000000000008 /* ShellCheckpointRouteBehaviorUITests.swift */,
+				AB1200000000000000000009 /* ShellCheckpointReadinessUITests.swift */,
+				1A9200000000000000000003 /* ShellCheckpointStreamUITests.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
+		1A9100000000000000000009 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				AB1200000000000000000001 /* ShellCheckpointLaunchSupport.swift */,
+				AB1200000000000000000002 /* ShellCheckpointNavigationSupport.swift */,
+				AB1200000000000000000003 /* ShellCheckpointLandmarkSupport.swift */,
+				AB1200000000000000000004 /* ShellCheckpointStreamSupport.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		1A910000000000000000000A /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				CAA10031943356C0F1BBAD79 /* LaunchPerformanceTests.swift */,
+				18B205965A3141B221972DD3 /* PostStreamFreshnessPerformanceTests.swift */,
+				07F4721D522B8B7F0108DF33 /* RouteSwitchPerformanceTests.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
+		1A910000000000000000000B /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A17BDA56E9B4DA19D8AC1F57 /* PerformanceTestSupport.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		1A910000000000000000000C /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				1DBB86F639E8A633FD39F3B4 /* ShellPerformanceUITests.swift */,
+				C2A6F0A91A7D4F25B1C9F100 /* StoredAuthShellRestorePerformanceUITests.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
+		2D0EBB6AADD94FE79B5FEA67 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AA0004000000000000000008 /* Components */,
+				AA0004000000000000000009 /* Theme */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		6578B35EAC8B4828A76075E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E12781B82F789CDA005548D0 /* GuidePaneModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		820444A1DBE342E2B07CFE33 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				E12781BC2F789CDC005548D0 /* GuidePaneSections.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		A2D300000000000000000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000001 /* StratixApp.swift */,
+				A2D200000000000000000001 /* StratixLaunchMode.swift */,
+				A2D200000000000000000002 /* StratixAppDelegate.swift */,
+				A2D200000000000000000003 /* RootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A2D300000000000000000002 /* UITestHarness */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000053 /* CloudLibraryUITestHarnessView.swift */,
+				A3000000000000000000001B /* ShellExitHandlingDecision.swift */,
+				A3000000000000000000001D /* ShellUITestHarnessFixtures.swift */,
+				A2D200000000000000000008 /* ShellUITestHarnessView.swift */,
+			);
+			path = UITestHarness;
+			sourceTree = "<group>";
+		};
+		A2D300000000000000000003 /* CloudLibrary/CloudLibraryDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				A2D200000000000000000012 /* CloudLibraryDataSourceLibraryIndex.swift */,
+				A2D200000000000000000005 /* CloudLibraryDataSourceHomeProjection.swift */,
+				A2D200000000000000000006 /* CloudLibraryDataSourceDetailState.swift */,
+				A2D200000000000000000007 /* CloudLibraryDataSourceSearchResults.swift */,
+			);
+			path = CloudLibrary/CloudLibraryDataSource;
+			sourceTree = "<group>";
+		};
+		A30000000000000000000020 /* UIKitAdapters */ = {
+			isa = PBXGroup;
+			children = (
+				A30000000000000000000017 /* FrameProbeRenderer.swift */,
+				A30000000000000000000015 /* RendererContainerView.swift */,
+				A30000000000000000000016 /* SampleBufferDisplayView.swift */,
+			);
+			path = UIKitAdapters;
+			sourceTree = "<group>";
+		};
+		A30000000000000000000024 /* PreviewFixtures */ = {
+			isa = PBXGroup;
+			children = (
+				A30000000000000000000025 /* CloudLibraryCatalogFixtures.swift */,
+			);
+			path = PreviewFixtures;
+			sourceTree = "<group>";
+		};
+		A30000000000000000000026 /* PreviewScenarios */ = {
+			isa = PBXGroup;
+			children = (
+				A30000000000000000000027 /* CloudLibraryHomeScenario.swift */,
+			);
+			path = PreviewScenarios;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000000 = {
+			isa = PBXGroup;
+			children = (
+				E18B2A712F6D060100E1B1CB /* Stratix.xctestplan */,
+				AA0004000000000000000002 /* Stratix */,
+				AA0004000000000000000006 /* Sources */,
+				AA0004000000000000000001 /* Products */,
+				AA0004000000000000000007 /* Frameworks */,
+				1A9100000000000000000001 /* Tests */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000013 /* Stratix.app */,
+				AB1002000000000000000002 /* StratixUITests.xctest */,
+				FEB9DBA0F1D68DF25F27062A /* StratixTests.xctest */,
+				6F89883C42EA91599179C90A /* StratixPerformanceTests.xctest */,
+				3811D873071C792DD33D5E60 /* StratixPerformanceUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000002 /* Stratix */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000010 /* Info.plist */,
+				AA0002000000000000000011 /* Stratix-Bridging-Header.h */,
+				AA0002000000000000000012 /* Stratix.entitlements */,
+				E1652D992F65F66700A78E11 /* Assets.xcassets */,
+			);
+			path = Stratix;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000003 /* Stratix */ = {
+			isa = PBXGroup;
+			children = (
+				A2D300000000000000000001 /* App */,
+				0E6C446056514533BD5BCC76 /* Features */,
+				118D09ADE93D495FB06279D2 /* Shell */,
+				2D0EBB6AADD94FE79B5FEA67 /* Shared */,
+				AA0004000000000000000016 /* Auth */,
+				AA0004000000000000000017 /* Consoles */,
+				E12781C72F78AE7E005548D0 /* Profile */,
+				6578B35EAC8B4828A76075E4 /* Models */,
+				820444A1DBE342E2B07CFE33 /* Sections */,
+				F4BCF9E03B844F408633FC97 /* Integration */,
+				FF81BFF841F5438E86F39693 /* RouteState */,
+				AA0004000000000000000011 /* ViewState */,
+				AA0004000000000000000015 /* Data */,
+			);
+			path = Stratix;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000005 /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000009 /* WebRTCClientImpl.swift */,
+				F0A1B2C3D4E5F60718293A41 /* WebRTCClientStateSupport.swift */,
+				F0A1B2C3D4E5F60718293A43 /* WebRTCClientImplTVOSAudioBootstrap.swift */,
+				F0A1B2C3D4E5F60718293A47 /* WebRTCClientImplDataChannelDelegateProxy.swift */,
+				F0A1B2C3D4E5F60718293A53 /* WebRTCClientImplDataChannels.swift */,
+				F0A1B2C3D4E5F60718293A55 /* WebRTCClientImplStats.swift */,
+				F0A1B2C3D4E5F60718293A57 /* WebRTCClientImplCallbackRouting.swift */,
+				F0A1B2C3D4E5F60718293A69 /* WebRTCClientImplTVOSAudio.swift */,
+				F0A1B2C3D4E5F60718293A6B /* WebRTCClientImplBridge.swift */,
+				F0A1B2C3D4E5F60718293A4B /* WebRTCClientImplRTCAudioSessionDelegate.swift */,
+				F0A1B2C3D4E5F60718293A4D /* WebRTCClientImplRTCPeerConnectionDelegate.swift */,
+				F0A1B2C3D4E5F60718293A73 /* MetalVideoRendererDrawPipeline.swift */,
+				F0A1B2C3D4E5F60718293A75 /* MetalVideoRendererPresentationResources.swift */,
+				AA0002000000000000000029 /* MetalVideoRenderer.swift */,
+				AA0002000000000000000030 /* CASShader.metal */,
+			);
+			path = WebRTC;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000006 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AA0004000000000000000003 /* Stratix */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000007 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000014 /* WebRTC.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000008 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000020 /* GlassCard.swift */,
+				AA0002000000000000000021 /* MediaTileView.swift */,
+				AA0002000000000000000022 /* SideRailNavigationView.swift */,
+				AA0002000000000000000023 /* ChipGroupView.swift */,
+				AA0002000000000000000028 /* StratixBranding.swift */,
+				A30000000000000000000014 /* AmbientBackground.swift */,
+				A30000000000000000000013 /* CachedRemoteImage.swift */,
+				AA0002000000000000000035 /* RemoteArtworkView.swift */,
+				AA0002000000000000000044 /* CloudLibraryStatusViews.swift */,
+				AA0002000000000000000052 /* FocusSettleDebouncer.swift */,
+				4E11BBAEC597A5535EA76EDB /* SideRailFocusCoordinator.swift */,
+				C56C9523CB9121F7CBF05C1E /* SideRailAccountCluster.swift */,
+				5708B9A6A9C66CD7282198D8 /* SideRailNavList.swift */,
+				17D3F1CF50395D721302B879 /* SideRailActionList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000009 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				A30000000000000000000012 /* RemoteImagePipeline.swift */,
+				A30000000000000000000011 /* StratixDesignTokens.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000010 /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				A30000000000000000000024 /* PreviewFixtures */,
+				A30000000000000000000026 /* PreviewScenarios */,
+				AA0002000000000000000025 /* CloudLibraryPreviewData.swift */,
+			);
+			path = Previews;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000011 /* ViewState */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000026 /* CloudLibraryViewState.swift */,
+				E147F6F32F63A92400B960D0 /* NavigationPerformanceTracker.swift */,
+			);
+			path = ViewState;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000013 /* Streaming */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000007 /* StreamView.swift */,
+				E60000000000000000000013 /* State */,
+				E60000000000000000000012 /* StreamControllerInputHost.swift */,
+				E12781AE2F78896D005548D0 /* Overlay */,
+				E12781C92F78AE81005548D0 /* Diagnostics */,
+				E12781C82F78AE80005548D0 /* Rendering */,
+			);
+			path = Streaming;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000014 /* CloudLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				F4A200000000000000000011 /* CloudLibraryShellInteractionCoordinator.swift */,
+				E123EED22F7DBD3300DA591E /* Consoles */,
+				E123EED32F7DBD4D00DA591E /* Detail */,
+				E123EE322F7DBCF900DA591E /* Home */,
+				E123EE372F7DBCF900DA591E /* Library */,
+				E123EE4B2F7DBCF900DA591E /* Presentation */,
+				E123EE4D2F7DBCF900DA591E /* Profile */,
+				E123EE5F2F7DBCF900DA591E /* Root */,
+				E123EE612F7DBCF900DA591E /* Search */,
+				E123EE6C2F7DBCF900DA591E /* Settings */,
+				E123EE6F2F7DBCF900DA591E /* Shell */,
+				E123EE7C2F7DBCF900DA591E /* State */,
+			);
+			path = CloudLibrary;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000015 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000046 /* CloudLibrary/CloudLibraryDataSource.swift */,
+				A2D300000000000000000003 /* CloudLibrary/CloudLibraryDataSource */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000016 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000002 /* AuthView.swift */,
+				AA0002000000000000000003 /* DeviceCodeView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000017 /* Consoles */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000005 /* ConsoleListView.swift */,
+				A596C5002ED815D2439FDFA3 /* ConsoleListFocusCoordinator.swift */,
+				CE551A8F08C7BD82548E59B0 /* ConsoleListEmptyState.swift */,
+				2D1035C73AE30752482EBC14 /* ConsoleGridSection.swift */,
+				3D8233DC9DCA885115896F9D /* ConsoleCardView.swift */,
+			);
+			path = Consoles;
+			sourceTree = "<group>";
+		};
+		AB1004000000000000000001 /* StratixUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1A9100000000000000000008 /* Shell */,
+				1A9100000000000000000009 /* Support */,
+			);
+			path = StratixUITests;
+			sourceTree = "<group>";
+		};
+		AFCA9C9433EFBAF5082F516B /* StratixTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A9100000000000000000002 /* App */,
+				1A9100000000000000000003 /* CloudLibrary */,
+				1A9100000000000000000004 /* Consoles */,
+				1A9100000000000000000005 /* Streaming */,
+				1A9100000000000000000006 /* Shared */,
+				1A9100000000000000000007 /* Support */,
+			);
+			path = StratixTests;
+			sourceTree = "<group>";
+		};
+		B596AA3E4F7BF21B30E13812 /* StratixPerformanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A910000000000000000000A /* Shell */,
+				1A910000000000000000000B /* Support */,
+			);
+			path = StratixPerformanceTests;
+			sourceTree = "<group>";
+		};
+		E123EE322F7DBCF900DA591E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000017 /* CloudLibraryHomeScreen.swift */,
+				E50000000000000000000011 /* CloudLibraryHomeHeroComponents.swift */,
+				E50000000000000000000012 /* CloudLibraryHomeRailComponents.swift */,
+				F03E2D30991FBE460D81696C /* CloudLibraryHomeFocusCoordinator.swift */,
+				93067D5B02A271F6B7CBCA06 /* CloudLibraryHomeHeroSection.swift */,
+				58593824A953DB29901177B5 /* CloudLibraryHomeRailSection.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E123EE372F7DBCF900DA591E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000018 /* CloudLibraryLibraryScreen.swift */,
+				D4F200000000000000000001 /* CloudLibraryLibraryScreenHeader.swift */,
+				D4F200000000000000000002 /* CloudLibraryLibraryScreenFocus.swift */,
+				D4F200000000000000000003 /* CloudLibraryLibraryScreenControls.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		E123EE4B2F7DBCF900DA591E /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				F4A20000000000000000000F /* CloudLibraryBrowseRoute.swift */,
+				F0A1B2C3D4E5F60718293A61 /* CloudLibraryBrowseRouteActions.swift */,
+				F0A1B2C3D4E5F60718293A5F /* CloudLibraryBrowseRouteHost.swift */,
+				F0A1B2C3D4E5F60718293A63 /* CloudLibraryBrowseRoutePresentation.swift */,
+				F0A1B2C3D4E5F60718293A65 /* CloudLibraryContentRouteHost.swift */,
+				F0A1B2C3D4E5F60718293A67 /* CloudLibraryDetailRouteActions.swift */,
+				AA0002000000000000000066 /* CloudLibraryHeroBackgroundContext.swift */,
+				F4A200000000000000000009 /* CloudLibraryShellPresentation.swift */,
+				F4A20000000000000000000B /* CloudLibraryUtilityRoutePresentation.swift */,
+				F0A1B2C3D4E5F60718293A5D /* CloudLibraryUtilityRouteActions.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E123EE4D2F7DBCF900DA591E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000057 /* CloudLibraryProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E123EE5F2F7DBCF900DA591E /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D4E5F60718293A93 /* CloudLibraryActionCoordinator.swift */,
+				F4A200000000000000000007 /* CloudLibraryBackActionPolicy.swift */,
+				C7D200000000000000000001 /* CloudLibraryDetailPrewarmCoordinator.swift */,
+				A1B2C3D4E5F60718293A99 /* CloudLibraryDiagnosticsOverlay.swift */,
+				F4A200000000000000000006 /* CloudLibraryLayoutPolicy.swift */,
+				AA0002000000000000000015 /* CloudLibraryView.swift */,
+				A2D200000000000000000004 /* CloudLibraryViewCacheMaintenance.swift */,
+				AA0002000000000000000050 /* CloudLibraryViewModel.swift */,
+				A2D200000000000000000011 /* CloudLibraryViewModelDetailCache.swift */,
+				C61020000000000000000003 /* CloudLibraryViewModelHomeProjection.swift */,
+				C61020000000000000000004 /* CloudLibraryViewModelLibraryProjection.swift */,
+				B3F200000000000000000001 /* CloudLibraryViewModelSceneMutation.swift */,
+				C61020000000000000000005 /* CloudLibraryViewModelSearchProjection.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		E123EE612F7DBCF900DA591E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000042 /* CloudLibrarySearchScreen.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E123EE6C2F7DBCF900DA591E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FDD888169C0334F1EB5F0362 /* CloudLibrarySettingsBindings.swift */,
+				AA0002000000000000000059 /* CloudLibrarySettingsComponents.swift */,
+				157CA9EDC0762B5961E30965 /* CloudLibrarySettingsControllerPane.swift */,
+				34A899828FD2992D98D41153 /* CloudLibrarySettingsDiagnosticsPane.swift */,
+				98FEE4EF5691E33AEF87556F /* CloudLibrarySettingsInterfacePane.swift */,
+				25B0435CA517D5BCA654AF93 /* CloudLibrarySettingsOverviewPane.swift */,
+				61B6E4EA50BE46ED07D648CC /* CloudLibrarySettingsSidebar.swift */,
+				1AA7A3527B80A2A185E52474 /* CloudLibrarySettingsStreamPane.swift */,
+				C23CB0AF4B8EB4CB55728009 /* CloudLibrarySettingsVideoAudioPane.swift */,
+				AA0002000000000000000058 /* CloudLibrarySettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E123EE6F2F7DBCF900DA591E /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				F4A20000000000000000000E /* CloudLibraryShellHost.swift */,
+				AA0002000000000000000016 /* CloudLibraryShellView.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
+		E123EE7C2F7DBCF900DA591E /* State */ = {
+			isa = PBXGroup;
+			children = (
+				F4A200000000000000000005 /* CloudLibraryFocusState.swift */,
+				190601F3C743065241C29E88 /* CloudLibraryHeroBackgroundState.swift */,
+				F4A200000000000000000002 /* CloudLibraryLoadState.swift */,
+				F4A200000000000000000003 /* CloudLibraryLoadStateBuilder.swift */,
+				F4A200000000000000000008 /* CloudLibraryPresentationStore.swift */,
+				F4A200000000000000000004 /* CloudLibraryRouteState.swift */,
+				AA0002000000000000000069 /* CloudLibrarySceneInputs.swift */,
+				AA0002000000000000000060 /* CloudLibrarySceneModel.swift */,
+				C62020000000000000000004 /* CloudLibrarySceneModelMutationTracking.swift */,
+				36CA82EF9EED3E89AA59BA21 /* CloudLibrarySceneRouteState.swift */,
+				0D4DE7B861E7E3B401140ED2 /* CloudLibrarySceneStatusState.swift */,
+				F4A200000000000000000001 /* CloudLibraryStateSnapshot.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		E123EED22F7DBD3300DA591E /* Consoles */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000056 /* CloudLibraryConsolesView.swift */,
+			);
+			path = Consoles;
+			sourceTree = "<group>";
+		};
+		E123EED32F7DBD4D00DA591E /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E123EED62F7DBD6100DA591E /* State */,
+				E123EE232F7DBCF900DA591E /* CloudLibraryTitleDetailFullscreenMedia.swift */,
+				E123EE242F7DBCF900DA591E /* CloudLibraryTitleDetailGallery.swift */,
+				E123EE252F7DBCF900DA591E /* CloudLibraryTitleDetailHeroHeader.swift */,
+				E123EE262F7DBCF900DA591E /* CloudLibraryTitleDetailMediaReadiness.swift */,
+				E123EE272F7DBCF900DA591E /* CloudLibraryTitleDetailPanels.swift */,
+				E123EE282F7DBCF900DA591E /* CloudLibraryTitleDetailScreen.swift */,
+				E123EE292F7DBCF900DA591E /* CloudLibraryDetailHydrationView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		E123EED62F7DBD6100DA591E /* State */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000068 /* DetailStateHotCache.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		E12781AE2F78896D005548D0 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				E12781AF2F78896E005548D0 /* StreamOverlayComposition.swift */,
+				E12781B12F78896E005548D0 /* StreamOverlayDiagnosticsPanel.swift */,
+				E12781B32F78896F005548D0 /* StreamOverlayHUDStats.swift */,
+				E12781B52F788970005548D0 /* StreamOverlayDisconnectControls.swift */,
+				AA0002000000000000000040 /* StreamOverlay.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
+		E12781B72F789CD9005548D0 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				E12781BA2F789CDB005548D0 /* GuideSettingCatalog.swift */,
+				E12781BE2F789CDD005548D0 /* GuideRows.swift */,
+				E12781C02F789CDE005548D0 /* GuideOverlaySettingsAccessors.swift */,
+				AA0002000000000000000027 /* StreamGuideOverlayView.swift */,
+				E12781C22F78A7CF005548D0 /* GuideOverlayComposition.swift */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
+		E12781C72F78AE7E005548D0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E12781C82F78AE80005548D0 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000062 /* SampleBufferDisplayRenderer.swift */,
+				B72000000000000000000003 /* RenderSurfaceCoordinator.swift */,
+				B72000000000000000000004 /* RendererAttachmentCoordinator.swift */,
+				A30000000000000000000020 /* UIKitAdapters */,
+				F0A1B2C3D4E5F60718293A81 /* WebRTCVideoSurfaceView.swift */,
+				F0A1B2C3D4E5F60718293A77 /* SampleBufferDisplayRendererLifecycle.swift */,
+				F0A1B2C3D4E5F60718293A6F /* SampleBufferDisplayRendererLowLatencyFrameInterpolation.swift */,
+				F0A1B2C3D4E5F60718293A71 /* SampleBufferDisplayRendererLowLatencySuperResolution.swift */,
+				F0A1B2C3D4E5F60718293A6D /* SampleBufferDisplayRendererLowLatencySupport.swift */,
+				F0A1B2C3D4E5F60718293A79 /* SampleBufferDisplayRendererPlainPipeline.swift */,
+			);
+			path = Rendering;
+			sourceTree = "<group>";
+		};
+		E12781C92F78AE81005548D0 /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				6A3CE2CBB90B20A39809963D /* StreamDebugLogging.swift */,
+				E60000000000000000000011 /* StreamCompactStatsHUD.swift */,
+			);
+			path = Diagnostics;
+			sourceTree = "<group>";
+		};
+		E60000000000000000000013 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				B72000000000000000000001 /* StreamSurfaceModel.swift */,
+				B72000000000000000000002 /* StreamOverlayState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		F4BCF9E03B844F408633FC97 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				AA0004000000000000000010 /* Previews */,
+				A2D300000000000000000002 /* UITestHarness */,
+				AA0004000000000000000005 /* WebRTC */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		FF81BFF841F5438E86F39693 /* RouteState */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000036 /* NavigationTypes.swift */,
+			);
+			path = RouteState;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		24B4E9C0DBE061C9ACF262FC /* StratixTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E20C0786D5401B39747D6F2C /* Build configuration list for PBXNativeTarget "StratixTests" */;
+			buildPhases = (
+				A50AC2FC6EB4EA9C227300A7 /* Sources */,
+				AC37E50255449579FB9E3E6F /* Frameworks */,
+				2949EB0D9EF8684B9D0710B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F98D99AA473CD286D4069883 /* PBXTargetDependency */,
+			);
+			name = StratixTests;
+			productName = StratixTests;
+			productReference = FEB9DBA0F1D68DF25F27062A /* StratixTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9FFB87C8B3F01C6325E44BFE /* StratixPerformanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F3D2A8405A704F541F65D65 /* Build configuration list for PBXNativeTarget "StratixPerformanceTests" */;
+			buildPhases = (
+				FD1BB9B2EC16A4F92E89B275 /* Sources */,
+				AEA92961C5BB9B7CD4E3A849 /* Frameworks */,
+				F9F52111F9CC2D584CA7B865 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A6AA7A0841FAE911C682112 /* PBXTargetDependency */,
+			);
+			name = StratixPerformanceTests;
+			productName = StratixPerformanceTests;
+			productReference = 6F89883C42EA91599179C90A /* StratixPerformanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AA0005000000000000000001 /* Stratix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0006000000000000000006 /* Build configuration list for PBXNativeTarget "Stratix" */;
+			buildPhases = (
+				AA0007000000000000000001 /* Sources */,
+				AA0003000000000000000001 /* Frameworks */,
+				AA0007000000000000000002 /* Resources */,
+				AA0003000000000000000002 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Stratix;
+			packageProductDependencies = (
+				A30000000000000000000023 /* AsyncAlgorithms */,
+				AA0009000000000000000001 /* StratixModels */,
+				AA0009000000000000000002 /* InputBridge */,
+				AA0009000000000000000003 /* XCloudAPI */,
+				AA0009000000000000000004 /* StreamingCore */,
+				AA0009000000000000000005 /* DiagnosticsKit */,
+				AA0009000000000000000007 /* StratixCore */,
+				AA0009000000000000000008 /* VideoRenderingKit */,
+			);
+			productName = Stratix;
+			productReference = AA0002000000000000000013 /* Stratix.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AB1005000000000000000001 /* StratixUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB1006000000000000000001 /* Build configuration list for PBXNativeTarget "StratixUITests" */;
+			buildPhases = (
+				AB1007000000000000000001 /* Sources */,
+				AB1007000000000000000002 /* Frameworks */,
+				AB1007000000000000000003 /* Resources */,
+			);
+			buildRules = (
+				E18FBDEC2F6A6982004033D0 /* PBXBuildRule */,
+			);
+			dependencies = (
+				AB1008000000000000000001 /* PBXTargetDependency */,
+			);
+			name = StratixUITests;
+			productName = StratixUITests;
+			productReference = AB1002000000000000000002 /* StratixUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F7143CDB42B6E251141D5E44 /* StratixPerformanceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC8EBFAF625239D244DA90C5 /* Build configuration list for PBXNativeTarget "StratixPerformanceUITests" */;
+			buildPhases = (
+				B61B28142437955CC5E121E7 /* Sources */,
+				525889D25BFE6C83B4C5C6D5 /* Frameworks */,
+				5B0A666821222E9BDFD8DF1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E412EDBC90FA767DA12E4903 /* PBXTargetDependency */,
+			);
+			name = StratixPerformanceUITests;
+			productName = StratixPerformanceUITests;
+			productReference = 3811D873071C792DD33D5E60 /* StratixPerformanceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0008000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					AA0005000000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = AA0006000000000000000001 /* Build configuration list for PBXProject "Stratix" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA0004000000000000000000;
+			packageReferences = (
+				A30000000000000000000022 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+				AA000A000000000000000001 /* XCLocalSwiftPackageReference "../../Packages/StratixModels" */,
+				AA000A000000000000000002 /* XCLocalSwiftPackageReference "../../Packages/InputBridge" */,
+				AA000A000000000000000003 /* XCLocalSwiftPackageReference "../../Packages/XCloudAPI" */,
+				AA000A000000000000000004 /* XCLocalSwiftPackageReference "../../Packages/StreamingCore" */,
+				AA000A000000000000000005 /* XCLocalSwiftPackageReference "../../Packages/DiagnosticsKit" */,
+				AA000A000000000000000007 /* XCLocalSwiftPackageReference "../../Packages/StratixCore" */,
+				AA000A000000000000000008 /* XCLocalSwiftPackageReference "../../Packages/VideoRenderingKit" */,
+			);
+			productRefGroup = AA0004000000000000000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA0005000000000000000001 /* Stratix */,
+				AB1005000000000000000001 /* StratixUITests */,
+				24B4E9C0DBE061C9ACF262FC /* StratixTests */,
+				9FFB87C8B3F01C6325E44BFE /* StratixPerformanceTests */,
+				F7143CDB42B6E251141D5E44 /* StratixPerformanceUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2949EB0D9EF8684B9D0710B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B0A666821222E9BDFD8DF1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0007000000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1652D9A2F65F66700A78E11 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB1007000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9F52111F9CC2D584CA7B865 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A50AC2FC6EB4EA9C227300A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				053E2727237D39542CEDA185 /* AppBundleSmokeTests.swift in Sources */,
+				C8A100000000000000000001 /* AuthenticatedShellDynamicTypeSmokeTests.swift in Sources */,
+				F4B100000000000000000001 /* CloudLibraryTestSupport.swift in Sources */,
+				F4B100000000000000000002 /* CloudLibraryStateSnapshotTests.swift in Sources */,
+				F4B100000000000000000003 /* CloudLibraryLoadStateTests.swift in Sources */,
+				F4B100000000000000000004 /* CloudLibraryRouteStateTests.swift in Sources */,
+				F4B100000000000000000005 /* CloudLibraryFocusStateTests.swift in Sources */,
+				F4B100000000000000000006 /* CloudLibraryBackActionPolicyTests.swift in Sources */,
+				F4B10000000000000000000A /* CloudLibraryShellHostActionTests.swift in Sources */,
+				F4B100000000000000000008 /* CloudLibraryRoutePresentationBuilderTests.swift in Sources */,
+				F4B100000000000000000009 /* CloudLibraryShellHostTests.swift in Sources */,
+				C1F000000000000000000001 /* CloudLibraryShellVisibilityTests.swift in Sources */,
+				C1F000000000000000000002 /* ConsoleListShellVisibilityTests.swift in Sources */,
+				C1F000000000000000000003 /* StratixAppExitHandlingTests.swift in Sources */,
+				C7D100000000000000000002 /* CloudLibraryDetailPrewarmTests.swift in Sources */,
+				C7D100000000000000000003 /* CloudLibraryShellInteractionCoordinatorTests.swift in Sources */,
+				B3E100000000000000000002 /* CloudLibraryActionCoordinatorTests.swift in Sources */,
+				B3F100000000000000000002 /* CloudLibraryViewModelSceneMutationTests.swift in Sources */,
+				A1B2C3D4E5F60718293A9A /* StreamContextTypedIDTests.swift in Sources */,
+				B71000000000000000000005 /* StreamSurfaceModelTests.swift in Sources */,
+				B71000000000000000000006 /* StreamOverlayStateTests.swift in Sources */,
+				B71000000000000000000007 /* RenderSurfaceCoordinatorTests.swift in Sources */,
+				F1E2D3C4B5A6978877665544 /* WebRTCVideoSurfaceViewBinderTests.swift in Sources */,
+				A1B2C3D4E5F60718293AB0 /* WebRTCClientImplSafetyTests.swift in Sources */,
+				DACD095874B988D0D0676B30 /* CloudLibrarySceneStateTests.swift in Sources */,
+				4A2D9F9F4B00000000000001 /* StreamGuideOverlayStateTests.swift in Sources */,
+				4A2D9F9F4B00000000000003 /* GamePassTitleDetailScreenStateTests.swift in Sources */,
+				1A9300000000000000000001 /* CloudLibraryDataSourceTests.swift in Sources */,
+				1A9300000000000000000002 /* CloudLibraryLayoutPolicyTests.swift in Sources */,
+				1C365A778987F57C7A4508A0 /* CloudLibraryHomeFocusCoordinatorTests.swift in Sources */,
+				3388096E54BA8F6CE6DCF0D7 /* ConsoleListFocusCoordinatorTests.swift in Sources */,
+				A30000000000000000000018 /* ConsoleListStreamLaunchTests.swift in Sources */,
+				49B2A32EE930937BB5827FA7 /* SideRailFocusCoordinatorTests.swift in Sources */,
+				AFFC4058D0F800746CFC16CF /* CloudLibrarySettingsPaneTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0007000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0001000000000000000001 /* StratixApp.swift in Sources */,
+				A2D100000000000000000001 /* StratixLaunchMode.swift in Sources */,
+				A2D100000000000000000002 /* StratixAppDelegate.swift in Sources */,
+				A2D100000000000000000003 /* RootView.swift in Sources */,
+				AA0001000000000000000002 /* AuthView.swift in Sources */,
+				E12781BB2F789CDB005548D0 /* GuideSettingCatalog.swift in Sources */,
+				AA0001000000000000000003 /* DeviceCodeView.swift in Sources */,
+				AA0001000000000000000019 /* CloudLibraryView.swift in Sources */,
+				A2D100000000000000000004 /* CloudLibraryViewCacheMaintenance.swift in Sources */,
+				AA0001000000000000000050 /* CloudLibraryViewModel.swift in Sources */,
+				A2D100000000000000000012 /* CloudLibraryViewModelDetailCache.swift in Sources */,
+				C61010000000000000000003 /* CloudLibraryViewModelHomeProjection.swift in Sources */,
+				C61010000000000000000004 /* CloudLibraryViewModelLibraryProjection.swift in Sources */,
+				C61010000000000000000005 /* CloudLibraryViewModelSearchProjection.swift in Sources */,
+				B3F100000000000000000001 /* CloudLibraryViewModelSceneMutation.swift in Sources */,
+				F4A10000000000000000000F /* CloudLibraryBrowseRoute.swift in Sources */,
+				F4A100000000000000000001 /* CloudLibraryStateSnapshot.swift in Sources */,
+				F4A100000000000000000002 /* CloudLibraryLoadState.swift in Sources */,
+				F4A100000000000000000003 /* CloudLibraryLoadStateBuilder.swift in Sources */,
+				AA0001000000000000000061 /* CloudLibrarySceneModel.swift in Sources */,
+				C62010000000000000000004 /* CloudLibrarySceneModelMutationTracking.swift in Sources */,
+				AA0001000000000000000066 /* CloudLibraryHeroBackgroundContext.swift in Sources */,
+				AA0001000000000000000068 /* DetailStateHotCache.swift in Sources */,
+				AA0001000000000000000069 /* CloudLibrarySceneInputs.swift in Sources */,
+				AA0001000000000000000057 /* CloudLibraryConsolesView.swift in Sources */,
+				AA0001000000000000000020 /* CloudLibraryShellView.swift in Sources */,
+				AA0001000000000000000021 /* CloudLibraryHomeScreen.swift in Sources */,
+				E50000000000000000000001 /* CloudLibraryHomeHeroComponents.swift in Sources */,
+				E50000000000000000000002 /* CloudLibraryHomeRailComponents.swift in Sources */,
+				A1B2C3D4E5F60718293A92 /* CloudLibraryActionCoordinator.swift in Sources */,
+				E12781B02F78896E005548D0 /* StreamOverlayComposition.swift in Sources */,
+				A1B2C3D4E5F60718293A98 /* CloudLibraryDiagnosticsOverlay.swift in Sources */,
+				AA0001000000000000000022 /* CloudLibraryLibraryScreen.swift in Sources */,
+				D4F100000000000000000001 /* CloudLibraryLibraryScreenHeader.swift in Sources */,
+				D4F100000000000000000002 /* CloudLibraryLibraryScreenFocus.swift in Sources */,
+				D4F100000000000000000003 /* CloudLibraryLibraryScreenControls.swift in Sources */,
+				AA0001000000000000000058 /* CloudLibraryProfileView.swift in Sources */,
+				E12781BD2F789CDC005548D0 /* GuidePaneSections.swift in Sources */,
+				AA0001000000000000000004 /* AuthenticatedShellView.swift in Sources */,
+				AA0001000000000000000005 /* ConsoleListView.swift in Sources */,
+				AA0001000000000000000039 /* StreamOverlay.swift in Sources */,
+				AA0001000000000000000062 /* SampleBufferDisplayRenderer.swift in Sources */,
+				F0A1B2C3D4E5F60718293A76 /* SampleBufferDisplayRendererLifecycle.swift in Sources */,
+				F0A1B2C3D4E5F60718293A78 /* SampleBufferDisplayRendererPlainPipeline.swift in Sources */,
+				B71000000000000000000004 /* RendererAttachmentCoordinator.swift in Sources */,
+				A30000000000000000000005 /* RendererContainerView.swift in Sources */,
+				A30000000000000000000006 /* SampleBufferDisplayView.swift in Sources */,
+				A30000000000000000000007 /* FrameProbeRenderer.swift in Sources */,
+				F0A1B2C3D4E5F60718293A6C /* SampleBufferDisplayRendererLowLatencySupport.swift in Sources */,
+				F0A1B2C3D4E5F60718293A6E /* SampleBufferDisplayRendererLowLatencyFrameInterpolation.swift in Sources */,
+				F0A1B2C3D4E5F60718293A70 /* SampleBufferDisplayRendererLowLatencySuperResolution.swift in Sources */,
+				AA0001000000000000000007 /* StreamView.swift in Sources */,
+				B71000000000000000000001 /* StreamSurfaceModel.swift in Sources */,
+				E60000000000000000000002 /* StreamControllerInputHost.swift in Sources */,
+				E60000000000000000000001 /* StreamCompactStatsHUD.swift in Sources */,
+				B71000000000000000000003 /* RenderSurfaceCoordinator.swift in Sources */,
+				F0A1B2C3D4E5F60718293A80 /* WebRTCVideoSurfaceView.swift in Sources */,
+				6409CE15C249D316B257ED29 /* StreamDebugLogging.swift in Sources */,
+				E12781BF2F789CDD005548D0 /* GuideRows.swift in Sources */,
+				AA0001000000000000000009 /* WebRTCClientImpl.swift in Sources */,
+				F0A1B2C3D4E5F60718293A40 /* WebRTCClientStateSupport.swift in Sources */,
+				F0A1B2C3D4E5F60718293A42 /* WebRTCClientImplTVOSAudioBootstrap.swift in Sources */,
+				F0A1B2C3D4E5F60718293A46 /* WebRTCClientImplDataChannelDelegateProxy.swift in Sources */,
+				F0A1B2C3D4E5F60718293A52 /* WebRTCClientImplDataChannels.swift in Sources */,
+				E12781B92F789CDA005548D0 /* GuidePaneModels.swift in Sources */,
+				F0A1B2C3D4E5F60718293A54 /* WebRTCClientImplStats.swift in Sources */,
+				F0A1B2C3D4E5F60718293A56 /* WebRTCClientImplCallbackRouting.swift in Sources */,
+				F0A1B2C3D4E5F60718293A68 /* WebRTCClientImplTVOSAudio.swift in Sources */,
+				F0A1B2C3D4E5F60718293A6A /* WebRTCClientImplBridge.swift in Sources */,
+				F4A100000000000000000004 /* CloudLibraryRouteState.swift in Sources */,
+				F4A100000000000000000005 /* CloudLibraryFocusState.swift in Sources */,
+				F4A100000000000000000006 /* CloudLibraryLayoutPolicy.swift in Sources */,
+				F4A100000000000000000007 /* CloudLibraryBackActionPolicy.swift in Sources */,
+				F0A1B2C3D4E5F60718293A5C /* CloudLibraryUtilityRouteActions.swift in Sources */,
+				F0A1B2C3D4E5F60718293A5E /* CloudLibraryBrowseRouteHost.swift in Sources */,
+				F0A1B2C3D4E5F60718293A60 /* CloudLibraryBrowseRouteActions.swift in Sources */,
+				F0A1B2C3D4E5F60718293A62 /* CloudLibraryBrowseRoutePresentation.swift in Sources */,
+				E12781C12F789CDE005548D0 /* GuideOverlaySettingsAccessors.swift in Sources */,
+				E12781C32F78A7CF005548D0 /* GuideOverlayComposition.swift in Sources */,
+				F0A1B2C3D4E5F60718293A64 /* CloudLibraryContentRouteHost.swift in Sources */,
+				F0A1B2C3D4E5F60718293A66 /* CloudLibraryDetailRouteActions.swift in Sources */,
+				E12781B42F78896F005548D0 /* StreamOverlayHUDStats.swift in Sources */,
+				F4A100000000000000000008 /* CloudLibraryPresentationStore.swift in Sources */,
+				F4A100000000000000000009 /* CloudLibraryShellPresentation.swift in Sources */,
+				F4A10000000000000000000B /* CloudLibraryUtilityRoutePresentation.swift in Sources */,
+				F4A10000000000000000000E /* CloudLibraryShellHost.swift in Sources */,
+				F4A100000000000000000011 /* CloudLibraryShellInteractionCoordinator.swift in Sources */,
+				C7D100000000000000000001 /* CloudLibraryDetailPrewarmCoordinator.swift in Sources */,
+				F0A1B2C3D4E5F60718293A4A /* WebRTCClientImplRTCAudioSessionDelegate.swift in Sources */,
+				F0A1B2C3D4E5F60718293A4C /* WebRTCClientImplRTCPeerConnectionDelegate.swift in Sources */,
+				F0A1B2C3D4E5F60718293A72 /* MetalVideoRendererDrawPipeline.swift in Sources */,
+				F0A1B2C3D4E5F60718293A74 /* MetalVideoRendererPresentationResources.swift in Sources */,
+				AA0001000000000000000024 /* GlassCard.swift in Sources */,
+				AA0001000000000000000025 /* MediaTileView.swift in Sources */,
+				AA0001000000000000000026 /* SideRailNavigationView.swift in Sources */,
+				AA0001000000000000000027 /* ChipGroupView.swift in Sources */,
+				A30000000000000000000004 /* AmbientBackground.swift in Sources */,
+				A30000000000000000000003 /* CachedRemoteImage.swift in Sources */,
+				A30000000000000000000028 /* CloudLibraryCatalogFixtures.swift in Sources */,
+				A30000000000000000000029 /* CloudLibraryHomeScenario.swift in Sources */,
+				AA0001000000000000000029 /* CloudLibraryPreviewData.swift in Sources */,
+				AA0001000000000000000030 /* CloudLibraryViewState.swift in Sources */,
+				E12781B62F788970005548D0 /* StreamOverlayDisconnectControls.swift in Sources */,
+				B71000000000000000000002 /* StreamOverlayState.swift in Sources */,
+				AA0001000000000000000035 /* NavigationTypes.swift in Sources */,
+				E147F6F42F63A92400B960D0 /* NavigationPerformanceTracker.swift in Sources */,
+				E12781B22F78896E005548D0 /* StreamOverlayDiagnosticsPanel.swift in Sources */,
+				AA0001000000000000000031 /* StreamGuideOverlayView.swift in Sources */,
+				A30000000000000000000002 /* RemoteImagePipeline.swift in Sources */,
+				A30000000000000000000001 /* StratixDesignTokens.swift in Sources */,
+				AA0001000000000000000032 /* StratixBranding.swift in Sources */,
+				AA0001000000000000000033 /* MetalVideoRenderer.swift in Sources */,
+				AA0001000000000000000034 /* CASShader.metal in Sources */,
+				AA0001000000000000000041 /* CloudLibrarySearchScreen.swift in Sources */,
+				A2D100000000000000000008 /* CloudLibraryUITestHarnessView.swift in Sources */,
+				A3000000000000000000001A /* ShellExitHandlingDecision.swift in Sources */,
+				A3000000000000000000001C /* ShellUITestHarnessFixtures.swift in Sources */,
+				A2D100000000000000000009 /* ShellUITestHarnessView.swift in Sources */,
+				AA0001000000000000000059 /* CloudLibrarySettingsView.swift in Sources */,
+				AA0001000000000000000060 /* CloudLibrarySettingsComponents.swift in Sources */,
+				AA0001000000000000000043 /* CloudLibraryStatusViews.swift in Sources */,
+				AA0001000000000000000045 /* CloudLibrary/CloudLibraryDataSource.swift in Sources */,
+				A2D100000000000000000013 /* CloudLibraryDataSourceLibraryIndex.swift in Sources */,
+				A2D100000000000000000005 /* CloudLibraryDataSourceHomeProjection.swift in Sources */,
+				A2D100000000000000000006 /* CloudLibraryDataSourceDetailState.swift in Sources */,
+				A2D100000000000000000007 /* CloudLibraryDataSourceSearchResults.swift in Sources */,
+				AA0001000000000000000052 /* FocusSettleDebouncer.swift in Sources */,
+				98ECAF3ED6F8A0925ED33E31 /* CloudLibrarySceneStatusState.swift in Sources */,
+				4C7DA624D3D27855B790A00B /* CloudLibrarySceneRouteState.swift in Sources */,
+				1833C5AEB96363A7DDB661D2 /* CloudLibraryHeroBackgroundState.swift in Sources */,
+				8832E636848D100F611230B3 /* CloudLibraryHomeFocusCoordinator.swift in Sources */,
+				CBC6BD78396E10A53E6ED62B /* CloudLibraryHomeHeroSection.swift in Sources */,
+				A8D7F1073DD0448CE9C5B7B0 /* CloudLibraryHomeRailSection.swift in Sources */,
+				55B057C75E003E312D059C51 /* ConsoleListFocusCoordinator.swift in Sources */,
+				C7781C8BA57F324ABCD4D0DA /* ConsoleListEmptyState.swift in Sources */,
+				A275673B099A5FBD349D6FFA /* ConsoleGridSection.swift in Sources */,
+				A96B719B598FC9336E85A838 /* ConsoleCardView.swift in Sources */,
+				E123EE8A2F7DBCF900DA591E /* CloudLibraryDetailHydrationView.swift in Sources */,
+				E123EEA32F7DBCF900DA591E /* CloudLibraryTitleDetailPanels.swift in Sources */,
+				E123EEAE2F7DBCF900DA591E /* CloudLibraryTitleDetailMediaReadiness.swift in Sources */,
+				E123EEBE2F7DBCF900DA591E /* CloudLibraryTitleDetailFullscreenMedia.swift in Sources */,
+				E123EEC52F7DBCF900DA591E /* CloudLibraryTitleDetailScreen.swift in Sources */,
+				E123EECC2F7DBCF900DA591E /* CloudLibraryTitleDetailHeroHeader.swift in Sources */,
+				E123EED12F7DBCF900DA591E /* CloudLibraryTitleDetailGallery.swift in Sources */,
+				17BF77B1FF5439ABD5983119 /* SideRailFocusCoordinator.swift in Sources */,
+				9A00E26133614CE254499CA3 /* SideRailAccountCluster.swift in Sources */,
+				63FD68D75928BB2D7CF3B306 /* SideRailNavList.swift in Sources */,
+				66FE7D8823BB82790D7E3B0C /* SideRailActionList.swift in Sources */,
+				C440E010E8AC87C303079CD8 /* CloudLibrarySettingsBindings.swift in Sources */,
+				38DFAE16DCDF1442ED356818 /* CloudLibrarySettingsSidebar.swift in Sources */,
+				D08ACE55DCDD4E629F335C80 /* CloudLibrarySettingsOverviewPane.swift in Sources */,
+				F6D29E9C36404A85E7043A11 /* CloudLibrarySettingsStreamPane.swift in Sources */,
+				0205DCA7B32DF4EEF4A7E7BA /* CloudLibrarySettingsControllerPane.swift in Sources */,
+				241C9AB6F293FB14F2CE9236 /* CloudLibrarySettingsVideoAudioPane.swift in Sources */,
+				3D9648E24A8340129851C966 /* CloudLibrarySettingsInterfacePane.swift in Sources */,
+				EA5C4A4219F3E679EE78FC64 /* CloudLibrarySettingsDiagnosticsPane.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB1007000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB1003000000000000000001 /* ShellCheckpointUITests.swift in Sources */,
+				AB1100000000000000000001 /* ShellCheckpointLaunchSupport.swift in Sources */,
+				AB1100000000000000000002 /* ShellCheckpointNavigationSupport.swift in Sources */,
+				AB1100000000000000000003 /* ShellCheckpointLandmarkSupport.swift in Sources */,
+				AB1100000000000000000004 /* ShellCheckpointStreamSupport.swift in Sources */,
+				AB1100000000000000000005 /* ShellCheckpointNavigationUITests.swift in Sources */,
+				AB1100000000000000000006 /* ShellCheckpointSmokeUITests.swift in Sources */,
+				AB1100000000000000000007 /* ShellCheckpointCaptureUITests.swift in Sources */,
+				AB1100000000000000000008 /* ShellCheckpointRouteBehaviorUITests.swift in Sources */,
+				AB1100000000000000000009 /* ShellCheckpointReadinessUITests.swift in Sources */,
+				1A9300000000000000000003 /* ShellCheckpointStreamUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B61B28142437955CC5E121E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC2D1BA53F0C7135A62C8681 /* ShellPerformanceUITests.swift in Sources */,
+				C2A6F0A91A7D4F25B1C9F101 /* StoredAuthShellRestorePerformanceUITests.swift in Sources */,
+				7828D0624FE0DDB4E2EC13A3 /* PerformanceTestSupport.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD1BB9B2EC16A4F92E89B275 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				680338806F8CB4F6009E2B7F /* LaunchPerformanceTests.swift in Sources */,
+				56842A49C9FB43A5FF2D6C77 /* RouteSwitchPerformanceTests.swift in Sources */,
+				1947B94F8D5BE18B025B37BE /* PostStreamFreshnessPerformanceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A6AA7A0841FAE911C682112 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Stratix;
+			target = AA0005000000000000000001 /* Stratix */;
+			targetProxy = 081C05A44A1F6BBB4BBBD2F2 /* PBXContainerItemProxy */;
+		};
+		AB1008000000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0005000000000000000001 /* Stratix */;
+			targetProxy = AB1009000000000000000001 /* PBXContainerItemProxy */;
+		};
+		E412EDBC90FA767DA12E4903 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Stratix;
+			target = AA0005000000000000000001 /* Stratix */;
+			targetProxy = CAC552942FE5DA29CE303D5F /* PBXContainerItemProxy */;
+		};
+		F98D99AA473CD286D4069883 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Stratix;
+			target = AA0005000000000000000001 /* Stratix */;
+			targetProxy = A85A19418EDF3BF898560A5A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		000E3EC82C68DCFD479A3FB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DWEBRTC_AVAILABLE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stratix.app/Stratix";
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		54C7122A92DD0E44512B89A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.PerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stratix.app/Stratix";
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		5D6374FB2EE15DAC864175AA /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.PerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stratix.app/Stratix";
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
+		659E7206B4F61CC4E8C17BF6 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_ENTITLEMENTS = Stratix/Stratix.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				INFOPLIST_FILE = Stratix/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.action-games";
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DWEBRTC_AVAILABLE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Stratix/Stratix-Bridging-Header.h";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Profile;
+		};
+		8586A93C54BD5C156F721572 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.PerformanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E5138565222C44B97CAE71E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.PerformanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		938C0EE5649ACA2ADBF72FCA /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.PerformanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
+		96C973C943BEE6DC38076849 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_FAST_MATH = YES;
+				SDKROOT = appletvos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.2;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
+		AA0006000000000000000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.2;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		AA0006000000000000000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_FAST_MATH = YES;
+				SDKROOT = appletvos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.2;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA0006000000000000000004 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_ENTITLEMENTS = Stratix/Stratix.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_DEBUG_DYLIB = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				INFOPLIST_FILE = Stratix/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.action-games";
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DWEBRTC_AVAILABLE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Stratix/Stratix-Bridging-Header.h";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		AA0006000000000000000005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_ENTITLEMENTS = Stratix/Stratix.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_BITCODE = NO;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				INFOPLIST_FILE = Stratix/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.action-games";
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DWEBRTC_AVAILABLE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Stratix/Stratix-Bridging-Header.h";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		AB1006000000000000000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		AB1006000000000000000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		B28806DB12B7F12900AD0973 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DWEBRTC_AVAILABLE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stratix.app/Stratix";
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
+		B79A2C68A236EB2571A1E938 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.PerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stratix.app/Stratix";
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C8A2F8213E8239E471713B2E /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Profile;
+		};
+		F65F6C29C5C771127F84DD28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35FACKB24L;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DWEBRTC_AVAILABLE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stratix.appletv.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 6.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stratix.app/Stratix";
+				TEST_TARGET_NAME = Stratix;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F3D2A8405A704F541F65D65 /* Build configuration list for PBXNativeTarget "StratixPerformanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B79A2C68A236EB2571A1E938 /* Release */,
+				54C7122A92DD0E44512B89A9 /* Debug */,
+				5D6374FB2EE15DAC864175AA /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0006000000000000000001 /* Build configuration list for PBXProject "Stratix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0006000000000000000002 /* Debug */,
+				AA0006000000000000000003 /* Release */,
+				96C973C943BEE6DC38076849 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0006000000000000000006 /* Build configuration list for PBXNativeTarget "Stratix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0006000000000000000004 /* Debug */,
+				AA0006000000000000000005 /* Release */,
+				659E7206B4F61CC4E8C17BF6 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB1006000000000000000001 /* Build configuration list for PBXNativeTarget "StratixUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB1006000000000000000002 /* Debug */,
+				AB1006000000000000000003 /* Release */,
+				C8A2F8213E8239E471713B2E /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E20C0786D5401B39747D6F2C /* Build configuration list for PBXNativeTarget "StratixTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000E3EC82C68DCFD479A3FB1 /* Release */,
+				F65F6C29C5C771127F84DD28 /* Debug */,
+				B28806DB12B7F12900AD0973 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC8EBFAF625239D244DA90C5 /* Build configuration list for PBXNativeTarget "StratixPerformanceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8586A93C54BD5C156F721572 /* Release */,
+				8E5138565222C44B97CAE71E /* Debug */,
+				938C0EE5649ACA2ADBF72FCA /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AA000A000000000000000001 /* XCLocalSwiftPackageReference "../../Packages/StratixModels" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Packages/StratixModels;
+		};
+		AA000A000000000000000002 /* XCLocalSwiftPackageReference "../../Packages/InputBridge" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Packages/InputBridge;
+		};
+		AA000A000000000000000003 /* XCLocalSwiftPackageReference "../../Packages/XCloudAPI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Packages/XCloudAPI;
+		};
+		AA000A000000000000000004 /* XCLocalSwiftPackageReference "../../Packages/StreamingCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Packages/StreamingCore;
+		};
+		AA000A000000000000000005 /* XCLocalSwiftPackageReference "../../Packages/DiagnosticsKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Packages/DiagnosticsKit;
+		};
+		AA000A000000000000000007 /* XCLocalSwiftPackageReference "../../Packages/StratixCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Packages/StratixCore;
+		};
+		AA000A000000000000000008 /* XCLocalSwiftPackageReference "../../Packages/VideoRenderingKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Packages/VideoRenderingKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A30000000000000000000022 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A30000000000000000000023 /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A30000000000000000000022 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
+		};
+		AA0009000000000000000001 /* StratixModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA000A000000000000000001 /* XCLocalSwiftPackageReference "../../Packages/StratixModels" */;
+			productName = StratixModels;
+		};
+		AA0009000000000000000002 /* InputBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA000A000000000000000002 /* XCLocalSwiftPackageReference "../../Packages/InputBridge" */;
+			productName = InputBridge;
+		};
+		AA0009000000000000000003 /* XCloudAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA000A000000000000000003 /* XCLocalSwiftPackageReference "../../Packages/XCloudAPI" */;
+			productName = XCloudAPI;
+		};
+		AA0009000000000000000004 /* StreamingCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA000A000000000000000004 /* XCLocalSwiftPackageReference "../../Packages/StreamingCore" */;
+			productName = StreamingCore;
+		};
+		AA0009000000000000000005 /* DiagnosticsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA000A000000000000000005 /* XCLocalSwiftPackageReference "../../Packages/DiagnosticsKit" */;
+			productName = DiagnosticsKit;
+		};
+		AA0009000000000000000007 /* StratixCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA000A000000000000000007 /* XCLocalSwiftPackageReference "../../Packages/StratixCore" */;
+			productName = StratixCore;
+		};
+		AA0009000000000000000008 /* VideoRenderingKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA000A000000000000000008 /* XCLocalSwiftPackageReference "../../Packages/VideoRenderingKit" */;
+			productName = VideoRenderingKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AA0008000000000000000001 /* Project object */;
+}

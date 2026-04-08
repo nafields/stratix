@@ -1,0 +1,45 @@
+name: CI Release And Validation
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: '0 10 * * *'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  release-and-validation:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Build ReleaseRun
+        run: bash Tools/dev/run_release_build.sh
+
+      - name: Run Stratix-Validation
+        run: bash Tools/dev/run_validation_build.sh
+
+      - name: Export workflow evidence for candidate head
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash Tools/docs/export_workflow_exports.sh /tmp/stratix_workflow_exports --sha "${GITHUB_SHA}" --repo "${GITHUB_REPOSITORY}"
+
+      - name: Upload release-validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-release-and-validation-evidence
+          path: |
+            /tmp/stratix_release_run
+            /tmp/stratix_validation_lane/Logs/Test
+            /tmp/stratix_workflow_exports

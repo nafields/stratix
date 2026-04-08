@@ -1,0 +1,14 @@
+--- a/build/config/apple/mobile_config.gni
++++ b/build/config/apple/mobile_config.gni
+@@ -132,8 +132,7 @@ if (is_ios || is_watchos) {
+     }
+   }
+
+-  # Sanity check: tvOS builds require `use_blink`.
+-  if (target_platform == "tvos") {
+-    assert(use_blink, "tvOS builds require use_blink=true")
+-  }
++  # NOTE: The use_blink assertion for tvOS has been removed.
++  # That check is specific to the Chromium browser and does not apply
++  # to standalone WebRTC framework builds targeting tvOS.
+ }

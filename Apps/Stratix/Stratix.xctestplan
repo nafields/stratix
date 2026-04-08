@@ -1,0 +1,43 @@
+{
+  "configurations" : [
+    {
+      "id" : "F0BD0202-CBF7-4609-9483-68012657890B",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "-stratix-app-logs"
+      }
+    ],
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Stratix.xcodeproj",
+      "identifier" : "AA0005000000000000000001",
+      "name" : "Stratix"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Stratix.xcodeproj",
+        "identifier" : "24B4E9C0DBE061C9ACF262FC",
+        "name" : "StratixTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Stratix.xcodeproj",
+        "identifier" : "AB1005000000000000000001",
+        "name" : "StratixUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

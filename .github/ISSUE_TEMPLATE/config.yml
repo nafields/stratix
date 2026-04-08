@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: General support
+    url: https://github.com/nafields/stratix/blob/main/SUPPORT.md
+    about: Read support and issue-routing guidance before opening an issue.
+  - name: Security reports
+    url: https://github.com/nafields/stratix/security/policy
+    about: Use the security policy for private vulnerability disclosure.

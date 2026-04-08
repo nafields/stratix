@@ -1,0 +1,60 @@
+# ─── WebRTC Build Artifacts ───────────────────────────────────────────────────
+# WebRTC source tree fetched by Tools/webrtc-build/sync_webrtc.sh (~10 GB)
+.cache/
+
+# ─── macOS ────────────────────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+# ─── Xcode ────────────────────────────────────────────────────────────────────
+# User-specific
+xcuserdata/
+**/*.xcuserstate
+**/*.xcuserdatad/
+
+# Xcode derived data and build products
+DerivedData/
+build/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Xcode Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# ─── Swift Package Manager ────────────────────────────────────────────────────
+.build/
+.swiftpm/xcode/
+
+# ─── Secrets / Credentials ────────────────────────────────────────────────────
+*.env
+*.pem
+*.p8
+*.p12
+*.mobileprovision
+AuthKeys/
+Secrets/
+
+# ─── Editors ──────────────────────────────────────────────────────────────────
+.vscode/
+*.swp
+*~
+
+# ─── Misc ─────────────────────────────────────────────────────────────────────
+*.log
+/.claude/
+/.claude/worktrees
+/.codex/
+/worktree
+worktree/stratix-vp9-metal
+.claude/worktrees/vigorous-pike
+.claude/worktrees/stoic-bell
+.claude/worktrees/eloquent-wiles
+.claude/worktrees/blissful-merkle
+/worktrees
+__pycache__/
+*.pyc

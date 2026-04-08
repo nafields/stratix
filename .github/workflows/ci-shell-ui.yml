@@ -1,0 +1,28 @@
+name: CI Shell UI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stratix-shell-stream-validation
+  cancel-in-progress: false
+
+jobs:
+  shell-ui:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Shell navigation checkpoints and stored-auth roundtrip
+        run: bash Tools/dev/run_shell_ui_checks.sh

@@ -1,0 +1,32 @@
+name: CI PR Fast Guards
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  fast-guards:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch base branch for diff-aware checks
+        if: github.event_name == 'pull_request'
+        run: git fetch origin "${GITHUB_BASE_REF}" --depth=1
+
+      - name: Run architecture guards
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: bash Tools/dev/run_architecture_guards.sh
+
+      - name: Run docs checks
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: bash Tools/docs/run_docs_checks.sh

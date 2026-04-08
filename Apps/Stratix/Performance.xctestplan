@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "8E1A2CEB-94F4-4C7E-91E3-86D0E0D4A84F",
+      "name" : "Performance",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:Apps/Stratix/Stratix.xcodeproj",
+        "identifier" : "F7143CDB42B6E251141D5E44",
+        "name" : "StratixPerformanceUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

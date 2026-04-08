@@ -1,0 +1,33 @@
+{
+  "configurations" : [
+    {
+      "id" : "3F7F5E9A-1C1D-4CB4-8D19-2E42F4D783AF",
+      "name" : "Shell Regression",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:Apps/Stratix/Stratix.xcodeproj",
+        "identifier" : "AB1005000000000000000001",
+        "name" : "StratixUITests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Apps/Stratix/Stratix.xcodeproj",
+        "identifier" : "24B4E9C0DBE061C9ACF262FC",
+        "name" : "StratixTests"
+      }
+    }
+  ],
+  "version" : 1
+}

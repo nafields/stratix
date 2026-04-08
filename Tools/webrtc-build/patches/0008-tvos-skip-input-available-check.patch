@@ -1,0 +1,22 @@
+diff --git a/sdk/objc/components/audio/RTCAudioSession.mm b/sdk/objc/components/audio/RTCAudioSession.mm
+index 69e90277fc..deb4850b67 100644
+--- a/sdk/objc/components/audio/RTCAudioSession.mm
++++ b/sdk/objc/components/audio/RTCAudioSession.mm
+@@ -760,6 +760,9 @@ - (BOOL)configureWebRTCSession:(NSError **)outError {
+
+   // Ensure that the device currently supports audio input.
+   // TODO(tkchin): Figure out if this is really necessary.
++  // tvOS PATCH: Apple TV has no microphone — inputAvailable is always NO.
++  // Skip this check on tvOS so that output-only (playback) sessions succeed.
++#if !TARGET_OS_TV
+   if (!self.inputAvailable) {
+     RTCLogError(@"No audio input path is available!");
+     [self unconfigureWebRTCSession:nil];
+@@ -768,6 +771,7 @@ - (BOOL)configureWebRTCSession:(NSError **)outError {
+     }
+     return NO;
+   }
++#endif  // !TARGET_OS_TV
+
+   // It can happen (e.g. in combination with BT devices) that the attempt to set
+   // the preferred sample rate for WebRTC (48kHz) fails. If so, make a new

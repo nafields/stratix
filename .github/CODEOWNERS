@@ -1,0 +1,31 @@
+# CODEOWNERS
+#
+# This file defines who is automatically requested to review changes
+# to specific parts of the repository.
+#
+# Syntax: <pattern> <owner>
+# Owners are GitHub usernames or team names.
+# The last matching pattern wins.
+
+# Default owner for everything not covered below
+* @nafields
+
+# Core app and shell
+Apps/Stratix/Sources/Stratix/ @nafields
+
+# Swift packages
+Packages/ @nafields
+
+# WebRTC integration and vendored binary
+Apps/Stratix/Sources/Stratix/Integration/WebRTC/ @nafields
+ThirdParty/WebRTC/ @nafields
+Tools/webrtc-build/ @nafields
+
+# CI and validation tooling
+.github/ @nafields
+Tools/ @nafields
+
+# Documentation
+Docs/ @nafields
+README.md @nafields
+CONTRIBUTING.md @nafields

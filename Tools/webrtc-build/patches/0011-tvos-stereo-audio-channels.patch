@@ -1,0 +1,158 @@
+diff --git a/sdk/objc/native/src/audio/audio_device_ios.mm b/sdk/objc/native/src/audio/audio_device_ios.mm
+index 0000000000..0000000001 100644
+--- a/sdk/objc/native/src/audio/audio_device_ios.mm
++++ b/sdk/objc/native/src/audio/audio_device_ios.mm
+@@ -462,17 +462,20 @@ static void LogDeviceInfo() {
+                                           UInt32 num_frames,
+                                           AudioBufferList* io_data) {
+   RTC_DCHECK_RUN_ON(&io_thread_checker_);
+-  // Verify 16-bit, noninterleaved mono PCM signal format.
++  // Verify 16-bit PCM signal format (mono or stereo interleaved).
+   RTC_DCHECK_EQ(1, io_data->mNumberBuffers);
+   AudioBuffer* audio_buffer = &io_data->mBuffers[0];
+-  RTC_DCHECK_EQ(1, audio_buffer->mNumberChannels);
++  // mNumberChannels may be 1 (mono) or 2 (stereo interleaved).
++  RTC_DCHECK_GE(audio_buffer->mNumberChannels, 1u);
++  RTC_DCHECK_LE(audio_buffer->mNumberChannels, 2u);
+
+   // Produce silence and give audio unit a hint about it if playout is not
+   // activated.
+   if (!playing_.load(std::memory_order_acquire)) {
+     const size_t size_in_bytes = audio_buffer->mDataByteSize;
+-    RTC_CHECK_EQ(size_in_bytes / VoiceProcessingAudioUnit::kBytesPerSample,
+-                 num_frames);
++    RTC_CHECK_EQ(size_in_bytes,
++                 num_frames * audio_buffer->mNumberChannels
++                     * VoiceProcessingAudioUnit::kBytesPerSample);
+     *flags |= kAudioUnitRenderAction_OutputIsSilence;
+     memset(static_cast<int8_t*>(audio_buffer->mData), 0, size_in_bytes);
+     return noErr;
+@@ -531,7 +534,7 @@ static void LogDeviceInfo() {
+   // `io_data` destination.
+   fine_audio_buffer_->GetPlayoutData(
+       webrtc::ArrayView<int16_t>(static_cast<int16_t*>(audio_buffer->mData),
+-                                 num_frames),
++                                 num_frames * audio_buffer->mNumberChannels),
+       playout_delay_ms);
+
+   last_hw_output_latency_update_sample_count_ += num_frames;
+@@ -676,8 +679,9 @@ static void LogDeviceInfo() {
+   // Allocate new buffers given the new stream format.
+   SetupAudioBuffersForActiveAudioSession();
+
+-  // Initialize the audio unit again with the new sample rate.
+-  if (!audio_unit_->Initialize(playout_parameters_.sample_rate())) {
++  // Initialize the audio unit again with the new sample rate and channel count.
++  if (!audio_unit_->Initialize(playout_parameters_.sample_rate(),
++                                playout_parameters_.channels())) {
+     RTCLogError(@"Failed to initialize the audio unit with sample rate: %d",
+                 playout_parameters_.sample_rate());
+     return;
+@@ -744,7 +748,9 @@ static void LogDeviceInfo() {
+   RTC_DCHECK(audio_device_buffer_) << "AttachAudioBuffer must be called first";
+   RTC_DCHECK_GT(playout_parameters_.sample_rate(), 0);
+   RTC_DCHECK_GT(record_parameters_.sample_rate(), 0);
+-  RTC_DCHECK_EQ(playout_parameters_.channels(), 1);
++  RTC_DCHECK_GE(playout_parameters_.channels(), 1);
++  RTC_DCHECK_LE(playout_parameters_.channels(), 2);
++  // Recording is disabled on tvOS; mono is correct for iOS.
+   RTC_DCHECK_EQ(record_parameters_.channels(), 1);
+   // Inform the audio device buffer (ADB) about the new audio format.
+   audio_device_buffer_->SetPlayoutSampleRate(playout_parameters_.sample_rate());
+@@ -882,7 +888,8 @@ static void LogDeviceInfo() {
+     RTCLog(@"Initializing audio unit for UpdateAudioUnit");
+     ConfigureAudioSession();
+     SetupAudioBuffersForActiveAudioSession();
+-    if (!audio_unit_->Initialize(playout_parameters_.sample_rate())) {
++    if (!audio_unit_->Initialize(playout_parameters_.sample_rate(),
++                                   playout_parameters_.channels())) {
+       RTCLogError(@"Failed to initialize audio unit.");
+       return;
+     }
+@@ -1014,7 +1021,8 @@ static void LogDeviceInfo() {
+       return false;
+     }
+     SetupAudioBuffersForActiveAudioSession();
+-    audio_unit_->Initialize(playout_parameters_.sample_rate());
++    audio_unit_->Initialize(playout_parameters_.sample_rate(),
++                              playout_parameters_.channels());
+   }
+
+   // Release the lock.
+diff --git a/sdk/objc/native/src/audio/voice_processing_audio_unit.h b/sdk/objc/native/src/audio/voice_processing_audio_unit.h
+index 0000000000..0000000001 100644
+--- a/sdk/objc/native/src/audio/voice_processing_audio_unit.h
++++ b/sdk/objc/native/src/audio/voice_processing_audio_unit.h
+@@ -81,7 +81,9 @@ class VoiceProcessingAudioUnit {
+   VoiceProcessingAudioUnit::State GetState() const;
+
+   // Initializes the underlying audio unit with the given sample rate.
+-  bool Initialize(Float64 sample_rate);
++  // num_channels: 1 = mono (default), 2 = stereo. Must match
++  // RTCAudioSessionConfiguration.outputNumberOfChannels.
++  bool Initialize(Float64 sample_rate, UInt32 num_channels = 1);
+
+   // Starts the underlying audio unit.
+   OSStatus Start();
+@@ -134,7 +136,8 @@ class VoiceProcessingAudioUnit {
+
+   // Returns the predetermined format with a specific sample rate. See
+   // implementation file for details on format.
+-  AudioStreamBasicDescription GetFormat(Float64 sample_rate) const;
++  // num_channels: 1 = mono, 2 = interleaved stereo.
++  AudioStreamBasicDescription GetFormat(Float64 sample_rate, UInt32 num_channels) const;
+
+   // Deletes the underlying audio unit.
+   void DisposeAudioUnit();
+diff --git a/sdk/objc/native/src/audio/voice_processing_audio_unit.mm b/sdk/objc/native/src/audio/voice_processing_audio_unit.mm
+index 0000000000..0000000001 100644
+--- a/sdk/objc/native/src/audio/voice_processing_audio_unit.mm
++++ b/sdk/objc/native/src/audio/voice_processing_audio_unit.mm
+@@ -225,12 +225,14 @@
+   return state_;
+ }
+
+-bool VoiceProcessingAudioUnit::Initialize(Float64 sample_rate) {
++bool VoiceProcessingAudioUnit::Initialize(Float64 sample_rate,
++                                          UInt32 num_channels) {
+   RTC_DCHECK_GE(state_, kUninitialized);
+-  RTCLog(@"Initializing audio unit with sample rate: %f", sample_rate);
++  RTCLog(@"Initializing audio unit with sample rate: %f channels: %u",
++         sample_rate, (unsigned int)num_channels);
+
+   OSStatus result = noErr;
+-  AudioStreamBasicDescription format = GetFormat(sample_rate);
++  AudioStreamBasicDescription format = GetFormat(sample_rate, num_channels);
+   UInt32 size = sizeof(format);
+ #if !defined(NDEBUG)
+   LogStreamDescription(format);
+@@ -653,22 +655,23 @@
+ }
+
+ AudioStreamBasicDescription VoiceProcessingAudioUnit::GetFormat(
+-    Float64 sample_rate) const {
++    Float64 sample_rate, UInt32 num_channels) const {
+   // Set the application formats for input and output:
+   // - use same format in both directions
+   // - avoid resampling in the I/O unit by using the hardware sample rate
+   // - linear PCM => noncompressed audio data format with one frame per packet
+-  // - no need to specify interleaving since only mono is supported
++  // - num_channels=1: mono; num_channels=2: interleaved stereo
++  RTC_DCHECK_GE(num_channels, 1u);
++  RTC_DCHECK_LE(num_channels, 2u);
+   AudioStreamBasicDescription format;
+-  RTC_DCHECK_EQ(1, kRTCAudioSessionPreferredNumberOfChannels);
+   format.mSampleRate = sample_rate;
+   format.mFormatID = kAudioFormatLinearPCM;
+   format.mFormatFlags =
+       kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked;
+-  format.mBytesPerPacket = kBytesPerSample;
++  format.mBytesPerPacket = num_channels * kBytesPerSample;
+   format.mFramesPerPacket = 1;  // uncompressed.
+-  format.mBytesPerFrame = kBytesPerSample;
+-  format.mChannelsPerFrame = kRTCAudioSessionPreferredNumberOfChannels;
++  format.mBytesPerFrame = num_channels * kBytesPerSample;
++  format.mChannelsPerFrame = num_channels;
+   format.mBitsPerChannel = 8 * kBytesPerSample;
+   return format;
+ }

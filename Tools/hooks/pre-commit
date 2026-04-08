@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+bash Tools/dev/run_pre_commit_checks.sh

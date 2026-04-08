@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "0E7A5B5A-63CC-4C50-9368-AAD3B8A54E8F",
+      "name" : "Metal Rendering",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:Apps\/Stratix\/Stratix.xcodeproj",
+        "identifier" : "9FFB87C8B3F01C6325E44BFE",
+        "name" : "StratixPerformanceTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Apps\/Stratix\/Stratix.xcodeproj",
+        "identifier" : "F7143CDB42B6E251141D5E44",
+        "name" : "StratixPerformanceUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

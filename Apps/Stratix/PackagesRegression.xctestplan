@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "1D9B7A69-22C0-4E7B-9B23-5D87583D4D81",
+      "name" : "Packages Regression",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Apps/Stratix/Stratix.xcodeproj",
+        "identifier" : "24B4E9C0DBE061C9ACF262FC",
+        "name" : "StratixTests"
+      }
+    }
+  ],
+  "version" : 1
+}

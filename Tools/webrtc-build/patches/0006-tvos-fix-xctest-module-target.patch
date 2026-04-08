@@ -1,0 +1,12 @@
+--- a/webrtc.gni
++++ b/webrtc.gni
+@@ -536,7 +536,8 @@ template("rtc_test") {
+     }
+
+     # Build //test:google_test_runner_objc when the test is not a real XCTest.
+-    if (is_ios && rtc_include_tests) {
++    # Skip for tvOS: ios_app_bundle does not support xctest_module_target there.
++    if (is_ios && rtc_include_tests && target_platform != "tvos") {
+       if (!defined(invoker.is_xctest) || !invoker.is_xctest) {
+         xctest_module_target = "//test:google_test_runner_objc"
+       }
