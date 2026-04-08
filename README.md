@@ -2,7 +2,6 @@
 
 [![Build](https://github.com/nafields/stratix/actions/workflows/ci-app-build-and-smoke.yml/badge.svg)](https://github.com/nafields/stratix/actions/workflows/ci-app-build-and-smoke.yml)
 [![Packages](https://github.com/nafields/stratix/actions/workflows/ci-packages.yml/badge.svg)](https://github.com/nafields/stratix/actions/workflows/ci-packages.yml)
-[![PR Guards](https://github.com/nafields/stratix/actions/workflows/ci-pr-fast-guards.yml/badge.svg)](https://github.com/nafields/stratix/actions/workflows/ci-pr-fast-guards.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Swift 6.2](https://img.shields.io/badge/Swift-6.2-orange.svg?logo=swift)](https://swift.org)
 [![tvOS 26](https://img.shields.io/badge/tvOS-26.0-black.svg?logo=apple)](https://developer.apple.com/tvos/)
