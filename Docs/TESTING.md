@@ -113,7 +113,7 @@ The wrappers under `Tools/dev/` and `Tools/test/` are the preferred way to run v
 | `bash Tools/dev/run_validation_build.sh` | Runs `Stratix-Validation` as a full test lane |
 | `bash Tools/dev/run_release_build.sh` | Builds `Stratix-ReleaseRun` |
 | `bash Tools/dev/run_hardware_shell_checks.sh` | Runs shell UI proof on a real device (needs `HARDWARE_DEVICE_ID`) |
-| `bash Tools/test/run_shell_regression_checks.sh` | Reruns shell UI checkpoints, captures images, diffs against references |
+| `bash Tools/test/run_shell_visual_regression.sh` | Reruns shell UI checkpoints, captures images, diffs against references |
 
 When a wrapper exists, use it. The wrapper is a statement of intent — "this is the canonical way to prove this surface." Hand-written commands can drift from the correct flags over time.
 
@@ -129,7 +129,7 @@ Use this table as your first-pass guide. Pick the row that matches what you chan
 | Logic in any of the seven packages | `run_package_sweep.sh` |
 | App composition, environment wiring, or app startup | `run_debug_build.sh` + `run_app_smoke.sh` |
 | Shell routing, overlays, focus, or harness-visible flows | `run_shell_ui_checks.sh` |
-| Visual shell layout or rendering drift | `run_shell_regression_checks.sh` (requires `ffmpeg`) |
+| Visual shell layout or rendering drift | `run_shell_visual_regression.sh` (requires `ffmpeg`) |
 | WebRTC bridge, streaming runtime, renderer, audio, or input channels | `run_runtime_safety.sh` + `run_validation_build.sh` |
 | Broad closeout across app and packages | `run_validation_build.sh` |
 | Release-shape build proof | `run_release_build.sh` |
@@ -171,7 +171,7 @@ The CI pipelines under `.github/workflows/` map directly to the local wrapper la
 | `ci-pr-fast-guards.yml` | Architecture guards and docs checks |
 | `ci-runtime-safety.yml` | Targeted streaming/WebRTC safety proof |
 | `ci-shell-ui.yml` | Shell UI wrapper |
-| `ci-shell-visual-regression.yml` | Shell visual regression plus artifact upload |
+| `ci-shell-visual-regression.yml` | Manual shell visual regression plus artifact upload |
 | `ci-release-and-validation.yml` | Release build plus full validation sweep |
 | `ci-hardware-device.yml` | Self-hosted hardware shell checks |
 | `ci-shell-state-tests.yml` | Shell-state regression wrapper |
@@ -200,7 +200,7 @@ Do not assume every test uses the real WebRTC framework just because the build c
 
 **`run_shell_ui_checks.sh` is narrow on purpose.** It proves a small number of deterministic shell checkpoints — not a broad UI suite. This is intentional: narrow tests fail fast and point directly at what broke. If you want broader coverage, `run_validation_build.sh` is the full sweep.
 
-**`run_shell_regression_checks.sh` requires `ffmpeg`.** Visual regression proof captures screenshots and diffs them against references. Install `ffmpeg` before using this wrapper.
+**`run_shell_visual_regression.sh` requires `ffmpeg`.** Visual regression proof captures screenshots and diffs them against references. Install `ffmpeg` before using this wrapper.
 
 **Hardware wrappers need `HARDWARE_DEVICE_ID` or `TVOS_HARDWARE_DEVICE_ID`.** There is no hardcoded device ID. Set the environment variable to your device's identifier before running hardware wrappers.
 

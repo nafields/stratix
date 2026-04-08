@@ -1,20 +1,8 @@
-name: CI Shell Visual Regression
+name: CI Shell Visual Regression (Manual)
 
 on:
-  pull_request:
-    paths:
-      - 'Apps/Stratix/Sources/Stratix/Features/**'
-      - 'Apps/Stratix/Sources/Stratix/Shared/**'
-      - 'Apps/Stratix/Tools/shell-visual-regression/**'
-      - 'Docs/KNOWN_ISSUES.md'
-      - 'Docs/RELEASE_READINESS.md'
-      - 'Docs/TESTING.md'
-      - 'Docs/XCODE_VALIDATION_MATRIX.md'
-      - 'Tools/test/**'
-      - '.github/workflows/ci-shell-visual-regression.yml'
-  push:
-    branches:
-      - main
+  # Keep screenshot-diff capture opt-in until hosted runner support is stable again.
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -36,10 +24,10 @@ jobs:
       - name: Install ffmpeg
         run: brew install ffmpeg
 
-      - name: Run shell visual regression
-        run: bash Tools/test/run_shell_regression_checks.sh
+      - name: Run manual shell visual regression
+        run: bash Tools/test/run_shell_visual_regression.sh
 
-      - name: Upload shell regression artifacts
+      - name: Upload shell visual regression artifacts
         if: failure()
         uses: actions/upload-artifact@v4
         with:

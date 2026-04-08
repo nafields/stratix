@@ -57,7 +57,7 @@ final class LaunchPerformanceTests: XCTestCase {
 
         measure(
             metrics: [XCTClockMetric(), XCTCPUMetric(), XCTMemoryMetric()],
-            options: PerformanceTestSupport.measureOptions(iterationCount: 5)
+            options: makePerformanceMeasureOptions(iterationCount: 5)
         ) {
             for _ in 0..<400 {
                 for scenario in metalProfileRenderScenarios {

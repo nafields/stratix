@@ -21,4 +21,4 @@ jobs:
           xcode-version: latest-stable
 
       - name: Run shell state tests
-        run: bash Tools/dev/run_stage4_shell_tests.sh
+        run: bash Tools/dev/run_shell_state_tests.sh

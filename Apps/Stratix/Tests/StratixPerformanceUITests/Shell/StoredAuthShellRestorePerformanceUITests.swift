@@ -16,7 +16,7 @@ final class StoredAuthShellRestorePerformanceUITests: XCTestCase {
 
         measure(
             metrics: [XCTApplicationLaunchMetric(), XCTClockMetric(), XCTCPUMetric(), XCTMemoryMetric()],
-            options: PerformanceTestSupport.measureOptions(iterationCount: 3)
+            options: makePerformanceMeasureOptions(iterationCount: 3)
         ) {
             let app = PerformanceTestSupport.launchStoredAuthenticatedHomeApp(timeout: 60)
             let homeRoot = PerformanceTestSupport.waitForStoredAuthenticatedHome(in: app, timeout: 60)

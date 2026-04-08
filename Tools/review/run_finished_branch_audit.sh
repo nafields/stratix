@@ -206,7 +206,7 @@ run_lane "36" "xcode" "Stratix Validation Tests" "xcodebuild -workspace Stratix.
 run_lane "37" "script" "Hardware Shell Checks" "bash Tools/dev/run_hardware_shell_checks.sh"
 
 run_lane "38" "script" "Production Hardening Checks" "bash Tools/test/run_production_hardening_checks.sh"
-run_lane "38a" "script" "Shell Regression Checks" "bash Tools/test/run_shell_regression_checks.sh"
+run_lane "38a" "script" "Shell State Tests" "bash Tools/dev/run_shell_state_tests.sh"
 run_lane "39" "script" "Hardware Profile Capture" "bash Tools/perf/run_hardware_profile_capture.sh"
 run_lane "40" "script" "Validation Summary Generation" "bash Tools/docs/generate_validation_summary.sh '$OUT_DIR' '$VALIDATION_SUMMARY_PATH'"
 
@@ -217,7 +217,7 @@ run_lane "40" "script" "Validation Summary Generation" "bash Tools/docs/generate
   echo "- Repo root: \`$REPO_ROOT\`"
   echo "- Audit output: \`$OUT_DIR\`"
   echo "- Validation summary: \`$VALIDATION_SUMMARY_PATH\`"
-  echo "- Hosted workflow exports: run \`bash Tools/docs/export_workflow_exports.sh <workflow_export_root> --sha \"\$(git rev-parse HEAD)\"\` only after \`CI PR Fast Guards\`, \`CI Packages\`, \`CI App Build And Smoke\`, \`CI Runtime Safety\`, \`CI Shell UI\`, \`CI Shell Visual Regression\`, \`CI Release And Validation\`, and \`CI Hardware Device\` have all passed on this same SHA."
+  echo "- Hosted workflow exports: run \`bash Tools/docs/export_workflow_exports.sh <workflow_export_root> --sha \"\$(git rev-parse HEAD)\"\` only after \`CI PR Fast Guards\`, \`CI Packages\`, \`CI App Build And Smoke\`, \`CI Runtime Safety\`, \`CI Shell UI\`, \`CI Shell State Tests\`, \`CI Release And Validation\`, and \`CI Hardware Device\` have all passed on this same SHA."
   echo
   echo "## Lane Results"
   echo
@@ -309,7 +309,7 @@ write_goal_row "Stage 7" "G16 Sharpen package boundaries" \
 write_goal_row "Stage 7" "G17 Enforced architecture rules" \
   "12::Stage 7 Coordinator Composition" "13::Stage 7 Dependency Seams" "14::Stage 7 Package Boundaries" "18::Docs Truth Sync" "19::Concurrency Exceptions" "20::Repo Hygiene"
 write_goal_row "Stage 8" "G18 Improve hydration/runtime/focus transition testing" \
-  "18::Docs Truth Sync" "28::StratixCore Tests" "30::App Smoke Tests" "31::Runtime Safety Tests" "32::Shell UI Simulator Tests" "33::Perf Plan Tests" "34::Metal Profile Tests" "36::Stratix Validation Tests" "37::Hardware Shell Checks" "38a::Shell Regression Checks" "39::Hardware Profile Capture"
+  "18::Docs Truth Sync" "28::StratixCore Tests" "30::App Smoke Tests" "31::Runtime Safety Tests" "32::Shell UI Simulator Tests" "33::Perf Plan Tests" "34::Metal Profile Tests" "36::Stratix Validation Tests" "37::Hardware Shell Checks" "38a::Shell State Tests" "39::Hardware Profile Capture"
 write_goal_row "Stage 8" "G19 Strong typed identifiers" \
   "06::Stage 4 Typed IDs" "15::Stage 8 Typed ID Completion" "28::StratixCore Tests" "29::Stratix-Debug Build" "30::App Smoke Tests" "36::Stratix Validation Tests"
 write_goal_row "Stage 8" "G20 Immutable state plus reducers / explicit transitions" \

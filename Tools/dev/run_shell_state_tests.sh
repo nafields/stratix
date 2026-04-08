@@ -6,10 +6,10 @@ cd "$REPO_ROOT"
 
 xcodebuild -quiet \
   -workspace Stratix.xcworkspace \
-  -scheme Stratix-Debug \
+  -scheme Stratix-Validation \
   -destination 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=latest' \
-  -derivedDataPath /tmp/stratix_stage4_shell \
-  -clonedSourcePackagesDirPath /tmp/stratix_stage4_shell_spm \
+  -derivedDataPath /tmp/stratix_shell_state_tests \
+  -clonedSourcePackagesDirPath /tmp/stratix_shell_state_tests_spm \
   -only-testing:StratixTests/CloudLibraryStateSnapshotTests \
   -only-testing:StratixTests/CloudLibraryLoadStateTests \
   -only-testing:StratixTests/CloudLibraryRouteStateTests \

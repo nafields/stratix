@@ -18,7 +18,7 @@ final class ShellPerformanceUITests: XCTestCase {
 
         measure(
             metrics: [XCTClockMetric(), XCTCPUMetric(), XCTMemoryMetric()],
-            options: PerformanceTestSupport.measureOptions(iterationCount: 5)
+            options: makePerformanceMeasureOptions(iterationCount: 5)
         ) {
             _ = PerformanceTestSupport.selectRoute(
                 PerformanceTestSupport.libraryRailIdentifier,
@@ -39,7 +39,7 @@ final class ShellPerformanceUITests: XCTestCase {
     func testShellHarnessHomePlayNowRoundtripLatency() throws {
         measure(
             metrics: [XCTClockMetric(), XCTCPUMetric(), XCTMemoryMetric()],
-            options: PerformanceTestSupport.measureOptions(iterationCount: 3)
+            options: makePerformanceMeasureOptions(iterationCount: 3)
         ) {
             let launchedApp = PerformanceTestSupport.launchShellHarnessHomeApp(timeout: 12)
             let playNow = PerformanceTestSupport.waitForButton(

@@ -68,7 +68,7 @@ xcodebuild \
   -destination "$DESTINATION" \
   -derivedDataPath "$DERIVED_DATA_PATH" \
   -clonedSourcePackagesDirPath "$CLONED_SOURCE_PACKAGES_DIR_PATH" \
-  -only-testing:StratixUITests/ShellCheckpointUITests/testCaptureHomeSearchLibraryCheckpoints \
+  -only-testing:StratixUITests/ShellCheckpointCaptureUITests/testCaptureHomeSearchLibraryCheckpoints \
   test
 
 hydrate_capture_dir_from_simulator_cache

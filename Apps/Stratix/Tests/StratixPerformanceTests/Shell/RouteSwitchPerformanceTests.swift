@@ -22,7 +22,7 @@ final class RouteSwitchPerformanceTests: XCTestCase {
 
         measure(
             metrics: [XCTClockMetric(), XCTCPUMetric(), XCTMemoryMetric()],
-            options: PerformanceTestSupport.measureOptions(iterationCount: 5)
+            options: makePerformanceMeasureOptions(iterationCount: 5)
         ) {
             for _ in 0..<2_000 {
                 var deadRungs: Set<RenderLadderRung> = []

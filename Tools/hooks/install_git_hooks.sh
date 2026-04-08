@@ -8,6 +8,6 @@ git config core.hooksPath Tools/hooks
 chmod +x Tools/hooks/pre-commit Tools/hooks/pre-push
 chmod +x Tools/dev/*.sh
 chmod +x Tools/docs/*.sh
-chmod +x Tools/test/run_shell_regression_checks.sh
+chmod +x Tools/test/run_shell_visual_regression.sh
 
 echo "Configured git hooks to use Tools/hooks"

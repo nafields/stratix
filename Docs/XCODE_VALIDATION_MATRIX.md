@@ -77,7 +77,7 @@ The scripts under `Tools/dev/` and `Tools/test/` are the fastest honest entry po
 | Release build | `bash Tools/dev/run_release_build.sh` | `Stratix-ReleaseRun` build |
 | Hardware shell checks | `bash Tools/dev/run_hardware_shell_checks.sh` | real-device shell checkpoint proof using env-provided device id |
 | Hardware profile capture | `bash Tools/perf/run_hardware_profile_capture.sh` | hardware profiling capture |
-| Shell visual regression | `bash Tools/test/run_shell_regression_checks.sh` | reruns shell UI, captures screenshots, diffs against canonical references |
+| Shell visual regression | `bash Tools/test/run_shell_visual_regression.sh` | reruns shell UI, captures screenshots, diffs against canonical references |
 | Architecture guards | `bash Tools/dev/run_architecture_guards.sh` | current Python guard suite for architecture constraints |
 | Docs checks | `bash Tools/docs/run_docs_checks.sh` | docs portability, docs truth sync, and repo-hygiene checks |
 
@@ -162,7 +162,7 @@ Use when:
 Entry point:
 
 ```bash
-bash Tools/test/run_shell_regression_checks.sh
+bash Tools/test/run_shell_visual_regression.sh
 ```
 
 This wrapper reruns the shell UI lane before capture and requires `ffmpeg`.
@@ -223,10 +223,10 @@ The current workflow map is:
 | `ci-pr-fast-guards.yml` | `run_architecture_guards.sh`, `Tools/docs/run_docs_checks.sh` |
 | `ci-runtime-safety.yml` | `run_runtime_safety.sh` |
 | `ci-shell-ui.yml` | `run_shell_ui_checks.sh` |
-| `ci-shell-visual-regression.yml` | `run_shell_regression_checks.sh` plus artifact upload |
+| `ci-shell-visual-regression.yml` | `run_shell_visual_regression.sh` plus artifact upload (manual only) |
 | `ci-release-and-validation.yml` | `run_release_build.sh`, `run_validation_build.sh`, workflow export evidence |
 | `ci-hardware-device.yml` | `run_hardware_shell_checks.sh` on self-hosted hardware |
-| `ci-shell-state-tests.yml` | `run_stage4_shell_tests.sh` |
+| `ci-shell-state-tests.yml` | `run_shell_state_tests.sh` |
 
 The hosted baseline is useful, but it is not identical to the full local proof surface:
 

@@ -59,7 +59,9 @@ struct InputChannelTests {
         let secondSequence = packetSequence(secondGamepadPacket)
         let secondButtonMask = UInt16(secondGamepadPacket[16]) | (UInt16(secondGamepadPacket[17]) << 8)
 
-        #expect(secondSequence > 2)
+        // Metadata uses sequence 0 and the first gamepad packet uses sequence 1.
+        // CI can still coalesce to the freshest state with a follow-up sequence of 2.
+        #expect(secondSequence >= 2)
         #expect(secondButtonMask & GamepadButtons.x.rawValue == GamepadButtons.x.rawValue)
         #expect(secondButtonMask & GamepadButtons.b.rawValue == 0)
     }

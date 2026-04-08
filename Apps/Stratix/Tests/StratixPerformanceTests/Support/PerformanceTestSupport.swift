@@ -4,6 +4,12 @@
 
 import XCTest
 
+func makePerformanceMeasureOptions(iterationCount: Int) -> XCTMeasureOptions {
+    let options = XCTMeasureOptions()
+    options.iterationCount = iterationCount
+    return options
+}
+
 @MainActor
 enum PerformanceTestSupport {
     static let defaultLaunchArguments = ["--uitesting", "--skip-auth"]
@@ -48,12 +54,6 @@ enum PerformanceTestSupport {
         app.launchArguments = defaultLaunchArguments + additionalLaunchArguments
         app.launchEnvironment = launchEnvironment
         return app
-    }
-
-    static func measureOptions(iterationCount: Int) -> XCTMeasureOptions {
-        let options = XCTMeasureOptions()
-        options.iterationCount = iterationCount
-        return options
     }
 
     @discardableResult

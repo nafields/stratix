@@ -17,7 +17,7 @@ final class PostStreamFreshnessPerformanceTests: XCTestCase {
             )
         )
         let device = MTLCreateSystemDefaultDevice()
-        let options = PerformanceTestSupport.measureOptions(iterationCount: 5)
+        let options = makePerformanceMeasureOptions(iterationCount: 5)
 
         measure(metrics: [XCTClockMetric(), XCTCPUMetric(), XCTMemoryMetric()], options: options) {
             for _ in 0..<500 {

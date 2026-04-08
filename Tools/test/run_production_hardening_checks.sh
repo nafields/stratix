@@ -222,8 +222,8 @@ fi
 # ─────────────────────────────────────────────────────────────────────────────
 section "Shell regression"
 
-echo "  bash Tools/test/run_shell_regression_checks.sh"
-if bash Tools/test/run_shell_regression_checks.sh > /tmp/production_hardening_shell.log 2>&1; then
+echo "  bash Tools/test/run_shell_visual_regression.sh"
+if bash Tools/test/run_shell_visual_regression.sh > /tmp/production_hardening_shell.log 2>&1; then
     pass "Shell regression checks passed"
 else
     cat /tmp/production_hardening_shell.log

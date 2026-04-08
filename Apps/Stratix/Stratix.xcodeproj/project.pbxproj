@@ -31,6 +31,7 @@
 		66FE7D8823BB82790D7E3B0C /* SideRailActionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D3F1CF50395D721302B879 /* SideRailActionList.swift */; };
 		680338806F8CB4F6009E2B7F /* LaunchPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA10031943356C0F1BBAD79 /* LaunchPerformanceTests.swift */; };
 		7828D0624FE0DDB4E2EC13A3 /* PerformanceTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17BDA56E9B4DA19D8AC1F57 /* PerformanceTestSupport.swift */; };
+		7828D0624FE0DDB4E2EC13A4 /* PerformanceTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17BDA56E9B4DA19D8AC1F57 /* PerformanceTestSupport.swift */; };
 		8832E636848D100F611230B3 /* CloudLibraryHomeFocusCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E2D30991FBE460D81696C /* CloudLibraryHomeFocusCoordinator.swift */; };
 		98ECAF3ED6F8A0925ED33E31 /* CloudLibrarySceneStatusState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4DE7B861E7E3B401140ED2 /* CloudLibrarySceneStatusState.swift */; };
 		9A00E26133614CE254499CA3 /* SideRailAccountCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C9523CB9121F7CBF05C1E /* SideRailAccountCluster.swift */; };
@@ -1707,6 +1708,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7828D0624FE0DDB4E2EC13A4 /* PerformanceTestSupport.swift in Sources */,
 				680338806F8CB4F6009E2B7F /* LaunchPerformanceTests.swift in Sources */,
 				56842A49C9FB43A5FF2D6C77 /* RouteSwitchPerformanceTests.swift in Sources */,
 				1947B94F8D5BE18B025B37BE /* PostStreamFreshnessPerformanceTests.swift in Sources */,
