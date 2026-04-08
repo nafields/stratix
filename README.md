@@ -13,9 +13,10 @@
 Stratix is a native tvOS app that brings Xbox Game Pass cloud gaming to Apple TV. It is built from scratch in Swift because tvOS has no browser runtime and Microsoft does not make an official Apple TV app — so we made one. It streams Game Pass titles from Microsoft's xCloud service and can also stream games directly from your own Xbox console. Everything you need — authentication, WebRTC signaling, video rendering, controller input — is here in this repo, buildable and readable.
 
 ## Screenshots
-| Demo |
-|---|---|
-| ![Demo](Docs/Screenshots/Demo.mp4) |
+
+[![Watch the Stratix demo video](Docs/Screenshots/Home.png)](Docs/Screenshots/Demo.mp4)
+
+[Watch the demo video](Docs/Screenshots/Demo.mp4)
 
 | Sign In | Loading |
 |---|---|
