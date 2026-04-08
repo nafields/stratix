@@ -13,13 +13,23 @@
 Stratix is a native tvOS app that brings Xbox Game Pass cloud gaming to Apple TV. It is built from scratch in Swift because tvOS has no browser runtime and Microsoft does not make an official Apple TV app — so we made one. It streams Game Pass titles from Microsoft's xCloud service and can also stream games directly from your own Xbox console. Everything you need — authentication, WebRTC signaling, video rendering, controller input — is here in this repo, buildable and readable.
 
 ## Screenshots
+| Demo |
+|---|---|
+| ![Demo](Docs/Screenshots/Demo.mp4) |
 
-> 📸 Screenshots and a demo recording will be added before the first tagged release.
-> If you've built and run the app, a PR with a screen recording is very welcome.
+| Sign In | Loading |
+|---|---|
+| ![Sign In](Docs/Screenshots/Sign-In.png) | ![Loading](Docs/Screenshots/Loading.png) |
 
-<!-- TODO: add gif of main UI + stream launch demo -->
+| Home| Side Menu |
+|---|---|
+|![Home](Docs/Screenshots/Home.png) | ![Side Menu](Docs/Screenshots/Side_Menu.png) |
 
-This is an early public alpha. The core flows work. There are rough edges. Contributions are very welcome.
+| Game Details | Search |
+|---|---|
+| ![Game Details](Docs/Screenshots/Game_Details.png) | ![Search](Docs/Screenshots/Search.png) |
+
+This is an early public alpha. The core flows work. There are rough edges. Specifically around UI/UX. Contributions are very welcome.
 
 ---
 
@@ -43,7 +53,7 @@ Stratix also supports **xHome** streaming. If you own an Xbox console, you can s
 | Cloud library browsing | ✅ Working | Home rails, full library grid, and search |
 | Title detail screens | ✅ Working | Metadata, artwork, launch actions |
 | xCloud game streaming | ✅ Working | Primary streaming path, battle-tested |
-| xHome console streaming | ✅ Working | Local console streaming over home network |
+| xHome console streaming | ⚠️ Not Fully Tested | Local console streaming over home network |
 | Controller input | ✅ Working | Gamepad capture and 125 Hz input channel |
 | Metal video rendering | ✅ Working | Metal-backed renderer with sample-buffer fallback |
 | In-stream guide overlay | ✅ Working | Accessible overlay during active streams |
@@ -53,7 +63,6 @@ Stratix also supports **xHome** streaming. If you own an Xbox console, you can s
 | Multi-account support | ❌ Not yet | Single Microsoft account only |
 | Party and invite UX | ❌ Not yet | No group play features yet |
 | Seamless auto-reconnect | ⚠️ Partial | Reconnect exists but is conservative |
-| Stereo audio (default) | ⚠️ Partial | Requires a specific WebRTC build flag; mono by default |
 
 For the full breakdown of what works, what is partial, and what is explicitly planned, see [`Docs/FEATURE_INVENTORY.md`](Docs/FEATURE_INVENTORY.md).
 
@@ -63,7 +72,7 @@ A few things are deliberately not finished yet and are worth naming upfront so t
 
 - **Multi-account:** The app assumes one Microsoft account at a time. Switching accounts requires signing out completely.
 - **Party and invites:** No group play, no invites, no friend-session joining. This is a significant gap for social gaming but is on the roadmap.
-- **Mono audio by default:** Stereo audio works but requires a specific build flag in the WebRTC binary. The vendored binary ships without it, so out-of-the-box audio is mono.
+- **Search | UI/UX:** Search and navigation work ok. But disappear occasionaly or trigger the side-rail inadvertantly. Create a PR if you have a fix or proposal.
 - **Conservative reconnect:** If a stream drops, it reconnects — but not seamlessly. There is a noticeable recovery flow rather than a transparent resume.
 
 If any of these affects you, they are also great places to contribute.

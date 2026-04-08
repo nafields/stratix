@@ -25,10 +25,10 @@ jobs:
       matrix:
         include:
           - language: actions
-            build_mode: autobuild
+            build_mode: none
             runner: ubuntu-latest
           - language: python
-            build_mode: autobuild
+            build_mode: none
             runner: ubuntu-latest
           - language: swift
             build_mode: manual
@@ -48,6 +48,15 @@ jobs:
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build_mode }}
+
+      - name: Install Metal toolchain
+        if: matrix.language == 'swift'
+        run: |
+          # GitHub-hosted Xcode 26 runners can omit the Metal toolchain, but Stratix
+          # compiles CASShader.metal as part of the app target during CodeQL extraction.
+          if ! xcrun --find metal >/dev/null 2>&1; then
+            xcodebuild -downloadComponent MetalToolchain
+          fi
 
       - name: Build Stratix for CodeQL
         if: matrix.language == 'swift'

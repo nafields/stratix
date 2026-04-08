@@ -25,7 +25,7 @@ required = {
         "public private(set) var titleAchievementSnapshots: [TitleID: TitleAchievementSnapshot] = [:]",
         "public private(set) var lastTitleAchievementsErrorByTitleID: [TitleID: String] = [:]",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibraryStateAdapter.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibraryStateSnapshot.swift"): [
         "var itemsByTitleID: [TitleID: CloudLibraryItem] { state.itemsByTitleID }",
         "var itemsByProductID: [ProductID: CloudLibraryItem] { state.itemsByProductID }",
         "var productDetails: [ProductID: CloudLibraryProductDetail] { state.productDetails }",
@@ -37,11 +37,11 @@ required = {
         "private var entries: [TitleID: DetailStateCacheEntry] = [:]",
         "mutating func invalidateChangedEntries(currentSignatures: [TitleID: String]) -> [TitleID]",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryViewModel+DetailCache.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryViewModelDetailCache.swift"): [
         "hasher.combine(item.typedTitleID)",
         "hasher.combine(item.typedProductID)",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModel+MutationTracking.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModelMutationTracking.swift"): [
         "map(\\.typedTitleID)",
     ],
     rel("Packages/StratixCore/Sources/StratixCore/Hydration/LibraryHydrationCatalogState.swift"): [
@@ -66,7 +66,7 @@ forbidden = {
         "var id: String",
         "case cloud(titleId: String)",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibraryStateAdapter.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibraryStateSnapshot.swift"): [
         "stringItemsByTitleID",
         "stringItemsByProductID",
         "stringProductDetails",
@@ -93,11 +93,11 @@ forbidden = {
         "private var entries: [String: DetailStateCacheEntry] = [:]",
         "invalidateChangedEntries(currentSignatures: [String: String])",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryViewModel+DetailCache.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryViewModelDetailCache.swift"): [
         "hasher.combine(item.titleId)",
         "hasher.combine(item.productId)",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModel+MutationTracking.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModelMutationTracking.swift"): [
         "map(\\.titleId)",
     ],
     rel("Packages/StratixCore/Sources/StratixCore/Hydration/LibraryHydrationCatalogState.swift"): [

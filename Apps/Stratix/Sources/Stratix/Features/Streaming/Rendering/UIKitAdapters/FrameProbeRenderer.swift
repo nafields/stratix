@@ -6,10 +6,10 @@
 import Foundation
 import UIKit
 
-final class FrameProbeRenderer: NSObject, RTCVideoRenderer, @unchecked Sendable {
+final class FrameProbeRenderer: NSObject, RTCVideoRenderer {
     // WebRTC drives this ObjC protocol from its thread pool. This renderer cannot be
-    // isolated as an actor while conforming to RTCVideoRenderer, so all mutable state
-    // and callback access is serialized under stateLock.
+    // isolated as an actor while conforming to RTCVideoRenderer, so mutable state and
+    // callback access stay serialized under stateLock instead.
     private let stateLock = NSLock()
     private var frameCount = 0
     private var lastSize: CGSize = .zero

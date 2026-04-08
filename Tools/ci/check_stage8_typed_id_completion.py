@@ -37,11 +37,11 @@ required = {
         "private var entries: [TitleID: DetailStateCacheEntry] = [:]",
         "mutating func invalidateChangedEntries(currentSignatures: [TitleID: String]) -> [TitleID]",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryViewModel+DetailCache.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryViewModelDetailCache.swift"): [
         "hasher.combine(item.typedTitleID)",
         "hasher.combine(item.typedProductID)",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModel+MutationTracking.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModelMutationTracking.swift"): [
         "map(\\.typedTitleID)",
     ],
     rel("Packages/StratixCore/Sources/StratixCore/Hydration/LibraryHydrationCatalogState.swift"): [
@@ -93,11 +93,11 @@ forbidden = {
         "private var entries: [String: DetailStateCacheEntry] = [:]",
         "invalidateChangedEntries(currentSignatures: [String: String])",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryViewModel+DetailCache.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/Root/CloudLibraryViewModelDetailCache.swift"): [
         "hasher.combine(item.titleId)",
         "hasher.combine(item.productId)",
     ],
-    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModel+MutationTracking.swift"): [
+    rel("Apps/Stratix/Sources/Stratix/Features/CloudLibrary/State/CloudLibrarySceneModelMutationTracking.swift"): [
         "map(\\.titleId)",
     ],
     rel("Packages/StratixCore/Sources/StratixCore/Hydration/LibraryHydrationCatalogState.swift"): [
