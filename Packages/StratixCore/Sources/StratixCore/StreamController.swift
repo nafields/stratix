@@ -462,7 +462,7 @@ public final class StreamController {
         StreamRuntimeAttachmentEnvironment(
             input: StreamRuntimeInputEnvironment(
                 setupControllerObservation: { [weak self] session in
-                    self?.dependencies?.inputController.setupControllerObservation(session: session)
+                    self?.dependencies?.inputController.setupControllerObservation(streamingSession: session)
                 },
                 clearStreamingInputBindings: { [weak self] in
                     self?.dependencies?.inputController.clearStreamingInputBindings()

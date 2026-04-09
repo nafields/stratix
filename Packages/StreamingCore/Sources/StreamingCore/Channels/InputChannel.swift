@@ -23,6 +23,7 @@ private struct InputChannelState: Sendable {
     var onServerMetadata: InputChannel.ServerMetadataHandler?
     var onFlushTelemetry: InputChannel.FlushTelemetryHandler?
     var shouldLogRawInboundMetadata: InputChannel.RawInboundMetadataLogger?
+    var shouldLogRawOutboundPackets: InputChannel.RawOutboundPacketLogger?
 
     var lifecycleGeneration: UInt64 = 0
     var didStart = false
@@ -51,6 +52,7 @@ private struct InputChannelState: Sendable {
     var blockedSendTickCountThisSecond = 0
     var maxSendInFlightMsThisSecond: Double = 0
     var lastSendHealthLogTimestampMs: Double = 0
+    var rawOutboundPacketLogsEmitted = 0
 }
 
 public final class InputChannel: Sendable {
@@ -61,6 +63,7 @@ public final class InputChannel: Sendable {
     public typealias ServerMetadataHandler = @Sendable (UInt32, UInt32) -> Void
     public typealias FlushTelemetryHandler = @Sendable (Double, Double) -> Void
     public typealias RawInboundMetadataLogger = @Sendable () -> Bool
+    public typealias RawOutboundPacketLogger = @Sendable () -> Bool
 
     private let queue: InputQueue
     private let state: OSAllocatedUnfairLock<InputChannelState>
@@ -87,13 +90,15 @@ public final class InputChannel: Sendable {
         onVibration: VibrationHandler? = nil,
         onServerMetadata: ServerMetadataHandler? = nil,
         onFlushTelemetry: FlushTelemetryHandler? = nil,
-        shouldLogRawInboundMetadata: RawInboundMetadataLogger? = nil
+        shouldLogRawInboundMetadata: RawInboundMetadataLogger? = nil,
+        shouldLogRawOutboundPackets: RawOutboundPacketLogger? = nil
     ) {
         state.withLock { state in
             state.onVibration = onVibration
             state.onServerMetadata = onServerMetadata
             state.onFlushTelemetry = onFlushTelemetry
             state.shouldLogRawInboundMetadata = shouldLogRawInboundMetadata
+            state.shouldLogRawOutboundPackets = shouldLogRawOutboundPackets
         }
     }
 
@@ -107,6 +112,7 @@ public final class InputChannel: Sendable {
 
         logVerbose("[InputChannel:\(instanceID)] onOpen: sending client metadata and starting loop")
         let metadata = queue.makeInitialMetadata()
+        maybeLogRawOutboundPacket(metadata)
         let bridge = bridgeSnapshot()
         try? await bridge?.send(channelKind: .input, data: metadata)
 
@@ -167,6 +173,7 @@ public final class InputChannel: Sendable {
     }
 
     private func sendPacket(_ packet: Data) async -> String? {
+        maybeLogRawOutboundPacket(packet)
         do {
             try await bridgeSnapshot()?.send(channelKind: .input, data: packet)
             return nil
@@ -273,6 +280,7 @@ public final class InputChannel: Sendable {
             state.onServerMetadata = nil
             state.onFlushTelemetry = nil
             state.shouldLogRawInboundMetadata = nil
+            state.shouldLogRawOutboundPackets = nil
             state.didLogFirstPacketQueued = false
             state.didCaptureLoopExecutionContext = false
             state.loopExecutionLabel = "unresolved"
@@ -293,6 +301,7 @@ public final class InputChannel: Sendable {
             state.blockedSendTickCountThisSecond = 0
             state.maxSendInFlightMsThisSecond = 0
             state.lastSendHealthLogTimestampMs = 0
+            state.rawOutboundPacketLogsEmitted = 0
             return loopTask
         }
         loopTask?.cancel()
@@ -344,6 +353,66 @@ public final class InputChannel: Sendable {
             return state.shouldLogRawInboundMetadata
         }
         return logger?() == true
+    }
+
+    private func shouldLogRawOutboundPacket() -> Bool {
+        let logger = state.withLock { state -> RawOutboundPacketLogger? in
+            guard state.didStart else { return nil }
+            guard state.rawOutboundPacketLogsEmitted < 12 else { return nil }
+            return state.shouldLogRawOutboundPackets
+        }
+        guard logger?() == true else { return false }
+        state.withLock { state in
+            guard state.didStart, state.rawOutboundPacketLogsEmitted < 12 else { return }
+            state.rawOutboundPacketLogsEmitted += 1
+        }
+        return true
+    }
+
+    private func maybeLogRawOutboundPacket(_ packet: Data) {
+        guard shouldLogRawOutboundPacket() else { return }
+
+        let bytes = packet.map { String(format: "%02x", $0) }.joined(separator: " ")
+        let reportType = packet.count >= 2 ? UInt16(packet[0]) | (UInt16(packet[1]) << 8) : 0
+        let sequence = packet.count >= 6
+            ? UInt32(packet[2]) | (UInt32(packet[3]) << 8) | (UInt32(packet[4]) << 16) | (UInt32(packet[5]) << 24)
+            : 0
+        let summary = outboundPacketSummary(packet)
+
+        print(
+            "[InputChannel:\(instanceID)][RawOutbound] reportType=0x\(String(reportType, radix: 16)) seq=\(sequence) \(summary) bytes=\(bytes)"
+        )
+    }
+
+    private func outboundPacketSummary(_ packet: Data) -> String {
+        guard packet.count >= 15 else {
+            return "kind=headerOnly size=\(packet.count)"
+        }
+
+        let reportType = packet.count >= 2 ? UInt16(packet[0]) | (UInt16(packet[1]) << 8) : 0
+        let includesClientMetadata = (reportType & ReportType.clientMetadata.rawValue) != 0
+        let includesGamepad = (reportType & ReportType.gamepad.rawValue) != 0
+        let includesMetadata = (reportType & ReportType.metadata.rawValue) != 0
+
+        if includesClientMetadata {
+            return "kind=clientMetadata maxTouchPoints=\(packet[14]) size=\(packet.count)"
+        }
+
+        guard includesGamepad, packet.count >= 15 else {
+            return "kind=other size=\(packet.count) includesMetadata=\(includesMetadata)"
+        }
+
+        let gamepadCount = Int(packet[14])
+        guard gamepadCount > 0, packet.count >= 38 else {
+            return "kind=gamepad count=\(gamepadCount) size=\(packet.count) includesMetadata=\(includesMetadata)"
+        }
+
+        let gamepadIndex = packet[15]
+        let buttonMask = UInt16(packet[16]) | (UInt16(packet[17]) << 8)
+        let leftTrigger = UInt16(packet[26]) | (UInt16(packet[27]) << 8)
+        let rightTrigger = UInt16(packet[28]) | (UInt16(packet[29]) << 8)
+
+        return "kind=gamepad count=\(gamepadCount) index=\(gamepadIndex) mask=0x\(String(buttonMask, radix: 16)) lt=\(leftTrigger) rt=\(rightTrigger) includesMetadata=\(includesMetadata) size=\(packet.count)"
     }
 
     private func wallClockNowMs() -> Int {

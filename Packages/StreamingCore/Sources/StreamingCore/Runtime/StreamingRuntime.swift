@@ -297,6 +297,9 @@ actor StreamingRuntime {
                 },
                 shouldLogRawInboundMetadata: { [startupPayloadLogWindow] in
                     startupPayloadLogWindow.shouldLog()
+                },
+                shouldLogRawOutboundPackets: { [startupPayloadLogWindow] in
+                    startupPayloadLogWindow.shouldLog()
                 }
             )
             inputChannel = channel
@@ -418,6 +421,10 @@ actor StreamingRuntime {
 
         guard !pendingUpdates.isEmpty else { return }
 
+        streamLogger.info(
+            "Flushing pending gamepad registration updates count=\(pendingUpdates.count, privacy: .public)"
+        )
+
         for (index, connected) in pendingUpdates {
             await controlChannel.sendGamepadChanged(index: index, wasAdded: connected)
             sentGamepadConnectionState[index] = connected
@@ -439,7 +446,9 @@ actor StreamingRuntime {
     }
 
     private func resetForConnect() {
-        resetTransientState()
+        let desiredGamepadConnectionState = self.desiredGamepadConnectionState
+        resetTransientState(clearDesiredGamepadConnectionState: false)
+        self.desiredGamepadConnectionState = desiredGamepadConnectionState
         startupPayloadLogWindow.reset()
         controlPreferredDimensions = StreamDimensions(
             width: Int(streamingConfig.videoDimensionsHint.width),
@@ -448,7 +457,7 @@ actor StreamingRuntime {
         messagePreferredDimensions = streamingConfig.messageChannelDimensions
     }
 
-    private func resetTransientState() {
+    private func resetTransientState(clearDesiredGamepadConnectionState: Bool = true) {
         callbackGeneration &+= 1
         generationBox.set(callbackGeneration)
         controlChannel = nil
@@ -459,7 +468,9 @@ actor StreamingRuntime {
         controlDataChannelOpen = false
         inputDataChannelOpen = false
         controlStartupCompleted = false
-        desiredGamepadConnectionState = [:]
+        if clearDesiredGamepadConnectionState {
+            desiredGamepadConnectionState = [:]
+        }
         sentGamepadConnectionState = [:]
         negotiatedDimensions = nil
         inputFlushHz = nil

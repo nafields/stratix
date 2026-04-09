@@ -103,10 +103,15 @@ struct InputChannelTests {
             shouldLogRawInboundMetadata: {
                 recorder.noteRawMetadataLogCheck()
                 return recorder.shouldLogRawInboundMetadata
+            },
+            shouldLogRawOutboundPackets: {
+                recorder.noteRawOutboundLogCheck()
+                return recorder.shouldLogRawOutboundPackets
             }
         )
 
         recorder.shouldLogRawInboundMetadata = true
+        recorder.shouldLogRawOutboundPackets = true
         await channel.onOpen()
 
         var vibration = Data(count: 13)
@@ -139,6 +144,7 @@ struct InputChannelTests {
         #expect(receivedMetadata.0 == 1280)
         #expect(receivedMetadata.1 == 800)
         #expect(recorder.rawMetadataLogChecks == 1)
+        #expect(recorder.rawOutboundLogChecks >= 1)
     }
 
     @Test
@@ -269,6 +275,11 @@ private final class CallbackRecorder: @unchecked Sendable {
         set { queue.sync { storage.shouldLogRawInboundMetadata = newValue } }
     }
 
+    var shouldLogRawOutboundPackets: Bool {
+        get { queue.sync { storage.shouldLogRawOutboundPackets } }
+        set { queue.sync { storage.shouldLogRawOutboundPackets = newValue } }
+    }
+
     var vibrationReports: [VibrationReport] {
         queue.sync { storage.vibrationReports }
     }
@@ -279,6 +290,10 @@ private final class CallbackRecorder: @unchecked Sendable {
 
     var rawMetadataLogChecks: Int {
         queue.sync { storage.rawMetadataLogChecks }
+    }
+
+    var rawOutboundLogChecks: Int {
+        queue.sync { storage.rawOutboundLogChecks }
     }
 
     func recordVibration(_ report: VibrationReport) {
@@ -299,10 +314,18 @@ private final class CallbackRecorder: @unchecked Sendable {
         }
     }
 
+    func noteRawOutboundLogCheck() {
+        queue.sync {
+            storage.rawOutboundLogChecks += 1
+        }
+    }
+
     private struct Storage {
         var shouldLogRawInboundMetadata = false
+        var shouldLogRawOutboundPackets = false
         var vibrationReports: [VibrationReport] = []
         var serverMetadata: [(UInt32, UInt32)] = []
         var rawMetadataLogChecks = 0
+        var rawOutboundLogChecks = 0
     }
 }
