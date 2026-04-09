@@ -120,7 +120,9 @@ public final class InputController {
     @ObservationIgnored private var startupHapticsProbeControllers: Set<ObjectIdentifier> = []
     @ObservationIgnored private var didRunAppLaunchHapticsProbe = false
     @ObservationIgnored private var hapticsProbeTask: Task<Void, Never>?
+    @ObservationIgnored private var controllerPollingTask: Task<Void, Never>?
     @ObservationIgnored private var activeInputQueue: InputQueue?
+    @ObservationIgnored private var reportGamepadConnectionState: (@MainActor (Int, Bool) -> Void)?
     @ObservationIgnored private var didConfigureControllerObservers = false
     init() {}
 
@@ -152,8 +154,12 @@ public final class InputController {
         settingsStore.diagnostics.startupHapticsProbeEnabled
     }
 
-    func setupControllerObservation(inputQueue: InputQueue) {
-        activeInputQueue = inputQueue
+    func setupControllerObservation(session: any StreamingSessionFacade) {
+        activeInputQueue = session.inputQueueRef
+        reportGamepadConnectionState = { [weak session] index, connected in
+            session?.setGamepadConnectionState(index: index, connected: connected)
+        }
+        startControllerPollingIfNeeded()
 
         for controller in GCController.controllers() {
             attachController(controller)
@@ -276,7 +282,10 @@ public final class InputController {
     }
 
     func clearStreamingInputBindings() {
+        controllerPollingTask?.cancel()
+        controllerPollingTask = nil
         activeInputQueue = nil
+        reportGamepadConnectionState = nil
     }
 
     func resetForSignOut() {
@@ -345,7 +354,6 @@ public final class InputController {
             if comboInterpreter.suppressesPrimaryInput {
                 previousAPressed = aPressed
                 previousBPressed = bPressed
-                queue.enqueueGamepadFrame(handler.idleFrame())
                 return
             }
 
@@ -360,7 +368,6 @@ public final class InputController {
 
                 previousAPressed = aPressed
                 previousBPressed = bPressed
-                queue.enqueueGamepadFrame(handler.idleFrame())
                 return
             }
 
@@ -377,14 +384,54 @@ public final class InputController {
                     self.logger.info("[INPUT] Chord fired: LB+RB → toggleStatsHUD")
                     self.dependencies?.toggleStatsHUD()
                 }
-                queue.enqueueGamepadFrame(handler.idleFrame())
                 return
             }
-            queue.enqueueGamepadFrame(frame)
         }
 
-        dependencies?.currentStreamingSession()?.setGamepadConnectionState(index: 0, connected: true)
+        reportGamepadConnectionState?(0, true)
         logger.info("Controller attached: \(controller.vendorName ?? "Unknown")")
+    }
+
+    private func startControllerPollingIfNeeded() {
+        guard controllerPollingTask == nil else { return }
+
+        controllerPollingTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+
+            while !Task.isCancelled {
+                guard let queue = self.activeInputQueue else { break }
+                self.enqueueCurrentControllerFrames(into: queue)
+                try? await Task.sleep(for: .milliseconds(8))
+            }
+
+            if self.controllerPollingTask?.isCancelled != false {
+                self.controllerPollingTask = nil
+            }
+        }
+    }
+
+    private func enqueueCurrentControllerFrames(into queue: InputQueue) {
+        let settings = controllerSettings
+        let overlayVisible = dependencies?.isStreamOverlayVisible == true
+
+        for (controllerID, handler) in gamepadHandlers {
+            guard let gamepad = handler.controller?.extendedGamepad else { continue }
+
+            if comboInterpreters[controllerID]?.suppressesPrimaryInput == true || overlayVisible {
+                queue.enqueueGamepadFrame(handler.idleFrame())
+                continue
+            }
+
+            handler.settings = settings
+            let frame = handler.readFrame(from: gamepad, settings: settings)
+
+            if frame.buttons.contains([.leftShoulder, .rightShoulder]) {
+                queue.enqueueGamepadFrame(handler.idleFrame())
+                continue
+            }
+
+            queue.enqueueGamepadFrame(frame)
+        }
     }
 
     private func runStartupHapticsProbeIfNeeded(
@@ -468,10 +515,7 @@ public final class InputController {
         comboInterpreters.removeValue(forKey: controllerID)?.cancelAll()
         startupHapticsProbeControllers.remove(controllerID)
         let isAnyExtendedControllerConnected = GCController.controllers().contains { $0.extendedGamepad != nil }
-        dependencies?.currentStreamingSession()?.setGamepadConnectionState(
-            index: 0,
-            connected: isAnyExtendedControllerConnected
-        )
+        reportGamepadConnectionState?(0, isAnyExtendedControllerConnected)
     }
 
     isolated deinit {

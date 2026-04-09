@@ -35,6 +35,12 @@ enum MetadataCacheStore {
         cachesDirectory().appendingPathComponent(filename)
     }
 
+    static func cacheURL(for filename: String) -> URL {
+        let dir = cachesDirectory().appendingPathComponent(directoryName, isDirectory: true)
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        return dir.appendingPathComponent(filename)
+    }
+
     private static func cachesDirectory() -> URL {
         FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
     }

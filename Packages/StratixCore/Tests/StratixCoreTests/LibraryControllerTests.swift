@@ -243,13 +243,15 @@ struct LibraryControllerTests {
         defer { try? FileManager.default.removeItem(at: cacheRoot) }
 
         let sectionsURL = cacheRoot.appendingPathComponent("sections.json")
+        let repositoryURL = cacheRoot.appendingPathComponent("sections.swiftdata")
         let snapshot = makeUnifiedSectionsSnapshot(savedAt: Date())
-        let repository = try SwiftDataLibraryRepository(storeURL: sectionsURL)
+        let repository = try SwiftDataLibraryRepository(storeURL: repositoryURL)
         await repository.saveUnifiedSectionsSnapshot(snapshot)
 
         let worker = LibraryHydrationWorker(
             detailsCacheURL: cacheRoot.appendingPathComponent("details.json"),
             sectionsCacheURL: sectionsURL,
+            repositoryStoreURL: repositoryURL,
             homeMerchandisingCacheURL: cacheRoot.appendingPathComponent("home.json")
         )
 

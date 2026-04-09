@@ -20,16 +20,26 @@ public final class LibraryController {
     struct CacheLocations: Sendable {
         let details: URL
         let sections: URL
+        let repository: URL
         let homeMerchandising: URL
 
-        var repository: URL {
-            sections.deletingPathExtension().appendingPathExtension("swiftdata")
+        init(
+            details: URL,
+            sections: URL,
+            repository: URL? = nil,
+            homeMerchandising: URL
+        ) {
+            self.details = details
+            self.sections = sections
+            self.repository = repository ?? sections.deletingPathExtension().appendingPathExtension("swiftdata")
+            self.homeMerchandising = homeMerchandising
         }
 
         static var live: Self {
             Self(
                 details: LibraryController.detailsCacheURL,
                 sections: LibraryController.sectionsCacheURL,
+                repository: LibraryController.libraryRepositoryStoreURL,
                 homeMerchandising: LibraryController.homeMerchandisingCacheURL
             )
         }
@@ -371,6 +381,10 @@ extension LibraryController {
 
     nonisolated static var sectionsCacheURL: URL {
         MetadataCacheStore.url(for: "stratix.cloudLibrarySections.json")
+    }
+
+    nonisolated static var libraryRepositoryStoreURL: URL {
+        MetadataCacheStore.cacheURL(for: "stratix.cloudLibrarySections.swiftdata")
     }
 
     nonisolated static var homeMerchandisingCacheURL: URL {

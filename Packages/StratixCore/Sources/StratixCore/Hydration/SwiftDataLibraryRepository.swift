@@ -39,22 +39,10 @@ actor SwiftDataLibraryRepository: LibraryRepository {
         isStoredInMemoryOnly: Bool = false
     ) throws {
         let schema = Schema([UnifiedLibraryCacheRecord.self])
-        let configuration = if let storeURL {
-            ModelConfiguration(
-                Self.storeName,
-                schema: schema,
-                url: storeURL
-            )
-        } else {
-            ModelConfiguration(
-                Self.storeName,
-                schema: schema,
-                isStoredInMemoryOnly: isStoredInMemoryOnly
-            )
-        }
-        self.modelContainer = try ModelContainer(
-            for: schema,
-            configurations: [configuration]
+        self.modelContainer = try Self.makeModelContainer(
+            schema: schema,
+            storeURL: storeURL,
+            isStoredInMemoryOnly: isStoredInMemoryOnly
         )
     }
 
@@ -150,6 +138,70 @@ actor SwiftDataLibraryRepository: LibraryRepository {
     /// Creates a fresh model context for one repository operation.
     private func makeContext() -> ModelContext {
         ModelContext(modelContainer)
+    }
+
+    private static func makeModelContainer(
+        schema: Schema,
+        storeURL: URL?,
+        isStoredInMemoryOnly: Bool
+    ) throws -> ModelContainer {
+        if let storeURL, !isStoredInMemoryOnly {
+            try ensureParentDirectoryExists(for: storeURL)
+        }
+
+        let configuration = if let storeURL {
+            ModelConfiguration(
+                Self.storeName,
+                schema: schema,
+                url: storeURL
+            )
+        } else {
+            ModelConfiguration(
+                Self.storeName,
+                schema: schema,
+                isStoredInMemoryOnly: isStoredInMemoryOnly
+            )
+        }
+
+        do {
+            return try ModelContainer(
+                for: schema,
+                configurations: [configuration]
+            )
+        } catch {
+            guard let storeURL, !isStoredInMemoryOnly else {
+                throw error
+            }
+
+            // The unified library snapshot is a disposable cache. If the on-disk store is
+            // unreadable or incompatible, clear it once and rebuild the container.
+            resetStoreArtifacts(at: storeURL)
+            try ensureParentDirectoryExists(for: storeURL)
+            return try ModelContainer(
+                for: schema,
+                configurations: [configuration]
+            )
+        }
+    }
+
+    private static func ensureParentDirectoryExists(for storeURL: URL) throws {
+        try FileManager.default.createDirectory(
+            at: storeURL.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
+    }
+
+    private static func resetStoreArtifacts(at storeURL: URL) {
+        let fileManager = FileManager.default
+        let artifactURLs = [
+            storeURL,
+            URL(fileURLWithPath: storeURL.path + "-shm"),
+            URL(fileURLWithPath: storeURL.path + "-wal"),
+        ]
+
+        for artifactURL in artifactURLs {
+            try? fileManager.removeItem(at: artifactURL)
+        }
     }
 
     /// Preserves the untouched portion of the unified snapshot when only one cache fragment changed.

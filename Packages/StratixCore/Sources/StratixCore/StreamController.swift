@@ -461,8 +461,8 @@ public final class StreamController {
     private func makeRuntimeAttachmentEnvironment() -> StreamRuntimeAttachmentEnvironment {
         StreamRuntimeAttachmentEnvironment(
             input: StreamRuntimeInputEnvironment(
-                setupControllerObservation: { [weak self] inputQueue in
-                    self?.dependencies?.inputController.setupControllerObservation(inputQueue: inputQueue)
+                setupControllerObservation: { [weak self] session in
+                    self?.dependencies?.inputController.setupControllerObservation(session: session)
                 },
                 clearStreamingInputBindings: { [weak self] in
                     self?.dependencies?.inputController.clearStreamingInputBindings()

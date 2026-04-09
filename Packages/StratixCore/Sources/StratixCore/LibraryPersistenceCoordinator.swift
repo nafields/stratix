@@ -65,7 +65,10 @@ extension LibraryController {
     /// Removes all persisted library caches so tests or sign-out flows start from a clean disk state.
     func clearPersistedLibraryCaches() {
         let repositoryURL = cacheLocations.repository
-        let persistedCacheURLs = [
+        let legacyRepositoryURL = cacheLocations.sections
+            .deletingPathExtension()
+            .appendingPathExtension("swiftdata")
+        var persistedCacheURLs = [
             cacheLocations.details,
             cacheLocations.sections,
             repositoryURL,
@@ -73,6 +76,13 @@ extension LibraryController {
             URL(fileURLWithPath: repositoryURL.path + "-wal"),
             cacheLocations.homeMerchandising
         ]
+        if legacyRepositoryURL != repositoryURL {
+            persistedCacheURLs.append(contentsOf: [
+                legacyRepositoryURL,
+                URL(fileURLWithPath: legacyRepositoryURL.path + "-shm"),
+                URL(fileURLWithPath: legacyRepositoryURL.path + "-wal"),
+            ])
+        }
 
         for cacheURL in persistedCacheURLs {
             try? FileManager.default.removeItem(at: cacheURL)

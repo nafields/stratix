@@ -15,18 +15,23 @@ struct StreamRuntimeAttachmentServiceTests {
         let service = StreamRuntimeAttachmentService()
         let session = makeStreamingSession()
         var observedInputQueue = false
+        var observedSessionIdentity: ObjectIdentifier?
         var vibrationReports: [VibrationReport] = []
 
         let actions = service.attach(
             session: session,
             environment: makeRuntimeAttachmentEnvironment(
-                setupControllerObservation: { _ in observedInputQueue = true },
+                setupControllerObservation: { observedSession in
+                    observedInputQueue = true
+                    observedSessionIdentity = ObjectIdentifier(observedSession)
+                },
                 routeVibration: { vibrationReports.append($0) }
             ),
             onLifecycleChange: { _ in }
         )
 
         #expect(observedInputQueue == true)
+        #expect(observedSessionIdentity == ObjectIdentifier(session))
         #expect(actions.contains(StreamAction.streamingSessionSet(session)))
         #expect(actions.contains(StreamAction.sessionAttachmentStateSet(.attached)))
 

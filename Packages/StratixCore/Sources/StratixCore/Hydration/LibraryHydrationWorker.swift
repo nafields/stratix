@@ -34,11 +34,14 @@ actor LibraryHydrationWorker: LibraryHydrationWorking {
     init(
         detailsCacheURL: URL,
         sectionsCacheURL: URL,
+        repositoryStoreURL: URL? = nil,
         homeMerchandisingCacheURL _: URL
     ) {
         let repository: any LibraryRepository
         do {
-            repository = try SwiftDataLibraryRepository(storeURL: sectionsCacheURL)
+            let storeURL = repositoryStoreURL
+                ?? sectionsCacheURL.deletingPathExtension().appendingPathExtension("swiftdata")
+            repository = try SwiftDataLibraryRepository(storeURL: storeURL)
         } catch {
             fatalError("Failed to initialize library repository: \(error)")
         }

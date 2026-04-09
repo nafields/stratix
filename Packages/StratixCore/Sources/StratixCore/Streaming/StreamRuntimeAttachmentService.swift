@@ -8,7 +8,7 @@ import InputBridge
 import StreamingCore
 
 struct StreamRuntimeInputEnvironment {
-    let setupControllerObservation: @Sendable @MainActor (InputQueue) -> Void
+    let setupControllerObservation: @Sendable @MainActor (any StreamingSessionFacade) -> Void
     let clearStreamingInputBindings: @Sendable @MainActor () -> Void
     let routeVibration: @Sendable @MainActor (VibrationReport) -> Void
 }
@@ -50,7 +50,7 @@ final class StreamRuntimeAttachmentService {
             ]
         }
 
-        environment.input.setupControllerObservation(session.inputQueueRef)
+        environment.input.setupControllerObservation(session)
         session.setVibrationHandler { report in
             Task { @MainActor in
                 environment.input.routeVibration(report)
