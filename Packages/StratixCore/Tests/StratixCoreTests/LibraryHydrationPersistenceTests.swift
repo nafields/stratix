@@ -172,7 +172,10 @@ struct LibraryHydrationPersistenceTests {
 
     private func makeRepository(cacheRoot: URL) throws -> SwiftDataLibraryRepository {
         try SwiftDataLibraryRepository(
-            storeURL: cacheRoot.appendingPathComponent("sections.json")
+            storeURL: cacheRoot
+                .appendingPathComponent("sections.json")
+                .deletingPathExtension()
+                .appendingPathExtension("swiftdata")
         )
     }
 

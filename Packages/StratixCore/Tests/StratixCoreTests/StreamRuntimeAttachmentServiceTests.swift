@@ -6,6 +6,7 @@ import Testing
 @testable import StratixCore
 import StratixModels
 import InputBridge
+import StreamingCore
 
 @MainActor
 @Suite(.serialized)
@@ -14,19 +15,19 @@ struct StreamRuntimeAttachmentServiceTests {
     func attach_session_returnsAttachedActionsAndWiresInputAndVibration() async {
         let service = StreamRuntimeAttachmentService()
         let session = makeStreamingSession()
-        var observedInputQueue = false
+        var observedSession: (any StreamingSessionFacade)?
         var vibrationReports: [VibrationReport] = []
 
         let actions = service.attach(
             session: session,
             environment: makeRuntimeAttachmentEnvironment(
-                setupControllerObservation: { _ in observedInputQueue = true },
+                setupControllerObservation: { observedSession = $0 },
                 routeVibration: { vibrationReports.append($0) }
             ),
             onLifecycleChange: { _ in }
         )
 
-        #expect(observedInputQueue == true)
+        #expect(observedSession === session)
         #expect(actions.contains(StreamAction.streamingSessionSet(session)))
         #expect(actions.contains(StreamAction.sessionAttachmentStateSet(.attached)))
 

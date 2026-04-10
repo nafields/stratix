@@ -120,6 +120,7 @@ public final class InputController {
     @ObservationIgnored private var startupHapticsProbeControllers: Set<ObjectIdentifier> = []
     @ObservationIgnored private var didRunAppLaunchHapticsProbe = false
     @ObservationIgnored private var hapticsProbeTask: Task<Void, Never>?
+    @ObservationIgnored private var activeStreamingSession: (any StreamingSessionFacade)?
     @ObservationIgnored private var activeInputQueue: InputQueue?
     @ObservationIgnored private var didConfigureControllerObservers = false
     init() {}
@@ -152,8 +153,9 @@ public final class InputController {
         settingsStore.diagnostics.startupHapticsProbeEnabled
     }
 
-    func setupControllerObservation(inputQueue: InputQueue) {
-        activeInputQueue = inputQueue
+    func setupControllerObservation(streamingSession: any StreamingSessionFacade) {
+        activeStreamingSession = streamingSession
+        activeInputQueue = streamingSession.inputQueueRef
 
         for controller in GCController.controllers() {
             attachController(controller)
@@ -212,7 +214,7 @@ public final class InputController {
     }
 
     func injectNeutralGamepadFrame(index: UInt8 = 0) {
-        guard let session = dependencies?.currentStreamingSession() else { return }
+        guard let session = activeStreamingSession ?? dependencies?.currentStreamingSession() else { return }
         let frame = GamepadInputFrame(
             gamepadIndex: index,
             buttons: [],
@@ -224,7 +226,7 @@ public final class InputController {
     }
 
     func injectPauseMenuTap(index: UInt8 = 0) {
-        guard let session = dependencies?.currentStreamingSession() else { return }
+        guard let session = activeStreamingSession ?? dependencies?.currentStreamingSession() else { return }
         guard case .connected = session.lifecycle else { return }
 
         let pressed = GamepadInputFrame(
@@ -276,6 +278,7 @@ public final class InputController {
     }
 
     func clearStreamingInputBindings() {
+        activeStreamingSession = nil
         activeInputQueue = nil
     }
 
@@ -383,7 +386,7 @@ public final class InputController {
             queue.enqueueGamepadFrame(frame)
         }
 
-        dependencies?.currentStreamingSession()?.setGamepadConnectionState(index: 0, connected: true)
+        activeStreamingSession?.setGamepadConnectionState(index: 0, connected: true)
         logger.info("Controller attached: \(controller.vendorName ?? "Unknown")")
     }
 
@@ -468,7 +471,7 @@ public final class InputController {
         comboInterpreters.removeValue(forKey: controllerID)?.cancelAll()
         startupHapticsProbeControllers.remove(controllerID)
         let isAnyExtendedControllerConnected = GCController.controllers().contains { $0.extendedGamepad != nil }
-        dependencies?.currentStreamingSession()?.setGamepadConnectionState(
+        activeStreamingSession?.setGamepadConnectionState(
             index: 0,
             connected: isAnyExtendedControllerConnected
         )

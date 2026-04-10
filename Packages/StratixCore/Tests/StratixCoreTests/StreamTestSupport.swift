@@ -74,7 +74,7 @@ func makeHeroArtworkEnvironment(
 }
 
 func makeRuntimeAttachmentEnvironment(
-    setupControllerObservation: @escaping @MainActor (InputQueue) -> Void = { _ in },
+    setupControllerObservation: @escaping @MainActor (any StreamingSessionFacade) -> Void = { _ in },
     clearStreamingInputBindings: @escaping @MainActor () -> Void = {},
     routeVibration: @escaping @MainActor (VibrationReport) -> Void = { _ in }
 ) -> StreamRuntimeAttachmentEnvironment {

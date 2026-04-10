@@ -85,7 +85,10 @@ actor LibraryHydrationPersistenceStore {
     ) {
         let repository: any LibraryRepository
         do {
-            repository = try SwiftDataLibraryRepository(storeURL: sectionsURL)
+            let storeURL = sectionsURL
+                .deletingPathExtension()
+                .appendingPathExtension("swiftdata")
+            repository = try SwiftDataLibraryRepository(storeURL: storeURL)
         } catch {
             fatalError("Failed to initialize library repository: \(error)")
         }
