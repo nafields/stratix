@@ -95,6 +95,7 @@ private struct StreamStatusOverlayPreviewHost: View {
                 ),
                 session: session,
                 surfaceModel: surfaceModel,
+                showStatsHUD: false,
                 onCloseOverlay: { showOverlay = false },
                 onDisconnect: {}
             )

@@ -123,6 +123,7 @@ struct StreamStatusOverlay: View {
     let overlayState: StreamOverlayState
     let session: (any StreamingSessionFacade)?
     let surfaceModel: StreamSurfaceModel
+    let showStatsHUD: Bool
     let onCloseOverlay: () -> Void
     let onDisconnect: () -> Void
 
@@ -132,7 +133,7 @@ struct StreamStatusOverlay: View {
             if overlayState.showsConnectionOverlay {
                 connectingOverlay
                     .transition(.opacity)
-            } else {
+            } else if showStatsHUD {
                 VStack {
                     HStack {
                         Spacer()

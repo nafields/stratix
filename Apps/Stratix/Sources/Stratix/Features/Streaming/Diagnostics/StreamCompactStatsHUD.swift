@@ -19,25 +19,36 @@ struct StreamCompactStatsHUD: View {
     /// Renders the HUD only when stream state or diagnostics require it.
     var body: some View {
         if shouldShowHUD {
-            let position = forcedLLSRHUDActive ? .topLeft : (HUDPosition(rawValue: statsHUDPosition) ?? .topRight)
-            VStack {
-                if position.isTop {
-                    hudStrip
-                    Spacer()
-                } else {
-                    Spacer()
-                    hudStrip
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: position.isLeft ? .leading : .trailing)
-            .padding(20)
-            .allowsHitTesting(false)
+            hudStrip
+                .frame(maxWidth: 520, alignment: .leading)
+                .padding(28)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: hudAlignment)
+                .allowsHitTesting(false)
+                .transition(.opacity)
         }
     }
 
     /// Determines whether the compact HUD should be visible for the current stream state.
     private var shouldShowHUD: Bool {
-        !overlayVisible && ((showStatsHUD && session.lifecycle == .connected) || forcedLLSRHUDActive || showRuntimeStatusProbe)
+        !overlayVisible &&
+        showStatsHUD &&
+        session.lifecycle == .connected
+    }
+    
+    
+    private var hudAlignment: Alignment {
+        switch statsHUDPosition {
+        case "topLeft":
+            return .topLeading
+        case "bottomLeft":
+            return .bottomLeading
+        case "bottomRight":
+            return .bottomTrailing
+        case "topRight":
+            fallthrough
+        default:
+            return .topTrailing
+        }
     }
 
     /// Forces HUD visibility when the renderer enters an LLSR or diagnostic-heavy mode.
