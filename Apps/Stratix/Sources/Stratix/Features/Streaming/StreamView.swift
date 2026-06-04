@@ -228,6 +228,7 @@ struct StreamView: View {
             overlayState: overlayState,
             session: session,
             surfaceModel: surfaceModel,
+            showStatsHUD: showStatsHUD,
             onCloseOverlay: {
                 Task {
                     await streamController.setOverlayVisible(false, trigger: .explicitDismiss)
