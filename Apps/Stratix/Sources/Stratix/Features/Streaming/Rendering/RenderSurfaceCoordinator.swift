@@ -182,8 +182,8 @@ final class RenderSurfaceCoordinator {
             await setOverlayVisible(false, .explicitExit)
             await stopStreaming()
             await exitPriorityMode()
+            dismiss()
         }
-        dismiss()
     }
 
     /// Performs the non-explicit stream teardown path when the surface disappears.

@@ -299,6 +299,7 @@ public final class StreamController {
     }
 
     func performStopStreaming() async {
+        await launchWorkflow.cancelLaunch()
         await stopStreamWorkflow.stop(
             state: state,
             reconnectCoordinator: streamReconnectCoordinator,

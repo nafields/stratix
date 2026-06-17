@@ -53,7 +53,8 @@ final class StreamHomeLaunchWorkflow {
         bridge: any WebRTCBridge,
         state: @escaping @MainActor () -> StreamState,
         reconnectCoordinator: StreamReconnectCoordinator,
-        environment: StreamHomeLaunchWorkflowEnvironment
+        environment: StreamHomeLaunchWorkflowEnvironment,
+        shouldContinue: @escaping @Sendable () async -> Bool = { true }
     ) async {
         let initialState = await state()
         guard initialState.streamingSession == nil else {
@@ -100,10 +101,18 @@ final class StreamHomeLaunchWorkflow {
             .shellRestoredAfterExitSet(false)
         ])
         await overlayVisibilityCoordinator.stopPresentationRefresh()
+        guard await shouldContinue() else {
+            abortLaunch(environment: environment)
+            return
+        }
 
         let launch = await launchConfigurationService.resolvedHomeLaunchConfigurationOffMain(
             environment: environment.launchEnvironment
         )
+        guard await shouldContinue() else {
+            abortLaunch(environment: environment)
+            return
+        }
         if let migrationNote = launch.migrationNote {
             environment.logger.warning("[STREAM CONFIG] \(migrationNote)")
         }
@@ -120,6 +129,11 @@ final class StreamHomeLaunchWorkflow {
             session: environment.apiSession
         )
         let session = await makeSession(client, bridge, launch.config, launch.preferences)
+        guard await shouldContinue() else {
+            await session.disconnect(reason: .userInitiated)
+            abortLaunch(environment: environment)
+            return
+        }
         await environment.publish([.sessionAttachmentStateSet(.attaching)])
         await environment.publish(
             await runtimeAttachmentService.attach(
@@ -143,6 +157,23 @@ final class StreamHomeLaunchWorkflow {
             metadata: ["context": "home", "target_id": console.serverId]
         )
 
+        guard await shouldContinue() else {
+            await session.disconnect(reason: .userInitiated)
+            abortLaunch(environment: environment)
+            return
+        }
+
         await connectHome(session, console.serverId)
+    }
+
+    @MainActor
+    private func abortLaunch(environment: StreamHomeLaunchWorkflowEnvironment) {
+        environment.logger.info("Home stream launch cancelled")
+        environment.publish([
+            .streamStartFailed("Launch cancelled"),
+            .sessionAttachmentStateSet(.detached),
+            .streamingSessionSet(nil),
+            .runtimePhaseSet(.shellActive)
+        ])
     }
 }

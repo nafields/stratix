@@ -53,7 +53,8 @@ final class StreamCloudLaunchWorkflow {
         bridge: any WebRTCBridge,
         state: @escaping @MainActor () -> StreamState,
         reconnectCoordinator: StreamReconnectCoordinator,
-        environment: StreamCloudLaunchWorkflowEnvironment
+        environment: StreamCloudLaunchWorkflowEnvironment,
+        shouldContinue: @escaping @Sendable () async -> Bool = { true }
     ) async {
         let initialState = await state()
         guard initialState.streamingSession == nil else {
@@ -100,6 +101,10 @@ final class StreamCloudLaunchWorkflow {
             .shellRestoredAfterExitSet(false)
         ])
         await overlayVisibilityCoordinator.stopPresentationRefresh()
+        guard await shouldContinue() else {
+            abortLaunch(environment: environment)
+            return
+        }
 
         let cloudConnectAuth: SessionController.CloudConnectAuth
         do {
@@ -127,11 +132,20 @@ final class StreamCloudLaunchWorkflow {
             return
         }
 
+        guard await shouldContinue() else {
+            abortLaunch(environment: environment)
+            return
+        }
+
         let launch = await launchConfigurationService.resolvedCloudLaunchConfigurationOffMain(
             environment: environment.launchEnvironment,
             tokens: cloudConnectAuth.tokens,
             targetId: titleId.rawValue
         )
+        guard await shouldContinue() else {
+            abortLaunch(environment: environment)
+            return
+        }
         if let migrationNote = launch.migrationNote {
             environment.logger.warning("[STREAM CONFIG] \(migrationNote)")
         }
@@ -176,6 +190,11 @@ final class StreamCloudLaunchWorkflow {
             session: environment.apiSession
         )
         let session = await makeSession(client, bridge, launch.config, launch.preferences)
+        guard await shouldContinue() else {
+            await session.disconnect(reason: .userInitiated)
+            abortLaunch(environment: environment)
+            return
+        }
         await environment.publish([.sessionAttachmentStateSet(.attaching)])
         await environment.publish(
             await runtimeAttachmentService.attach(
@@ -199,6 +218,23 @@ final class StreamCloudLaunchWorkflow {
             metadata: ["context": "cloud", "target_id": titleId.rawValue]
         )
 
+        guard await shouldContinue() else {
+            await session.disconnect(reason: .userInitiated)
+            abortLaunch(environment: environment)
+            return
+        }
+
         await connectCloud(session, titleId.rawValue, cloudConnectAuth.userToken)
+    }
+
+    @MainActor
+    private func abortLaunch(environment: StreamCloudLaunchWorkflowEnvironment) {
+        environment.logger.info("Cloud stream launch cancelled")
+        environment.publish([
+            .streamStartFailed("Launch cancelled"),
+            .sessionAttachmentStateSet(.detached),
+            .streamingSessionSet(nil),
+            .runtimePhaseSet(.shellActive)
+        ])
     }
 }
