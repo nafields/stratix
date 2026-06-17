@@ -14,7 +14,7 @@ enum LibraryHostResolver {
         logInfo: (String) -> Void,
         logWarning: (String) -> Void,
         formatError: (Error) -> String,
-        isHTTPResponseError: (Error) -> Bool
+        isReachableLibraryCatalogHostHTTPError: (Error) -> Bool
     ) async throws -> String {
         for host in makeCandidates(tokens: tokens, preferredHost: preferredHost) {
             do {
@@ -24,8 +24,8 @@ enum LibraryHostResolver {
                 logInfo("Cloud library probe succeeded: \(host)")
                 return host
             } catch {
-                if isHTTPResponseError(error) {
-                    logWarning("Cloud library probe reached valid host with HTTP error (\(formatError(error))): \(host)")
+                if isReachableLibraryCatalogHostHTTPError(error) {
+                    logWarning("Cloud library probe reached catalog host with HTTP error (\(formatError(error))): \(host)")
                     return host
                 }
                 logWarning("Cloud library probe failed (\(host)): \(formatError(error))")
@@ -54,7 +54,6 @@ enum LibraryHostResolver {
         appendUnique(preferredHost)
         let config = LibraryHydrationConfig()
         appendUnique(tokens.xcloudHost)
-        appendUnique(tokens.xcloudF2PHost)
         appendUnique(config.defaultLibraryHost)
         for host in config.fallbackHosts {
             appendUnique(host)

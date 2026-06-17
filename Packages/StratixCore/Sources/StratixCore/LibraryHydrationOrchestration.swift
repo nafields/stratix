@@ -114,8 +114,8 @@ extension LibraryController {
             formatError: { [weak self] error in
                 self?.logString(for: error) ?? String(describing: error)
             },
-            isHTTPResponseError: { [weak self] error in
-                self?.isHTTPResponseError(error) ?? false
+            isReachableLibraryCatalogHostHTTPError: { [weak self] error in
+                self?.isReachableLibraryCatalogHostHTTPError(error) ?? false
             }
         )
     }

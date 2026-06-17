@@ -315,11 +315,19 @@ extension LibraryController {
         return false
     }
 
-    func isHTTPResponseError(_ error: Error) -> Bool {
-        if case APIError.httpError = error {
-            return true
+    func isReachableLibraryCatalogHostHTTPError(_ error: Error) -> Bool {
+        guard case APIError.httpError(let statusCode, _) = error else {
+            return false
         }
-        return false
+
+        // A 404 means this host does not expose the cloud catalog endpoint.
+        // F2P stream hosts and other non-catalog endpoints should keep probing.
+        switch statusCode {
+        case 401, 403:
+            return true
+        default:
+            return false
+        }
     }
 
     func truncateForLog(_ text: String, maxBytes: Int = 2048) -> String {

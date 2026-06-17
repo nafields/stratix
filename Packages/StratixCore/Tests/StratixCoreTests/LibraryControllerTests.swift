@@ -1115,6 +1115,15 @@ struct LibraryControllerTests {
     }
 
     @Test
+    func isReachableLibraryCatalogHostHTTPError_acceptsAuthFailuresOnly() {
+        let controller = LibraryController()
+
+        #expect(controller.isReachableLibraryCatalogHostHTTPError(APIError.httpError(401, "Unauthorized")) == true)
+        #expect(controller.isReachableLibraryCatalogHostHTTPError(APIError.httpError(403, "Forbidden")) == true)
+        #expect(controller.isReachableLibraryCatalogHostHTTPError(APIError.httpError(404, "Not Found")) == false)
+    }
+
+    @Test
     func makeLibraryHostCandidates_prioritizePreferredAndStoredHosts() {
         let controller = LibraryController()
         let tokens = StreamTokens(
@@ -1131,12 +1140,12 @@ struct LibraryControllerTests {
             preferredHost: LibraryController.hydrationConfig.canonicalF2PLibraryHost
         )
 
-        #expect(Array(hosts.prefix(4)) == [
+        #expect(Array(hosts.prefix(3)) == [
             LibraryController.hydrationConfig.canonicalF2PLibraryHost,
             "https://xcloud.example.com",
-            "https://f2p.example.com",
             LibraryController.hydrationConfig.defaultLibraryHost
         ])
+        #expect(hosts.contains("https://f2p.example.com") == false)
         #expect(hosts.filter { $0 == "https://xcloud.example.com" }.count == 1)
     }
 

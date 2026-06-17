@@ -44,7 +44,7 @@ final class StreamLaunchWorkflow {
         reconnectCoordinator: StreamReconnectCoordinator,
         environment: StreamHomeLaunchWorkflowEnvironment
     ) async {
-        let currentState = await state()
+        let currentState = state()
         guard currentState.streamingSession == nil else {
             environment.logger.warning("Ignoring home stream start because a session is already active")
             return
@@ -72,7 +72,7 @@ final class StreamLaunchWorkflow {
         reconnectCoordinator: StreamReconnectCoordinator,
         environment: StreamCloudLaunchWorkflowEnvironment
     ) async {
-        let currentState = await state()
+        let currentState = state()
         guard currentState.streamingSession == nil else {
             environment.logger.warning("Ignoring cloud stream start because a session is already active")
             return

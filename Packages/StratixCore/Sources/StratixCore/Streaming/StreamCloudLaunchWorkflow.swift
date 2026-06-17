@@ -55,7 +55,7 @@ final class StreamCloudLaunchWorkflow {
         reconnectCoordinator: StreamReconnectCoordinator,
         environment: StreamCloudLaunchWorkflowEnvironment
     ) async {
-        let initialState = await state()
+        let initialState = state()
         guard initialState.streamingSession == nil else {
             environment.logger.warning("Ignoring cloud stream start because a session is already active")
             return
@@ -73,8 +73,8 @@ final class StreamCloudLaunchWorkflow {
             environment: environment.priorityModeEnvironment,
             publish: environment.publish
         )
-        await environment.prepareVideoCapabilities()
-        await environment.updateControllerSettings()
+        environment.prepareVideoCapabilities()
+        environment.updateControllerSettings()
 
         let wasReconnectAttempt = initialState.isReconnecting
         if !wasReconnectAttempt {
@@ -89,7 +89,7 @@ final class StreamCloudLaunchWorkflow {
         case .home(let consoleID):
             launchResetAction = .homeLaunchRequested(consoleId: consoleID)
         }
-        await environment.publish([
+        environment.publish([
             launchResetAction,
             .reconnectingSet(wasReconnectAttempt),
             .streamingSessionSet(nil),
@@ -108,8 +108,8 @@ final class StreamCloudLaunchWorkflow {
         } catch {
             let message = "Cloud connect auth failed: \(error.localizedDescription)"
             environment.logger.error(message)
-            await environment.setLastAuthError(message)
-            await environment.publish([
+            environment.setLastAuthError(message)
+            environment.publish([
                 .streamStartFailed(message),
                 .sessionAttachmentStateSet(.detached)
             ])
@@ -119,8 +119,8 @@ final class StreamCloudLaunchWorkflow {
         guard let xcloudToken = cloudConnectAuth.tokens.xcloudToken else {
             let message = "Cloud connect auth failed: missing xCloud token"
             environment.logger.error(message)
-            await environment.setLastAuthError(message)
-            await environment.publish([
+            environment.setLastAuthError(message)
+            environment.publish([
                 .streamStartFailed(message),
                 .sessionAttachmentStateSet(.detached)
             ])
@@ -145,11 +145,11 @@ final class StreamCloudLaunchWorkflow {
             environment.logger.info(line)
         }
 
-        await environment.publish([
-            .launchHeroURLSet(await environment.cachedHeroURL(titleId))
+        environment.publish([
+            .launchHeroURLSet(environment.cachedHeroURL(titleId))
         ])
 
-        let overlayState = await state()
+        let overlayState = state()
         if overlayState.isStreamOverlayVisible {
             let overlayActions = await overlayVisibilityCoordinator.setVisibility(
                 true,
@@ -157,13 +157,13 @@ final class StreamCloudLaunchWorkflow {
                 state: overlayState,
                 environment: environment.overlayEnvironment
             )
-            await environment.publish(overlayActions)
+            environment.publish(overlayActions)
         }
 
         guard let resolvedHost = launch.resolvedHost else {
             let message = "No xCloud host resolved for cloud stream"
             environment.logger.error(message)
-            await environment.publish([
+            environment.publish([
                 .streamStartFailed(message),
                 .sessionAttachmentStateSet(.detached)
             ])
@@ -176,9 +176,9 @@ final class StreamCloudLaunchWorkflow {
             session: environment.apiSession
         )
         let session = await makeSession(client, bridge, launch.config, launch.preferences)
-        await environment.publish([.sessionAttachmentStateSet(.attaching)])
-        await environment.publish(
-            await runtimeAttachmentService.attach(
+        environment.publish([.sessionAttachmentStateSet(.attaching)])
+        environment.publish(
+            runtimeAttachmentService.attach(
                 session: session,
                 environment: environment.runtimeAttachmentEnvironment,
                 onLifecycleChange: environment.onLifecycleChange

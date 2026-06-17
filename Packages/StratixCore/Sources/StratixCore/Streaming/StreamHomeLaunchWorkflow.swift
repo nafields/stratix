@@ -55,7 +55,7 @@ final class StreamHomeLaunchWorkflow {
         reconnectCoordinator: StreamReconnectCoordinator,
         environment: StreamHomeLaunchWorkflowEnvironment
     ) async {
-        let initialState = await state()
+        let initialState = state()
         guard initialState.streamingSession == nil else {
             environment.logger.warning("Ignoring home stream start because a session is already active")
             return
@@ -73,8 +73,8 @@ final class StreamHomeLaunchWorkflow {
             environment: environment.priorityModeEnvironment,
             publish: environment.publish
         )
-        await environment.prepareVideoCapabilities()
-        await environment.updateControllerSettings()
+        environment.prepareVideoCapabilities()
+        environment.updateControllerSettings()
 
         let wasReconnectAttempt = initialState.isReconnecting
         if !wasReconnectAttempt {
@@ -89,7 +89,7 @@ final class StreamHomeLaunchWorkflow {
         case .home(let consoleID):
             launchResetAction = .homeLaunchRequested(consoleId: consoleID)
         }
-        await environment.publish([
+        environment.publish([
             launchResetAction,
             .reconnectingSet(wasReconnectAttempt),
             .streamingSessionSet(nil),
@@ -120,9 +120,9 @@ final class StreamHomeLaunchWorkflow {
             session: environment.apiSession
         )
         let session = await makeSession(client, bridge, launch.config, launch.preferences)
-        await environment.publish([.sessionAttachmentStateSet(.attaching)])
-        await environment.publish(
-            await runtimeAttachmentService.attach(
+        environment.publish([.sessionAttachmentStateSet(.attaching)])
+        environment.publish(
+            runtimeAttachmentService.attach(
                 session: session,
                 environment: environment.runtimeAttachmentEnvironment,
                 onLifecycleChange: environment.onLifecycleChange
