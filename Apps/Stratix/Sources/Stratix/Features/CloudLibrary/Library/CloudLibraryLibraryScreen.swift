@@ -49,6 +49,24 @@ struct CloudLibraryLibraryScreen: View, Equatable {
         count: defaultGridColumnCount
     )
 
+    private var showsLetterIndex: Bool {
+        state.sortLabel.contains("A-Z") && state.gridItems.count >= 12
+    }
+
+    private var letterSections: [String] {
+        CloudLibraryLibraryLetterIndexSupport.sections(
+            from: state.gridItems.map(\.title)
+        )
+    }
+
+    private var currentLetter: String? {
+        guard let titleID = lastFocusedGridTitleID ?? preferredTitleID,
+              let item = state.gridItems.first(where: { $0.titleID == titleID }) else {
+            return letterSections.first
+        }
+        return CloudLibraryLibraryLetterIndexSupport.indexLetter(for: item.title)
+    }
+
     var body: some View {
         ScrollViewReader { scrollProxy in
             ScrollView {
@@ -155,6 +173,16 @@ struct CloudLibraryLibraryScreen: View, Equatable {
                         }
                 }
             )
+            .overlay(alignment: .trailing) {
+                if showsLetterIndex {
+                    CloudLibraryLibraryLetterIndexView(
+                        sections: letterSections,
+                        currentLetter: currentLetter
+                    )
+                    .padding(.trailing, 18)
+                    .allowsHitTesting(false)
+                }
+            }
         }
         .onDisappear {
             focusSettler.cancel()
