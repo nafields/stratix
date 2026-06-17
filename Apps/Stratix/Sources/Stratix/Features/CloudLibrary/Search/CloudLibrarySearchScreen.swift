@@ -48,8 +48,26 @@ struct CloudLibrarySearchScreen: View, Equatable {
         ScrollViewReader { scrollProxy in
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: StratixTheme.Search.sectionSpacing) {
-                    if !trimmedQueryText.isEmpty {
-                        if resultItems.isEmpty {
+                    if trimmedQueryText.isEmpty {
+                        if !browseItems.isEmpty {
+                            Text("\(totalLibraryCount) titles in your library")
+                                .font(StratixTypography.rounded(15, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
+                                .foregroundStyle(StratixTheme.Colors.textMuted)
+                                .padding(.horizontal, gridHorizontalPadding)
+
+                            tileGrid(items: browseItems)
+                        } else {
+                            CloudLibraryStatusPanel(
+                                state: .init(
+                                    kind: .empty,
+                                    title: "Search Game Pass",
+                                    message: "Type to filter your cloud library by title.",
+                                    primaryActionTitle: nil
+                                )
+                            )
+                            .frame(height: 420)
+                        }
+                    } else if resultItems.isEmpty {
                             CloudLibraryStatusPanel(
                                 state: .init(
                                     kind: .empty,
@@ -60,14 +78,13 @@ struct CloudLibrarySearchScreen: View, Equatable {
                                 onPrimaryAction: onClearQuery
                             )
                             .frame(height: 420)
-                        } else {
-                            Text("\(resultItems.count) results")
-                                .font(StratixTypography.rounded(15, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
-                                .foregroundStyle(StratixTheme.Colors.textMuted)
-                                .padding(.horizontal, gridHorizontalPadding)
+                    } else {
+                        Text("\(resultItems.count) results")
+                            .font(StratixTypography.rounded(15, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
+                            .foregroundStyle(StratixTheme.Colors.textMuted)
+                            .padding(.horizontal, gridHorizontalPadding)
 
-                            tileGrid(items: resultItems)
-                        }
+                        tileGrid(items: resultItems)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

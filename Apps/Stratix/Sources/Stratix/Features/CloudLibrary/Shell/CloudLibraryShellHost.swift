@@ -128,6 +128,7 @@ struct CloudLibraryShellHost: View {
             utilityActions: utilityActions,
             browsePresentation: presentationStore.browseRoutePresentation,
             searchText: queryState.searchText,
+            shouldPresentSearchKeyboard: $focusState.shouldPresentSearchKeyboard,
             browseActions: browseActions,
             detailPath: detailPathBinding,
             detailOriginRoute: routeState.browseRouteToAppRoute(routeState.browseRoute),

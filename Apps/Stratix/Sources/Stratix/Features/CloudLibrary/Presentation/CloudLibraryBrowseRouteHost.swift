@@ -131,8 +131,6 @@ struct CloudLibraryBrowseRouteHost: View {
             onFocusTileID: actions.searchFocusTileID,
             onRequestSideRailEntry: actions.requestSideRailEntry
         )
-        .equatable()
-        .searchable(text: searchText, prompt: "Search cloud titles")
     }
 }
 

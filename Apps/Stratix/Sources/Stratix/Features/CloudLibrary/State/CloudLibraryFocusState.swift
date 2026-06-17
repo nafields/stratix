@@ -14,6 +14,7 @@ final class CloudLibraryFocusState {
     var settledLibraryHeroTileID: TitleID?
     var isSideRailExpanded = false
     var hasRequestedInitialContentFocus = false
+    var shouldPresentSearchKeyboard = false
 
     /// Returns the last focused title for the given browse route when one exists.
     func focusedTileID(for route: CloudLibraryBrowseRoute) -> TitleID? {
@@ -51,7 +52,11 @@ final class CloudLibraryFocusState {
 
     /// Exists as the shell-facing content-focus hook even when the underlying focus path is framework-owned.
     func requestTopContentFocus(for route: CloudLibraryBrowseRoute) {
-        _ = route
+        shouldPresentSearchKeyboard = route == .search
+    }
+
+    func clearSearchKeyboardPresentationRequest() {
+        shouldPresentSearchKeyboard = false
     }
 
     /// Exists as the shell-facing utility-focus hook even when the utility surface owns the concrete focus move.
