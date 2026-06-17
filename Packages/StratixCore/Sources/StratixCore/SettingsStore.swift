@@ -63,7 +63,13 @@ public final class SettingsStore {
     }
 
     public struct StreamSettings: Sendable, Equatable {
-        public var locale: String
+        public var preferredGameLanguage: SupportedGameLanguage
+        public var locale: String {
+            get { preferredGameLanguage.localeCode }
+            set {
+                preferredGameLanguage = SupportedGameLanguage(rawValue: newValue) ?? .systemDefault
+            }
+        }
         public var preferIPv6: Bool
         public var preferredRegionID: String
         public var statsHUDPosition: String
@@ -108,9 +114,16 @@ public final class SettingsStore {
             colorRange: String = "Auto",
             safeAreaPercent: Double = 100.0,
             stereoAudio: Bool = false,
-            chatChannelEnabled: Bool = false
+            chatChannelEnabled: Bool = false,
+            preferredGameLanguage: SupportedGameLanguage? = nil
         ) {
-            self.locale = locale
+            if let preferredGameLanguage {
+                self.preferredGameLanguage = preferredGameLanguage
+            } else if let mappedLanguage = SupportedGameLanguage(rawValue: locale) {
+                self.preferredGameLanguage = mappedLanguage
+            } else {
+                self.preferredGameLanguage = .systemDefault
+            }
             self.preferIPv6 = preferIPv6
             self.preferredRegionID = preferredRegionID
             self.statsHUDPosition = statsHUDPosition
@@ -235,6 +248,7 @@ public final class SettingsStore {
         static let focusPrefetchEnabled = "guide.focus_prefetch_enabled"
 
         static let locale = "stratix.stream.locale"
+        static let preferredGameLanguage = "stratix.stream.preferredGameLanguage"
         static let preferIPv6 = "stratix.stream.preferIPv6"
         static let preferredRegionID = "stratix.stream.preferredRegionId"
         static let statsHUDPosition = "stratix.stream.statsHUDPosition"
@@ -522,6 +536,7 @@ public final class SettingsStore {
     private func persist(_ value: StreamSettings, oldValue: StreamSettings) {
         guard !isReloadingFromDefaults, value != oldValue else { return }
         defaults.set(value.locale, forKey: Key.locale)
+        defaults.set(value.preferredGameLanguage.rawValue, forKey: Key.preferredGameLanguage)
         defaults.set(value.preferIPv6, forKey: Key.preferIPv6)
         defaults.set(value.preferredRegionID, forKey: Key.preferredRegionID)
         defaults.set(value.statsHUDPosition, forKey: Key.statsHUDPosition)
@@ -600,9 +615,20 @@ public final class SettingsStore {
         )
     }
 
+    private nonisolated static func resolvePreferredGameLanguage(from defaults: UserDefaults) -> SupportedGameLanguage {
+        if let rawValue = defaults.string(forKey: Key.preferredGameLanguage),
+           let language = SupportedGameLanguage(rawValue: rawValue) {
+            return language
+        }
+
+        let legacyLocale = string(defaults, Key.locale, fallback: "en-US")
+        return SupportedGameLanguage(rawValue: legacyLocale) ?? .systemDefault
+    }
+
     private nonisolated static func readStream(from defaults: UserDefaults) -> StreamSettings {
-        StreamSettings(
-            locale: string(defaults, Key.locale, fallback: "en-US"),
+        let preferredGameLanguage = resolvePreferredGameLanguage(from: defaults)
+        return StreamSettings(
+            locale: preferredGameLanguage.localeCode,
             preferIPv6: bool(defaults, Key.preferIPv6, fallback: false),
             preferredRegionID: string(defaults, Key.preferredRegionID, fallback: ""),
             statsHUDPosition: string(defaults, Key.statsHUDPosition, fallback: "topRight"),
@@ -623,7 +649,8 @@ public final class SettingsStore {
             colorRange: string(defaults, Key.colorRange, fallback: "Auto"),
             safeAreaPercent: double(defaults, Key.safeAreaPercent, fallback: 100.0),
             stereoAudio: bool(defaults, Key.stereoAudio, fallback: false),
-            chatChannelEnabled: bool(defaults, Key.chatChannelEnabled, fallback: false)
+            chatChannelEnabled: bool(defaults, Key.chatChannelEnabled, fallback: false),
+            preferredGameLanguage: preferredGameLanguage
         )
     }
 
