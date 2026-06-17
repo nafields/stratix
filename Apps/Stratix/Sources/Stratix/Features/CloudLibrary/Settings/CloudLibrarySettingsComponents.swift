@@ -4,6 +4,65 @@
 
 import SwiftUI
 
+private struct CloudLibrarySettingsValuePill: View {
+    let text: String
+    let isActive: Bool
+
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    var body: some View {
+        Text(text)
+            .font(StratixTypography.rounded(14, weight: .bold, dynamicTypeSize: dynamicTypeSize))
+            .foregroundStyle(isActive ? Color.black.opacity(0.82) : StratixTheme.Colors.textMuted)
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(
+                Capsule(style: .continuous)
+                    .fill(isActive ? StratixTheme.Colors.focusTint : Color.white.opacity(0.08))
+            )
+    }
+}
+
+private struct CloudLibrarySettingsRowBackground: ViewModifier {
+    let isActive: Bool
+
+    private var backgroundFill: AnyShapeStyle {
+        if isActive {
+            return AnyShapeStyle(StratixTheme.Colors.focusTint.opacity(0.10))
+        }
+        return AnyShapeStyle(
+            LinearGradient(
+                colors: [Color.white.opacity(0.04), Color.white.opacity(0.025)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .background {
+                RoundedRectangle(cornerRadius: StratixTheme.Radius.md)
+                    .fill(backgroundFill)
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: StratixTheme.Radius.md)
+                    .stroke(
+                        isActive ? StratixTheme.Colors.focusTint.opacity(0.28) : Color.white.opacity(0.08),
+                        lineWidth: 1
+                    )
+            )
+    }
+}
+
+private extension View {
+    func cloudLibrarySettingsRowBackground(isActive: Bool) -> some View {
+        modifier(CloudLibrarySettingsRowBackground(isActive: isActive))
+    }
+}
+
 struct CloudLibraryPageSectionCard<Content: View>: View {
     let title: String
     let subtitle: String?
@@ -231,6 +290,8 @@ struct CloudLibraryToggleRow: View {
 
             Spacer(minLength: 12)
 
+            CloudLibrarySettingsValuePill(text: isOn ? "On" : "Off", isActive: isOn)
+
             Toggle("", isOn: $isOn)
                 .labelsHidden()
                 .tint(StratixTheme.Colors.accent)
@@ -238,17 +299,7 @@ struct CloudLibraryToggleRow: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
         .frame(minHeight: 76)
-        .background(
-            RoundedRectangle(cornerRadius: 17)
-                .fill(
-                    LinearGradient(
-                        colors: [Color.white.opacity(0.04), Color.white.opacity(0.025)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-        )
-        .overlay(RoundedRectangle(cornerRadius: 17).stroke(Color.white.opacity(0.08), lineWidth: 1))
+        .cloudLibrarySettingsRowBackground(isActive: isOn)
     }
 }
 
@@ -291,10 +342,17 @@ struct CloudLibrarySliderRow: View {
                     value = max(range.lowerBound, value - resolvedStep)
                 }
 
-                ProgressView(value: max(0, min(1, normalized)))
-                    .tint(StratixTheme.Colors.accent)
-                    .scaleEffect(x: 1, y: 1.2, anchor: .center)
-                    .frame(maxWidth: .infinity)
+                GeometryReader { proxy in
+                    ZStack(alignment: .leading) {
+                        Capsule(style: .continuous)
+                            .fill(Color.white.opacity(0.10))
+                        Capsule(style: .continuous)
+                            .fill(StratixTheme.Colors.accent.opacity(0.85))
+                            .frame(width: max(8, proxy.size.width * max(0, min(1, normalized))))
+                    }
+                }
+                .frame(height: 8)
+                .frame(maxWidth: .infinity)
 
                 CloudLibraryNudgeButton(systemImage: "plus") {
                     value = min(range.upperBound, value + resolvedStep)
@@ -304,17 +362,7 @@ struct CloudLibrarySliderRow: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
         .frame(minHeight: 88)
-        .background(
-            RoundedRectangle(cornerRadius: 17)
-                .fill(
-                    LinearGradient(
-                        colors: [Color.white.opacity(0.04), Color.white.opacity(0.025)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-        )
-        .overlay(RoundedRectangle(cornerRadius: 17).stroke(Color.white.opacity(0.08), lineWidth: 1))
+        .cloudLibrarySettingsRowBackground(isActive: normalized > 0.01)
     }
 }
 
@@ -332,6 +380,9 @@ struct CloudLibraryPickerRow: View {
                 .foregroundStyle(StratixTheme.Colors.textPrimary)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
+            CloudLibrarySettingsValuePill(text: selection, isActive: true)
+                .frame(maxWidth: 220, alignment: .trailing)
+
             Picker(title, selection: $selection) {
                 ForEach(options, id: \.self) { option in
                     Text(option).tag(option)
@@ -340,22 +391,12 @@ struct CloudLibraryPickerRow: View {
             .labelsHidden()
             .pickerStyle(.menu)
             .tint(StratixTheme.Colors.focusTint)
-            .frame(width: 320, alignment: .trailing)
+            .frame(width: 72, alignment: .trailing)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
         .frame(minHeight: 76)
-        .background(
-            RoundedRectangle(cornerRadius: 17)
-                .fill(
-                    LinearGradient(
-                        colors: [Color.white.opacity(0.04), Color.white.opacity(0.025)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-        )
-        .overlay(RoundedRectangle(cornerRadius: 17).stroke(Color.white.opacity(0.08), lineWidth: 1))
+        .cloudLibrarySettingsRowBackground(isActive: true)
     }
 }
 
