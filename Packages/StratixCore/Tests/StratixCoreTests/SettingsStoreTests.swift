@@ -199,4 +199,32 @@ struct SettingsStoreTests {
         #expect(suite.string(forKey: "stratix.debug.upscaling_floor_behavior") == "metalFloor")
         #expect(store.diagnostics.upscalingFloorBehavior == .metalFloor)
     }
+
+    @Test
+    func stream_preferredGameLanguageRoundTrips() {
+        let suiteName = "SettingsStoreTests.stream.preferredGameLanguageRoundTrips"
+        let suite = UserDefaults(suiteName: suiteName)!
+        suite.removePersistentDomain(forName: suiteName)
+
+        let store = SettingsStore(defaults: suite)
+        store.stream.preferredGameLanguage = .ruRU
+
+        #expect(suite.string(forKey: "stratix.stream.preferredGameLanguage") == "ru-RU")
+        #expect(suite.string(forKey: "stratix.stream.locale") == "ru-RU")
+        #expect(store.stream.preferredGameLanguage == .ruRU)
+        #expect(store.stream.locale == "ru-RU")
+    }
+
+    @Test
+    func stream_migratesLegacyLocaleToPreferredGameLanguage() {
+        let suiteName = "SettingsStoreTests.stream.migratesLegacyLocaleToPreferredGameLanguage"
+        let suite = UserDefaults(suiteName: suiteName)!
+        suite.removePersistentDomain(forName: suiteName)
+        suite.set("de-DE", forKey: "stratix.stream.locale")
+
+        let store = SettingsStore(defaults: suite)
+
+        #expect(store.stream.preferredGameLanguage == .deDE)
+        #expect(store.stream.locale == "de-DE")
+    }
 }
