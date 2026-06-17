@@ -14,7 +14,6 @@ struct CloudLibraryContentRouteHost: View {
     let utilityActions: CloudLibraryUtilityRouteActions
     let browsePresentation: CloudLibraryBrowseRoutePresentation
     let searchText: Binding<String>
-    let shouldPresentSearchKeyboard: Binding<Bool>
     let browseActions: CloudLibraryBrowseRouteActions
     let detailPath: Binding<[TitleID]>
     let detailOriginRoute: AppRoute
@@ -38,8 +37,7 @@ struct CloudLibraryContentRouteHost: View {
         .modifier(
             CloudLibrarySearchableModifier(
                 isEnabled: utilityRoute == nil && browsePresentation.browseRoute == .search,
-                text: searchText,
-                isPresented: shouldPresentSearchKeyboard
+                text: searchText
             )
         )
     }
@@ -112,16 +110,11 @@ struct CloudLibraryContentRouteHost: View {
 private struct CloudLibrarySearchableModifier: ViewModifier {
     let isEnabled: Bool
     let text: Binding<String>
-    let isPresented: Binding<Bool>
 
     func body(content: Content) -> some View {
         if isEnabled {
             content
-                .searchable(
-                    text: text,
-                    isPresented: isPresented,
-                    prompt: "Search cloud titles"
-                )
+                .searchable(text: text, prompt: "Search cloud titles")
         } else {
             content
         }
