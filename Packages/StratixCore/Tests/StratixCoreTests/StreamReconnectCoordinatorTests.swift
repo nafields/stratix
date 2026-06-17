@@ -113,6 +113,41 @@ struct StreamReconnectCoordinatorTests {
     }
 
     @Test
+    func handleLifecycleChange_reconnectTransition_doesNotCancelActiveReconnectTask() async {
+        let coordinator = StreamReconnectCoordinator(policy: StreamReconnectPolicy(maxAttempts: 3, retryDelay: .zero))
+        let bridge = TestWebRTCBridge()
+        var published: [StreamAction] = []
+        var relaunched = false
+
+        await coordinator.recordLaunchContext(target: .cloud(makeTitleID()), bridge: bridge)
+
+        await coordinator.handleLifecycleChange(
+            event: StreamSessionLifecycleEvent(
+                lifecycle: .failed(StreamError(code: .unknown, message: "decode fail")),
+                disconnectIntent: .reconnectable
+            ),
+            environment: makeReconnectEnvironment(
+                autoReconnectEnabled: true,
+                disconnectCurrentSession: {
+                    await coordinator.handleLifecycleChange(
+                        event: StreamSessionLifecycleEvent(
+                            lifecycle: .disconnected,
+                            disconnectIntent: .reconnectTransition
+                        ),
+                        environment: makeReconnectEnvironment(autoReconnectEnabled: true)
+                    )
+                },
+                relaunch: { _, _ in relaunched = true },
+                publish: { published.append(contentsOf: $0) }
+            )
+        )
+        try? await Task.sleep(for: .milliseconds(20))
+
+        #expect(relaunched == true)
+        #expect(published.contains(.reconnectSuppressed(.reconnectTransition)) == false)
+    }
+
+    @Test
     func handleLifecycleChange_homeReconnect_usesHomeTarget() async {
         let coordinator = StreamReconnectCoordinator(policy: StreamReconnectPolicy(maxAttempts: 3, retryDelay: .zero))
         let session = makeStreamingSession()

@@ -96,6 +96,10 @@ actor StreamReconnectCoordinator {
         intent: StreamingDisconnectIntent,
         environment: StreamReconnectEnvironment
     ) async {
+        if intent == .reconnectTransition, reconnectTask != nil {
+            return
+        }
+
         let hasLaunchContext = lastLaunchTarget != nil && lastStreamBridge != nil
         let decision = policy.decision(
             intent: intent,
