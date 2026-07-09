@@ -72,8 +72,30 @@ extension ConsoleListView {
         requestPrimaryFocus()
     }
 
+    /// Applies a pending shell focus hand-off exactly once per generation.
+    func consumeFocusHandoffIfNeeded() {
+        guard let request = focusHandoffRequest,
+              request.route == .consoles,
+              request.generation != consumedFocusHandoffGeneration else { return }
+        consumedFocusHandoffGeneration = request.generation
+        requestPrimaryFocus()
+    }
+
     /// Schedules the best available focus target once the console route is ready to accept focus.
+    /// Leaves focus alone when the user is already on a still-valid target so background
+    /// refreshes never yank focus out from under the remote.
     func requestPrimaryFocus() {
+        if let focusedTarget {
+            switch focusedTarget {
+            case .console(let consoleID) where consoleIDs.contains(consoleID):
+                return
+            case .refresh, .troubleshoot:
+                return
+            default:
+                break
+            }
+        }
+
         guard let preferredTarget = ConsoleListFocusCoordinator.preferredTarget(
             isLoading: consoleController.isLoading,
             consoleIDs: consoleIDs,

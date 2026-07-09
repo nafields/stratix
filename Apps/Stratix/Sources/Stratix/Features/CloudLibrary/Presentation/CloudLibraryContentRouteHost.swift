@@ -15,6 +15,7 @@ struct CloudLibraryContentRouteHost: View {
     let browsePresentation: CloudLibraryBrowseRoutePresentation
     let searchText: Binding<String>
     let browseActions: CloudLibraryBrowseRouteActions
+    let contentFocusRequest: CloudLibraryFocusState.ContentFocusRequest?
     let detailPath: Binding<[TitleID]>
     let detailOriginRoute: AppRoute
     let viewModel: CloudLibraryViewModel
@@ -36,18 +37,22 @@ struct CloudLibraryContentRouteHost: View {
         }
     }
 
-    @ViewBuilder
-    /// Chooses the current browse or utility destination for the CloudLibrary shell.
+    /// Chooses the current browse or utility destination for the CloudLibrary shell,
+    /// crossfading utility overlays in and out instead of hard-cutting.
     private var routeContent: some View {
-        if let utilityRoute {
-            utilityRouteContent(utilityRoute)
-        } else {
-            CloudLibraryBrowseRouteHost(
-                presentation: browsePresentation,
-                searchText: searchText,
-                actions: browseActions
-            )
+        ZStack {
+            if let utilityRoute {
+                utilityRouteContent(utilityRoute)
+            } else {
+                CloudLibraryBrowseRouteHost(
+                    presentation: browsePresentation,
+                    searchText: searchText,
+                    actions: browseActions,
+                    focusHandoffRequest: contentFocusRequest
+                )
+            }
         }
+        .animation(StratixTheme.Motion.routeTransition, value: utilityRoute)
     }
 
     @ViewBuilder

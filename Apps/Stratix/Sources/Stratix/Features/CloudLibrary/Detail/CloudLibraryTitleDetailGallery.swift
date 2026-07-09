@@ -42,10 +42,6 @@ extension CloudLibraryTitleDetailScreen {
                                 }
                             )
                             .focused($focusedGalleryIndex, equals: index)
-                            .onMoveCommand { direction in
-                                guard direction == .down else { return }
-                                requestDetailPanelFocus()
-                            }
                         }
                     }
                     .padding(.vertical, 4)

@@ -11,6 +11,8 @@ struct ConsoleListView: View {
     @Environment(ConsoleController.self) var consoleController
     @Environment(StreamController.self) var streamController
     var onRequestSideRailEntry: () -> Void = {}
+    var focusHandoffRequest: CloudLibraryFocusState.ContentFocusRequest? = nil
+    @State var consumedFocusHandoffGeneration: Int?
     @State var showingStream = false
     @State var selectedConsole: RemoteConsole?
     @State var showTroubleshootDetails = false
@@ -30,9 +32,11 @@ struct ConsoleListView: View {
     }
 
     init(
-        onRequestSideRailEntry: @escaping () -> Void = {}
+        onRequestSideRailEntry: @escaping () -> Void = {},
+        focusHandoffRequest: CloudLibraryFocusState.ContentFocusRequest? = nil
     ) {
         self.onRequestSideRailEntry = onRequestSideRailEntry
+        self.focusHandoffRequest = focusHandoffRequest
     }
 
     /// Mounts the console shell and presents the stream surface when a console launch is active.
@@ -43,9 +47,14 @@ struct ConsoleListView: View {
             .accessibilityHidden(shellVisibility.isAccessibilityHidden)
             .fullScreenCover(isPresented: $showingStream, onDismiss: handleStreamDismissed) {
                 if let console = selectedConsole {
-                    StreamControllerInputHost(onOverlayToggle: {
-                        streamController.requestOverlayToggle()
-                    }) {
+                    StreamControllerInputHost(
+                        onOverlayToggle: {
+                            streamController.requestOverlayToggle()
+                        },
+                        onMenuPress: {
+                            streamController.requestOverlayToggle()
+                        }
+                    ) {
                         StreamView(context: .home(console: console))
                     }
                     .ignoresSafeArea()
@@ -108,6 +117,9 @@ struct ConsoleListView: View {
         }
         .onChange(of: consoleIDs) { _, consoleIDs in
             handleConsoleIDsChange(consoleIDs)
+        }
+        .onChange(of: focusHandoffRequest) { _, _ in
+            consumeFocusHandoffIfNeeded()
         }
         .onMoveCommand { direction in
             NavigationPerformanceTracker.recordRemoteMoveStart(surface: "consoles", direction: direction)

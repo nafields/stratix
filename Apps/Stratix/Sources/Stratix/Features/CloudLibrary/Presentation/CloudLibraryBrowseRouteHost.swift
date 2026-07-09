@@ -13,14 +13,22 @@ struct CloudLibraryBrowseRouteHost: View {
     let presentation: CloudLibraryBrowseRoutePresentation
     let searchText: Binding<String>
     let actions: CloudLibraryBrowseRouteActions
+    var focusHandoffRequest: CloudLibraryFocusState.ContentFocusRequest? = nil
 
     var body: some View {
-        switch presentation.browseRoute {
-        case .consoles:
-            CloudLibraryConsolesView(onRequestSideRailEntry: actions.requestSideRailEntry)
-        case .home, .library, .search:
-            libraryContent
+        ZStack {
+            switch presentation.browseRoute {
+            case .consoles:
+                CloudLibraryConsolesView(
+                    onRequestSideRailEntry: actions.requestSideRailEntry,
+                    focusHandoffRequest: focusHandoffRequest
+                )
+            case .home, .library, .search:
+                libraryContent
+            }
         }
+        .animation(StratixTheme.Motion.routeTransition, value: presentation.browseRoute)
+        .animation(StratixTheme.Motion.routeTransition, value: presentation.loadState)
     }
 
     @ViewBuilder
@@ -95,7 +103,8 @@ struct CloudLibraryBrowseRouteHost: View {
             onRequestSideRailEntry: actions.requestSideRailEntry,
             onFocusTileID: actions.homeFocusTileID,
             onSettledTileID: actions.homeSettledTileID,
-            tileLookup: presentation.homeTileLookup
+            tileLookup: presentation.homeTileLookup,
+            focusHandoffRequest: focusHandoffRequest
         )
         .equatable()
         .modifier(RouteHomeRootAccessibilityModifier(isEnabled: shellBootstrapController.phase == .ready))
@@ -113,7 +122,8 @@ struct CloudLibraryBrowseRouteHost: View {
             onSelectFilter: actions.librarySelectFilter,
             onSelectSort: actions.librarySelectSort,
             onClearFilters: actions.libraryClearFilters,
-            onRequestSideRailEntry: actions.requestSideRailEntry
+            onRequestSideRailEntry: actions.requestSideRailEntry,
+            focusHandoffRequest: focusHandoffRequest
         )
         .equatable()
     }
@@ -129,7 +139,8 @@ struct CloudLibraryBrowseRouteHost: View {
             onClearQuery: actions.searchClearQuery,
             onSelectTile: actions.searchSelectTile,
             onFocusTileID: actions.searchFocusTileID,
-            onRequestSideRailEntry: actions.requestSideRailEntry
+            onRequestSideRailEntry: actions.requestSideRailEntry,
+            focusHandoffRequest: focusHandoffRequest
         )
         .equatable()
         .searchable(text: searchText, prompt: "Search cloud titles")

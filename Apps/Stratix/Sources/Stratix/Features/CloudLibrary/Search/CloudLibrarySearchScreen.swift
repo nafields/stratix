@@ -17,6 +17,7 @@ struct CloudLibrarySearchScreen: View, Equatable {
     let onSelectTile: (MediaTileViewState) -> Void
     var onFocusTileID: (TitleID?) -> Void = { _ in }
     var onRequestSideRailEntry: () -> Void = {}
+    var focusHandoffRequest: CloudLibraryFocusState.ContentFocusRequest? = nil
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     private enum SearchFocusTarget: Hashable {
@@ -27,6 +28,8 @@ struct CloudLibrarySearchScreen: View, Equatable {
     @State private var cachedGridColumnCount: Int = Self.defaultGridColumnCount
     @State private var cachedColumns: [GridItem] = Self.defaultColumns
     @State private var focusSettler = FocusSettleDebouncer()
+    @State private var pendingFocusTask: Task<Void, Never>?
+    @State private var consumedFocusHandoffGeneration: Int?
 
     private let gridItemWidth = StratixTheme.Search.gridItemWidth
     private let gridItemSpacing = StratixTheme.Search.gridItemSpacing
@@ -48,32 +51,46 @@ struct CloudLibrarySearchScreen: View, Equatable {
         ScrollViewReader { scrollProxy in
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: StratixTheme.Search.sectionSpacing) {
-                    if !trimmedQueryText.isEmpty {
-                        if resultItems.isEmpty {
+                    if trimmedQueryText.isEmpty {
+                        // Landing state: show the full catalog to browse instead of a blank screen.
+                        if browseItems.isEmpty {
                             CloudLibraryStatusPanel(
                                 state: .init(
                                     kind: .empty,
-                                    title: "No matches",
-                                    message: "No titles matched \"\(queryTextValue)\". Try shorter keywords.",
-                                    primaryActionTitle: "Clear Search"
-                                ),
-                                onPrimaryAction: onClearQuery
+                                    title: "Nothing to browse yet",
+                                    message: "Load your Game Pass library to browse and search cloud titles.",
+                                    primaryActionTitle: nil
+                                )
                             )
-                            .frame(height: 420)
+                            .frame(minHeight: 600)
                         } else {
-                            Text("\(resultItems.count) results")
-                                .font(StratixTypography.rounded(15, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
-                                .foregroundStyle(StratixTheme.Colors.textMuted)
-                                .padding(.horizontal, gridHorizontalPadding)
+                            sectionLabel("Browse all \(totalLibraryCount) titles")
 
-                            tileGrid(items: resultItems)
+                            tileGrid(items: browseItems)
                         }
+                    } else if resultItems.isEmpty {
+                        CloudLibraryStatusPanel(
+                            state: .init(
+                                kind: .empty,
+                                title: "No matches",
+                                message: "No titles matched \"\(queryTextValue)\". Try shorter keywords.",
+                                primaryActionTitle: "Clear Search"
+                            ),
+                            onPrimaryAction: onClearQuery
+                        )
+                        .frame(minHeight: 600)
+                    } else {
+                        sectionLabel(resultItems.count == 1 ? "1 result" : "\(resultItems.count) results")
+
+                        tileGrid(items: resultItems)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, StratixTheme.Search.contentTopPadding)
             }
             .accessibilityIdentifier("route_search_root")
             .scrollIndicators(.hidden)
+            .scrollClipDisabled()
             .gamePassDisableSystemFocusEffect()
             .onChange(of: focusedTarget) { _, target in
                 guard let target else {
@@ -101,12 +118,26 @@ struct CloudLibrarySearchScreen: View, Equatable {
                 }
             )
         }
+        .onAppear {
+            consumeFocusHandoffIfNeeded()
+        }
+        .onChange(of: focusHandoffRequest) { _, _ in
+            consumeFocusHandoffIfNeeded()
+        }
         .onDisappear {
             focusSettler.cancel()
+            pendingFocusTask?.cancel()
         }
     }
 
     // MARK: - Tile Grid
+
+    private func sectionLabel(_ text: String) -> some View {
+        Text(text)
+            .font(StratixTypography.rounded(20, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
+            .foregroundStyle(StratixTheme.Colors.textSecondary)
+            .padding(.horizontal, gridHorizontalPadding)
+    }
 
     @ViewBuilder
     private func tileGrid(items: [MediaTileViewState]) -> some View {
@@ -132,6 +163,33 @@ struct CloudLibrarySearchScreen: View, Equatable {
     }
 
     // MARK: - Focus management
+
+    /// Applies a pending shell focus hand-off exactly once per generation, landing on the
+    /// preferred (or first) visible tile when the shell asks Search to claim focus.
+    private func consumeFocusHandoffIfNeeded() {
+        guard let request = focusHandoffRequest,
+              request.route == .search,
+              request.generation != consumedFocusHandoffGeneration else { return }
+        consumedFocusHandoffGeneration = request.generation
+        requestPrimaryFocus()
+    }
+
+    private func requestPrimaryFocus() {
+        let visibleItems = trimmedQueryText.isEmpty ? browseItems : resultItems
+        guard !visibleItems.isEmpty else { return }
+        let targetTitleID: TitleID
+        if let preferredTitleID, visibleItems.contains(where: { $0.titleID == preferredTitleID }) {
+            targetTitleID = preferredTitleID
+        } else {
+            targetTitleID = visibleItems[0].titleID
+        }
+        pendingFocusTask?.cancel()
+        pendingFocusTask = Task { @MainActor in
+            await Task.yield()
+            guard !Task.isCancelled else { return }
+            focusedTarget = .tile(targetTitleID)
+        }
+    }
 
     private func scheduleFocusSettled(targetID: String) {
         focusSettler.schedule {
@@ -162,7 +220,8 @@ struct CloudLibrarySearchScreen: View, Equatable {
         lhs.browseItems == rhs.browseItems &&
         lhs.resultItems == rhs.resultItems &&
         lhs.tileLookup == rhs.tileLookup &&
-        lhs.preferredTitleID == rhs.preferredTitleID
+        lhs.preferredTitleID == rhs.preferredTitleID &&
+        lhs.focusHandoffRequest == rhs.focusHandoffRequest
     }
 
 }

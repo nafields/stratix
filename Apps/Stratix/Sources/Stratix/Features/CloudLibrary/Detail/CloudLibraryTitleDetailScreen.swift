@@ -23,13 +23,10 @@ struct CloudLibraryTitleDetailScreen: View, Equatable {
 
     @Environment(\.dismiss) var dismiss
     @State var galleryPresentation: GalleryPresentation?
-    @State var lastFocusedGalleryIndex: Int?
-    @State var lastFocusedDetailPanelID: String?
     @State var readiness = CloudLibraryTitleDetailReadinessState()
     @State var readinessTimeoutTask: Task<Void, Never>?
     @FocusState var focusedGalleryIndex: Int?
     @FocusState var focusedDetailPanelID: String?
-    @State var pendingFocusTask: Task<Void, Never>?
 
     let heroHeight = StratixTheme.Detail.heroHeight
     let heroPosterWidth = StratixTheme.Detail.heroPosterWidth
@@ -44,14 +41,13 @@ struct CloudLibraryTitleDetailScreen: View, Equatable {
     }
 
     var body: some View {
-        Group {
-            if interceptExitCommand {
-                detailBase
-                    .onExitCommand(perform: goBack)
-            } else {
-                detailBase
-            }
-        }
+        detailBase
+            .onExitCommand(perform: exitCommandAction)
+    }
+
+    private var exitCommandAction: (() -> Void)? {
+        guard interceptExitCommand else { return nil }
+        return { goBack() }
     }
 
     private var detailBase: some View {
@@ -81,16 +77,6 @@ struct CloudLibraryTitleDetailScreen: View, Equatable {
             readinessTimeoutTask?.cancel()
             readinessTimeoutTask = nil
         }
-        .onChange(of: focusedGalleryIndex) { _, newValue in
-            if let index = newValue {
-                lastFocusedGalleryIndex = index
-            }
-        }
-        .onChange(of: focusedDetailPanelID) { _, newValue in
-            if let panelID = newValue {
-                lastFocusedDetailPanelID = panelID
-            }
-        }
     }
 
     private var contentScroll: some View {
@@ -113,40 +99,6 @@ struct CloudLibraryTitleDetailScreen: View, Equatable {
         }
         .accessibilityIdentifier("route_detail_root")
         .scrollIndicators(.hidden)
-    }
-
-    func requestGalleryFocus() {
-        guard !state.gallery.isEmpty else { return }
-
-        let targetIndex = state.gallery.indices.contains(lastFocusedGalleryIndex ?? -1)
-            ? lastFocusedGalleryIndex ?? 0
-            : 0
-        scheduleFocusTask {
-            focusedGalleryIndex = targetIndex
-        }
-    }
-
-    func requestDetailPanelFocus() {
-        guard !state.detailPanels.isEmpty else { return }
-
-        let rememberedID = lastFocusedDetailPanelID
-        let targetID = state.detailPanels.contains(where: { $0.id == rememberedID })
-            ? rememberedID
-            : state.detailPanels.first?.id
-        guard let targetID else { return }
-
-        scheduleFocusTask {
-            focusedDetailPanelID = targetID
-        }
-    }
-
-    private func scheduleFocusTask(_ updateFocus: @escaping @MainActor () -> Void) {
-        pendingFocusTask?.cancel()
-        pendingFocusTask = Task { @MainActor in
-            await Task.yield()
-            guard !Task.isCancelled else { return }
-            updateFocus()
-        }
     }
 
     private func goBack() {

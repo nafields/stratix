@@ -11,7 +11,7 @@ extension CloudLibrarySettingsView {
 
             VStack(alignment: .leading, spacing: 12) {
                 Text("Settings")
-                    .font(StratixTypography.rounded(13, weight: .bold, dynamicTypeSize: dynamicTypeSize))
+                    .font(StratixTypography.rounded(15, weight: .bold, dynamicTypeSize: dynamicTypeSize))
                     .foregroundStyle(StratixTheme.Colors.textMuted)
                     .textCase(.uppercase)
 
@@ -25,10 +25,12 @@ extension CloudLibrarySettingsView {
                         selectedPane = pane
                     }
                     .focused($focusedPane, equals: pane)
-                    .defaultFocus($focusedPane, pane)
                     .onMoveCommand(perform: requestSideRailEntryOnLeft)
                 }
             }
+            // A single default-focus declaration pointing at the selected pane; declaring
+            // one per row made every pane claim default focus and left the engine to guess.
+            .defaultFocus($focusedPane, selectedPane)
 
             Spacer(minLength: 0)
 
@@ -66,13 +68,13 @@ extension CloudLibrarySettingsView {
                         .lineLimit(1)
 
                     Text(profileStatusText)
-                        .font(StratixTypography.rounded(13, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
+                        .font(StratixTypography.rounded(16, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
                         .foregroundStyle(StratixTheme.Colors.textSecondary)
                         .lineLimit(1)
 
                     if !profileStatusDetail.isEmpty {
                         Text(profileStatusDetail)
-                            .font(StratixTypography.rounded(12, weight: .medium, dynamicTypeSize: dynamicTypeSize))
+                            .font(StratixTypography.rounded(15, weight: .medium, dynamicTypeSize: dynamicTypeSize))
                             .foregroundStyle(StratixTheme.Colors.textMuted)
                             .fixedSize(horizontal: false, vertical: true)
                     }

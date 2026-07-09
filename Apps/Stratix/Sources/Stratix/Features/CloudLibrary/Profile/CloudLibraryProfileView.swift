@@ -91,7 +91,7 @@ struct CloudLibraryProfileView: View {
 
                     if !profileDetail.isEmpty {
                         Text(profileDetail)
-                            .font(StratixTypography.rounded(14, weight: .medium, dynamicTypeSize: dynamicTypeSize))
+                            .font(StratixTypography.rounded(17, weight: .medium, dynamicTypeSize: dynamicTypeSize))
                             .foregroundStyle(StratixTheme.Colors.textMuted)
                             .fixedSize(horizontal: false, vertical: true)
                     }

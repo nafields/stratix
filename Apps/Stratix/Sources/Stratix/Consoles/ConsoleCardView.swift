@@ -62,7 +62,7 @@ struct ConsoleCardView: View {
                             Spacer(minLength: 10)
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 18, weight: .bold))
-                                .foregroundStyle(Color.white.opacity(isFocused ? 0.95 : 0.45))
+                                .foregroundStyle(Color.white.opacity(isFocused ? 0.95 : 0.60))
                         }
                         .padding(.horizontal, 16)
                         .frame(maxWidth: .infinity, minHeight: 58, alignment: .leading)
@@ -156,7 +156,7 @@ struct ConsoleCardView: View {
             Text(text)
                 .lineLimit(1)
         }
-        .font(.system(size: 13, weight: .bold, design: .rounded))
+        .font(.system(size: 16, weight: .bold, design: .rounded))
         .foregroundStyle(foreground)
         .padding(.horizontal, 10)
         .padding(.vertical, 6)

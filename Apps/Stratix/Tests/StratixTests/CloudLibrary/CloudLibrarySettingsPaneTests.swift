@@ -25,11 +25,22 @@ final class CloudLibrarySettingsPaneTests: XCTestCase {
         XCTAssertEqual(
             CloudLibrarySettingsBindings.resolvedPane(
                 currentPane: .diagnostics,
-                storedRawValue: CloudLibrarySettingsPane.controller.rawValue,
+                storedRawValue: CloudLibrarySettingsPane.diagnostics.rawValue,
                 isAdvancedMode: false,
                 restoreStoredSelection: true
             ),
             .overview
+        )
+    }
+
+    func testVisibleCases_basicModeKeepsPlayerFacingPanes() {
+        XCTAssertEqual(
+            CloudLibrarySettingsPane.visibleCases(isAdvanced: false),
+            [.overview, .stream, .controller, .interface]
+        )
+        XCTAssertEqual(
+            CloudLibrarySettingsPane.visibleCases(isAdvanced: true),
+            CloudLibrarySettingsPane.allCases
         )
     }
 }

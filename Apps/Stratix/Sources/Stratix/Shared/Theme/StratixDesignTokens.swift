@@ -152,7 +152,7 @@ enum StratixTheme {
 
     enum Search {
         static let sectionSpacing: CGFloat = 24
-        static let contentTopPadding: CGFloat = 8
+        static let contentTopPadding: CGFloat = 24
         static let gridItemWidth: CGFloat = 252
         static let gridItemSpacing: CGFloat = 22
         static let gridHorizontalPadding: CGFloat = 16
@@ -181,8 +181,17 @@ enum StratixTheme {
         static let accent = Color(red: 0.36, green: 0.82, blue: 0.33)
         static let textPrimary = Color.white
         static let textSecondary = Color.white.opacity(0.75)
-        static let textMuted = Color.white.opacity(0.55)
+        static let textMuted = Color.white.opacity(0.65)
         static let warning = Color.orange
+    }
+
+    enum Motion {
+        /// Crossfade applied when the shell swaps browse routes, utility overlays, or load states.
+        static let routeTransition = Animation.easeInOut(duration: 0.22)
+        /// Shared duration for focus scale/ring feedback so cards and buttons move in step.
+        static let focusDuration: Double = 0.14
+        /// Shared curve for focus scale/ring feedback.
+        static let focus = Animation.easeOut(duration: focusDuration)
     }
 
     enum Fonts {

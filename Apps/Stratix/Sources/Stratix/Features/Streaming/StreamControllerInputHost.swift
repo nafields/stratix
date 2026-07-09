@@ -17,29 +17,46 @@ import GameController
 struct StreamControllerInputHost<Content: View>: UIViewControllerRepresentable {
     let content: Content
     let onOverlayToggle: (() -> Void)?
+    let onMenuPress: (() -> Void)?
 
-    init(onOverlayToggle: (() -> Void)? = nil, @ViewBuilder content: () -> Content) {
+    init(
+        onOverlayToggle: (() -> Void)? = nil,
+        onMenuPress: (() -> Void)? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
         self.onOverlayToggle = onOverlayToggle
+        self.onMenuPress = onMenuPress
         self.content = content()
     }
 
     func makeUIViewController(context: Context) -> StreamControllerInputViewController<Content> {
-        StreamControllerInputViewController(rootView: content, onOverlayToggle: onOverlayToggle)
+        StreamControllerInputViewController(
+            rootView: content,
+            onOverlayToggle: onOverlayToggle,
+            onMenuPress: onMenuPress
+        )
     }
 
     func updateUIViewController(_ uiViewController: StreamControllerInputViewController<Content>, context: Context) {
         uiViewController.hostingController.rootView = content
         uiViewController.onOverlayToggle = onOverlayToggle
+        uiViewController.onMenuPress = onMenuPress
     }
 }
 
 final class StreamControllerInputViewController<Content: View>: GCEventViewController {
     let hostingController: UIHostingController<Content>
     var onOverlayToggle: (() -> Void)?
+    var onMenuPress: (() -> Void)?
 
-    init(rootView: Content, onOverlayToggle: (() -> Void)? = nil) {
+    init(
+        rootView: Content,
+        onOverlayToggle: (() -> Void)? = nil,
+        onMenuPress: (() -> Void)? = nil
+    ) {
         self.hostingController = UIHostingController(rootView: rootView)
         self.onOverlayToggle = onOverlayToggle
+        self.onMenuPress = onMenuPress
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -89,7 +106,13 @@ final class StreamControllerInputViewController<Content: View>: GCEventViewContr
             onOverlayToggle?()
             return
         }
-        if shouldSwallowMenuPress(presses) { return }
+        if shouldSwallowMenuPress(presses) {
+            // Still swallow so tvOS never dismisses the stream cover, but give the
+            // Siri Remote's back button a job: surface (or hide) the stream overlay
+            // instead of silently doing nothing.
+            onMenuPress?()
+            return
+        }
         super.pressesEnded(presses, with: event)
     }
 
@@ -111,8 +134,13 @@ final class StreamControllerInputViewController<Content: View>: GCEventViewContr
 struct StreamControllerInputHost<Content: View>: View {
     let content: Content
 
-    init(onOverlayToggle: (() -> Void)? = nil, @ViewBuilder content: () -> Content) {
+    init(
+        onOverlayToggle: (() -> Void)? = nil,
+        onMenuPress: (() -> Void)? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
         _ = onOverlayToggle
+        _ = onMenuPress
         self.content = content()
     }
 

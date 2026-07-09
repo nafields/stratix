@@ -40,15 +40,15 @@ enum CloudLibrarySettingsPane: String, CaseIterable, Identifiable, Hashable, Sen
         case .overview:
             return "Overview"
         case .stream:
-            return "Cloud Stream Settings"
+            return "Streaming"
         case .controller:
             return "Controller"
         case .videoAudio:
-            return "Video / Audio"
+            return "Video & Audio"
         case .interface:
-            return "Interface / Accessibility"
+            return "Appearance"
         case .diagnostics:
-            return "Diagnostics / Advanced"
+            return "Advanced"
         }
     }
 
@@ -56,17 +56,17 @@ enum CloudLibrarySettingsPane: String, CaseIterable, Identifiable, Hashable, Sen
     var subtitle: String {
         switch self {
         case .overview:
-            return "Profile, quick actions, and shell status"
+            return "Your account, library status, and quick actions"
         case .stream:
-            return "Quality, codec, bitrate, latency, and stream overlay settings"
+            return "Streaming quality and performance"
         case .controller:
-            return "Input feel, mappings, deadzone, and sensitivity tuning"
+            return "Controller feel and button behavior"
         case .videoAudio:
-            return "Display and audio preferences modeled after the web client"
+            return "Picture and sound preferences"
         case .interface:
-            return "TV comfort and shell accessibility controls"
+            return "On-screen text, comfort, and accessibility"
         case .diagnostics:
-            return "Advanced diagnostics and debug toggles"
+            return "Debug tools and experimental options"
         }
     }
 
@@ -88,12 +88,14 @@ enum CloudLibrarySettingsPane: String, CaseIterable, Identifiable, Hashable, Sen
         }
     }
 
-    /// Filters the pane list for the simplified settings mode.
+    /// Filters the pane list for the simplified settings mode. Basic mode keeps the panes a
+    /// player actually reaches for (account, stream quality, controller feel, appearance);
+    /// video tuning and debug tooling stay behind Advanced.
     static func visibleCases(isAdvanced: Bool) -> [CloudLibrarySettingsPane] {
         if isAdvanced {
             return allCases
         }
-        return [.overview, .stream, .interface]
+        return [.overview, .stream, .controller, .interface]
     }
 }
 

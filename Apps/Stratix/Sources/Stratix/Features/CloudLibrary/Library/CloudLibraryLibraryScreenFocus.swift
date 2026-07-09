@@ -16,53 +16,14 @@ extension CloudLibraryLibraryScreen {
         return state.gridItems.first?.id
     }
 
-    func requestHeaderFocusFromSideRail(scrollProxy: ScrollViewProxy) {
-        if let remembered = lastFocusedHeaderTarget {
-            switch remembered {
-            case .tab(let id) where state.tabs.contains(where: { $0.id == id }):
-                requestHeaderFocus(.tab(id), scrollProxy: scrollProxy)
-                return
-            case .headerButton(let id) where id == "sort":
-                requestHeaderFocus(.headerButton(id), scrollProxy: scrollProxy)
-                return
-            case .headerButton(let id) where id == "sort" || id == "clear-filters":
-                focusedTarget = .headerButton(id)
-            case .headerButton(let id) where id == "clear-filters" && !state.activeFilterLabels.isEmpty:
-                requestHeaderFocus(.headerButton(id), scrollProxy: scrollProxy)
-                return
-            case .filter(let id) where state.filters.contains(where: { $0.id == id }):
-                requestHeaderFocus(.filter(id), scrollProxy: scrollProxy)
-                return
-            default:
-                break
-            }
-        }
-
-        if state.tabs.contains(where: { $0.id == state.selectedTabID }) {
-            requestHeaderFocus(.tab(state.selectedTabID), scrollProxy: scrollProxy)
-            return
-        }
-        if let firstTab = state.tabs.first {
-            requestHeaderFocus(.tab(firstTab.id), scrollProxy: scrollProxy)
-            return
-        }
-        if !state.sortLabel.isEmpty {
-            requestHeaderFocus(.headerButton("sort"), scrollProxy: scrollProxy)
-            return
-        }
+    /// Applies a pending shell focus hand-off exactly once per generation, restoring the
+    /// remembered (or preferred) grid tile when the shell asks Library to claim focus.
+    func consumeFocusHandoffIfNeeded(scrollProxy: ScrollViewProxy) {
+        guard let request = focusHandoffRequest,
+              request.route == .library,
+              request.generation != consumedFocusHandoffGeneration else { return }
+        consumedFocusHandoffGeneration = request.generation
         requestGridFocus(scrollProxy: scrollProxy)
-    }
-
-    func requestHeaderFocus(_ target: LibraryFocusTarget, scrollProxy: ScrollViewProxy) {
-        pendingFocusTask?.cancel()
-        pendingFocusTask = Task { @MainActor in
-            withAnimation(nil) {
-                scrollProxy.scrollTo(Self.headerAnchorID, anchor: .top)
-            }
-            await Task.yield()
-            guard !Task.isCancelled else { return }
-            focusedTarget = target
-        }
     }
 
     func requestGridFocus(scrollProxy: ScrollViewProxy, prefersFirstVisibleItem: Bool = false) {
@@ -95,10 +56,6 @@ extension CloudLibraryLibraryScreen {
             NavigationPerformanceTracker.recordFocusSettled(surface: "library", target: targetLabel)
             self.onSettledTileID(settledTitleID)
         }
-    }
-
-    func isTopGridRow(index: Int) -> Bool {
-        index < cachedGridColumnCount
     }
 
     func isLeadingGridColumn(index: Int) -> Bool {

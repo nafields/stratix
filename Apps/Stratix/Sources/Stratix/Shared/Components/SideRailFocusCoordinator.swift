@@ -104,9 +104,17 @@ extension SideRailNavigationView {
     }
 
     /// Expands the rail and schedules focus after the state change has been committed by SwiftUI.
+    /// Also claims focus when the rail was expanded externally (shell binding flipped before the
+    /// onChange fired) — otherwise the rail opens unfocused and the engine picks an arbitrary row.
     func expandRailAndFocusPreferredTarget() {
         guard !forceCollapsed else { return }
         guard !isRailExpanded else {
+            if focusedTarget == nil {
+                didExplicitlyEnterRail = true
+                scheduleRailFocus {
+                    focusedTarget = preferredEntryTarget
+                }
+            }
             onExpansionChanged?(true)
             return
         }

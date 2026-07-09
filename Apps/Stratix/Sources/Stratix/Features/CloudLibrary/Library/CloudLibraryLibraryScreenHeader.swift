@@ -20,10 +20,10 @@ extension CloudLibraryLibraryScreen {
                         .focused($focusedTarget, equals: .tab(tab.id))
                         .onMoveCommand { direction in
                             NavigationPerformanceTracker.recordRemoteMoveStart(surface: "library", direction: direction)
-                            if direction == .left {
+                            // Rail entry only from the leading tab; all other moves belong
+                            // to the focus engine so a single press never moves focus twice.
+                            if direction == .left, tab.id == state.tabs.first?.id {
                                 onRequestSideRailEntry()
-                            } else if direction == .down {
-                                requestGridFocus(scrollProxy: scrollProxy)
                             }
                         }
                     }
@@ -49,10 +49,9 @@ extension CloudLibraryLibraryScreen {
                     .focused($focusedTarget, equals: .headerButton("sort"))
                     .onMoveCommand { direction in
                         NavigationPerformanceTracker.recordRemoteMoveStart(surface: "library", direction: direction)
+                        // Sort is the leading focusable in its row, so left exits to the rail.
                         if direction == .left {
                             onRequestSideRailEntry()
-                        } else if direction == .down {
-                            requestGridFocus(scrollProxy: scrollProxy)
                         }
                     }
 
@@ -61,11 +60,6 @@ extension CloudLibraryLibraryScreen {
                         .focused($focusedTarget, equals: .headerButton("clear-filters"))
                         .onMoveCommand { direction in
                             NavigationPerformanceTracker.recordRemoteMoveStart(surface: "library", direction: direction)
-                            if direction == .left {
-                                onRequestSideRailEntry()
-                            } else if direction == .down {
-                                requestGridFocus(scrollProxy: scrollProxy)
-                            }
                         }
                 }
 
@@ -82,10 +76,8 @@ extension CloudLibraryLibraryScreen {
                             .focused($focusedTarget, equals: .filter(filter.id))
                             .onMoveCommand { direction in
                                 NavigationPerformanceTracker.recordRemoteMoveStart(surface: "library", direction: direction)
-                                if direction == .left {
+                                if direction == .left, filter.id == state.filters.first?.id {
                                     onRequestSideRailEntry()
-                                } else if direction == .down {
-                                    requestGridFocus(scrollProxy: scrollProxy)
                                 }
                             }
                         }

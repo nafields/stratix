@@ -55,6 +55,29 @@ final class CloudLibraryFocusStateTests: XCTestCase {
     }
 
     @MainActor
+    func testRequestTopContentFocusPublishesGenerationalRequest() {
+        let focusState = CloudLibraryFocusState()
+        XCTAssertNil(focusState.contentFocusRequest)
+
+        focusState.requestTopContentFocus(for: .home)
+        XCTAssertEqual(
+            focusState.contentFocusRequest,
+            CloudLibraryFocusState.ContentFocusRequest(route: .home, generation: 1)
+        )
+
+        focusState.requestTopContentFocus(for: .library)
+        XCTAssertEqual(
+            focusState.contentFocusRequest,
+            CloudLibraryFocusState.ContentFocusRequest(route: .library, generation: 2)
+        )
+
+        // Repeated requests for the same route still bump the generation so screens
+        // can consume each hand-off exactly once.
+        focusState.requestTopContentFocus(for: .library)
+        XCTAssertEqual(focusState.contentFocusRequest?.generation, 3)
+    }
+
+    @MainActor
     func testRequestUtilityFocusLeavesSideRailTokensUnchanged() {
         let focusState = CloudLibraryFocusState()
         focusState.isSideRailExpanded = true

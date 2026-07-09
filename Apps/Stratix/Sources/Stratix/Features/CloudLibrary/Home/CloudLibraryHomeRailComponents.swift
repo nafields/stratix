@@ -26,17 +26,17 @@ struct HomeShowAllCardButton: View {
                             .font(StratixTypography.rounded(26, weight: .bold, dynamicTypeSize: dynamicTypeSize))
                             .foregroundStyle(.white)
                         Text(card.label)
-                            .font(StratixTypography.rounded(16, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
-                            .foregroundStyle(Color.white.opacity(0.72))
+                            .font(StratixTypography.rounded(19, weight: .semibold, dynamicTypeSize: dynamicTypeSize))
+                            .foregroundStyle(Color.white.opacity(0.80))
                         Text("\(card.totalCount) games")
-                            .font(StratixTypography.rounded(14, weight: .medium, dynamicTypeSize: dynamicTypeSize))
-                            .foregroundStyle(Color.white.opacity(0.60))
+                            .font(StratixTypography.rounded(17, weight: .medium, dynamicTypeSize: dynamicTypeSize))
+                            .foregroundStyle(Color.white.opacity(0.65))
                     }
                     .padding(22)
                 }
                 .frame(width: StratixTheme.Home.railTileWidth, height: StratixTheme.Home.railTileHeight)
                 .scaleEffect(isFocused ? 1.04 : 1.0)
-                .animation(.easeInOut(duration: 0.13), value: isFocused)
+                .animation(StratixTheme.Motion.focus, value: isFocused)
                 .gamePassFocusRing(isFocused: isFocused, cornerRadius: StratixTheme.Radius.md)
             }
         }

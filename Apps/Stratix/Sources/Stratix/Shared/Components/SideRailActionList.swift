@@ -91,7 +91,7 @@ private struct SideRailActionButton: View {
                         )
                 )
                 .scaleEffect(isFocused ? 1.03 : 1.0)
-                .animation(.easeInOut(duration: 0.13), value: isFocused)
+                .animation(StratixTheme.Motion.focus, value: isFocused)
                 .gamePassFocusRing(isFocused: isFocused, cornerRadius: 14)
             }
         }

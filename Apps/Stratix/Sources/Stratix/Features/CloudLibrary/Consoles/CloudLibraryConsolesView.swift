@@ -7,9 +7,13 @@ import StratixCore
 
 struct CloudLibraryConsolesView: View {
     var onRequestSideRailEntry: () -> Void = {}
+    var focusHandoffRequest: CloudLibraryFocusState.ContentFocusRequest? = nil
 
     var body: some View {
-        ConsoleListView(onRequestSideRailEntry: onRequestSideRailEntry)
+        ConsoleListView(
+            onRequestSideRailEntry: onRequestSideRailEntry,
+            focusHandoffRequest: focusHandoffRequest
+        )
     }
 }
 

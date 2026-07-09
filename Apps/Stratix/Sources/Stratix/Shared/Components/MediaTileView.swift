@@ -13,20 +13,19 @@ func recordMediaTileMoveDirection(_ direction: MoveCommandDirection) {
 struct MediaTileView: View {
     let state: MediaTileViewState
     let onSelect: () -> Void
-    /// Allows specific callers to override the environment focus state when they need a
-    /// deterministic visual focus treatment during routing or restoration.
-    var forcedFocus: Bool? = nil
     var presentation: MediaTilePresentation = .standard
     var artworkOverrideSize: CGSize? = nil
 
-    private let focusScale: CGFloat = 1.0
-    private let titleBlockHeight: CGFloat = 46
-    private let subtitleBlockHeight: CGFloat = 22
+    private let focusScale: CGFloat = 1.05
+    private let titleBlockHeight: CGFloat = 56
+    private let subtitleBlockHeight: CGFloat = 24
 
     var body: some View {
         Button(action: onSelect) {
-            FocusAwareView { labelFocused in
-                let activeFocus = forcedFocus ?? labelFocused
+            // Environment focus is the single source of truth for the tile's visual state;
+            // a coordinator-driven override could disagree with the engine mid-transition
+            // and paint the ring on two tiles at once.
+            FocusAwareView { activeFocus in
 
                 VStack(alignment: .leading, spacing: 12) {
                     artworkView(activeFocus: activeFocus)
@@ -114,21 +113,22 @@ struct MediaTileView: View {
         }
         .frame(width: artworkSize.width, height: artworkSize.height)
         .scaleEffect(activeFocus ? focusScale : 1.0)
+        .animation(StratixTheme.Motion.focus, value: activeFocus)
     }
 
     /// Keeps title, subtitle, and caption heights stable so rows do not jump as focus changes.
     private func titleBlock(activeFocus: Bool) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(state.title)
-                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .font(.system(size: 22, weight: .semibold, design: .rounded))
                 .foregroundStyle(activeFocus ? Color.white : Color.white.opacity(0.92))
                 .lineLimit(2)
                 .frame(width: artworkSize.width, height: titleBlockHeight, alignment: .topLeading)
 
             if let subtitle = state.subtitle, !subtitle.isEmpty {
                 Text(subtitle)
-                    .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .foregroundStyle(Color.white.opacity(activeFocus ? 0.72 : 0.52))
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                    .foregroundStyle(Color.white.opacity(activeFocus ? 0.80 : 0.65))
                     .lineLimit(1)
                     .frame(width: artworkSize.width, height: subtitleBlockHeight, alignment: .topLeading)
             } else {
@@ -138,8 +138,8 @@ struct MediaTileView: View {
 
             if let caption = state.caption, !caption.isEmpty {
                 Text(caption)
-                    .font(.system(size: 13, weight: .regular, design: .rounded))
-                    .foregroundStyle(Color.white.opacity(activeFocus ? 0.52 : 0.36))
+                    .font(.system(size: 16, weight: .regular, design: .rounded))
+                    .foregroundStyle(Color.white.opacity(activeFocus ? 0.70 : 0.55))
                     .lineLimit(1)
                     .frame(width: artworkSize.width, alignment: .leading)
             }
@@ -154,7 +154,7 @@ struct MediaTileView: View {
         Color.black
         HStack(spacing: 24) {
             MediaTileView(state: CloudLibraryPreviewData.tileStates[0], onSelect: {})
-            MediaTileView(state: CloudLibraryPreviewData.tileStates[1], onSelect: {}, forcedFocus: true)
+            MediaTileView(state: CloudLibraryPreviewData.tileStates[1], onSelect: {})
         }
         .padding(60)
     }

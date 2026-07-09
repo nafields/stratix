@@ -96,7 +96,7 @@ struct FocusRingModifier: ViewModifier {
             .scaleEffect(isFocused ? focusScale : 1.0)
             .shadow(color: .black.opacity(isFocused ? 0.56 : 0.16), radius: isFocused ? 30 : 12, y: isFocused ? 18 : 6)
             .zIndex(isFocused ? 10 : 0)
-            .animation(reduceMotion ? nil : .easeOut(duration: 0.14), value: isFocused)
+            .animation(reduceMotion ? nil : StratixTheme.Motion.focus, value: isFocused)
     }
 }
 
