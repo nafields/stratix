@@ -67,13 +67,13 @@ struct CloudLibrarySidebarButton: View {
 
                     VStack(alignment: .leading, spacing: 3) {
                         Text(title)
-                            .font(StratixTypography.rounded(18, weight: .bold, dynamicTypeSize: dynamicTypeSize))
+                            .font(StratixTypography.rounded(20, weight: .bold, dynamicTypeSize: dynamicTypeSize))
                             .foregroundStyle(isSelected ? Color.black : StratixTheme.Colors.textPrimary)
                             .lineLimit(1)
 
                         if let subtitle, !subtitle.isEmpty {
                             Text(subtitle)
-                                .font(StratixTypography.rounded(12, weight: .medium, dynamicTypeSize: dynamicTypeSize))
+                                .font(StratixTypography.rounded(15, weight: .medium, dynamicTypeSize: dynamicTypeSize))
                                 .foregroundStyle(isSelected ? Color.black.opacity(0.72) : StratixTheme.Colors.textMuted)
                                 .lineLimit(2)
                         }
@@ -141,7 +141,7 @@ struct CloudLibrarySettingsActionButton: View {
         Button(action: action) {
             FocusAwareView { isFocused in
                 Label(title, systemImage: systemImage)
-                    .font(StratixTypography.rounded(16, weight: .bold, dynamicTypeSize: dynamicTypeSize))
+                    .font(StratixTypography.rounded(18, weight: .bold, dynamicTypeSize: dynamicTypeSize))
                     .foregroundStyle(foreground(isFocused: isFocused))
                     .frame(maxWidth: .infinity, minHeight: 56, alignment: .leading)
                     .padding(.horizontal, 16)
@@ -178,7 +178,7 @@ struct CloudLibraryStatPill: View {
 
     var body: some View {
         Label(text, systemImage: icon)
-            .font(StratixTypography.rounded(13, weight: .bold, dynamicTypeSize: dynamicTypeSize))
+            .font(StratixTypography.rounded(16, weight: .bold, dynamicTypeSize: dynamicTypeSize))
             .foregroundStyle(StratixTheme.Colors.textSecondary)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
@@ -200,7 +200,7 @@ struct CloudLibraryStatLine: View {
                 .frame(width: 20)
 
             Text(text)
-                .font(StratixTypography.rounded(15, weight: .medium, dynamicTypeSize: dynamicTypeSize))
+                .font(StratixTypography.rounded(18, weight: .medium, dynamicTypeSize: dynamicTypeSize))
                 .foregroundStyle(StratixTheme.Colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -223,7 +223,7 @@ struct CloudLibraryToggleRow: View {
 
                 if let subtitle, !subtitle.isEmpty {
                     Text(subtitle)
-                        .font(StratixTypography.rounded(13, weight: .medium, dynamicTypeSize: dynamicTypeSize))
+                        .font(StratixTypography.rounded(16, weight: .medium, dynamicTypeSize: dynamicTypeSize))
                         .foregroundStyle(StratixTheme.Colors.textMuted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -281,7 +281,7 @@ struct CloudLibrarySliderRow: View {
                 Spacer()
 
                 Text(formatter(value))
-                    .font(StratixTypography.rounded(14, weight: .bold, dynamicTypeSize: dynamicTypeSize))
+                    .font(StratixTypography.rounded(17, weight: .bold, dynamicTypeSize: dynamicTypeSize))
                     .foregroundStyle(StratixTheme.Colors.focusTint)
                     .monospacedDigit()
             }
@@ -365,7 +365,7 @@ struct CloudLibrarySettingTag: View {
 
     var body: some View {
         Text(text)
-            .font(StratixTypography.rounded(10, weight: .bold, dynamicTypeSize: dynamicTypeSize))
+            .font(StratixTypography.rounded(13, weight: .bold, dynamicTypeSize: dynamicTypeSize))
             .foregroundStyle(StratixTheme.Colors.textSecondary)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)

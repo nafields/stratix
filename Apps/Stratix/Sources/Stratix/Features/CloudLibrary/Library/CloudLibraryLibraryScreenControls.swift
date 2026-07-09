@@ -65,7 +65,7 @@ struct LibraryTabButton: View {
                         .fill(isSelected ? StratixTheme.Colors.focusTint : Color.white.opacity(isFocused ? 0.34 : 0.12))
                         .frame(width: isSelected ? 120 : 54, height: 5)
                 }
-                .animation(.easeOut(duration: 0.14), value: isFocused)
+                .animation(StratixTheme.Motion.focus, value: isFocused)
                 .gamePassFocusRing(isFocused: isFocused, cornerRadius: 22)
             }
         }

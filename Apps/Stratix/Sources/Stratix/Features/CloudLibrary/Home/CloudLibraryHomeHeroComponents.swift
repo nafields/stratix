@@ -176,7 +176,7 @@ struct CarouselCTAButton: View {
                         )
                 )
                 .scaleEffect(isFocused ? 1.05 : 1.0)
-                .animation(.easeInOut(duration: 0.13), value: isFocused)
+                .animation(StratixTheme.Motion.focus, value: isFocused)
                 .gamePassFocusRing(isFocused: isFocused, cornerRadius: 30)
                 .zIndex(isFocused ? 10 : 0)
             }

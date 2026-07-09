@@ -77,10 +77,10 @@ struct MetadataChip: View {
         HStack(spacing: 8) {
             if let systemImage = chip.systemImage {
                 Image(systemName: systemImage)
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.system(size: 14, weight: .bold))
             }
             Text(chip.label)
-                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .font(.system(size: 17, weight: .semibold, design: .rounded))
         }
         .foregroundStyle(chip.style == .accent ? StratixTheme.Colors.focusTint : StratixTheme.Colors.textPrimary)
         .padding(.horizontal, 12)

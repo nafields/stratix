@@ -18,6 +18,7 @@ struct CloudLibraryLibraryScreen: View, Equatable {
     var onSelectSort: () -> Void = {}
     var onClearFilters: () -> Void = {}
     var onRequestSideRailEntry: () -> Void = {}
+    var focusHandoffRequest: CloudLibraryFocusState.ContentFocusRequest? = nil
 
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @Namespace var gridFocusNamespace
@@ -30,11 +31,11 @@ struct CloudLibraryLibraryScreen: View, Equatable {
 
     @FocusState var focusedTarget: LibraryFocusTarget?
     @State var lastFocusedGridTitleID: TitleID?
-    @State var lastFocusedHeaderTarget: LibraryFocusTarget?
     @State var cachedGridColumnCount: Int = Self.defaultGridColumnCount
     @State var cachedColumns: [GridItem] = Self.defaultColumns
     @State var focusSettler = FocusSettleDebouncer()
     @State var pendingFocusTask: Task<Void, Never>?
+    @State var consumedFocusHandoffGeneration: Int?
 
     let gridItemWidth = StratixTheme.Library.gridItemWidth
     let gridItemSpacing = StratixTheme.Library.gridItemSpacing
@@ -64,7 +65,7 @@ struct CloudLibraryLibraryScreen: View, Equatable {
                                 primaryActionTitle: nil
                             )
                         )
-                        .frame(height: 480)
+                        .frame(minHeight: 600)
                     } else {
                         LazyVGrid(columns: cachedColumns, alignment: .leading, spacing: StratixTheme.Library.gridItemSpacing) {
                             ForEach(Array(state.gridItems.enumerated()), id: \.element.id) { index, item in
@@ -72,18 +73,17 @@ struct CloudLibraryLibraryScreen: View, Equatable {
                                     state: item,
                                     onSelect: {
                                         onSelectTile(item)
-                                    },
-                                    forcedFocus: focusedTarget == .tile(item.titleID)
+                                    }
                                 )
                                 .focused($focusedTarget, equals: .tile(item.titleID))
                                 .prefersDefaultFocus(item.id == defaultGridFocusTileID, in: gridFocusNamespace)
                                 .onMoveCommand { direction in
                                     NavigationPerformanceTracker.recordRemoteMoveStart(surface: "library", direction: direction)
                                     recordMediaTileMoveDirection(direction)
+                                    // Rail entry is the only move the engine can't resolve here;
+                                    // vertical moves to the header belong to the focus engine.
                                     if direction == .left, isLeadingGridColumn(index: index) {
                                         onRequestSideRailEntry()
-                                    } else if direction == .up, isTopGridRow(index: index) {
-                                        requestHeaderFocusFromSideRail(scrollProxy: scrollProxy)
                                     }
                                 }
                                 .id(item.id)
@@ -119,17 +119,14 @@ struct CloudLibraryLibraryScreen: View, Equatable {
                     onFocusTileID(titleID)
                     scheduleFocusSettled(targetLabel: titleID.rawValue, settledTitleID: titleID)
                 case .tab(let id):
-                    lastFocusedHeaderTarget = target
                     onFocusTileID(nil)
                     NavigationPerformanceTracker.recordFocusTarget(surface: "library", target: "tab:\(id)")
                     scheduleFocusSettled(targetLabel: "tab:\(id)", settledTitleID: nil)
                 case .headerButton(let id):
-                    lastFocusedHeaderTarget = target
                     onFocusTileID(nil)
                     NavigationPerformanceTracker.recordFocusTarget(surface: "library", target: "header:\(id)")
                     scheduleFocusSettled(targetLabel: "header:\(id)", settledTitleID: nil)
                 case .filter(let id):
-                    lastFocusedHeaderTarget = target
                     onFocusTileID(nil)
                     NavigationPerformanceTracker.recordFocusTarget(surface: "library", target: "filter:\(id)")
                     scheduleFocusSettled(targetLabel: "filter:\(id)", settledTitleID: nil)
@@ -142,6 +139,12 @@ struct CloudLibraryLibraryScreen: View, Equatable {
             .onChange(of: state.selectedTabID) { _, _ in
                 // Tab switch changes which items are visible — reset grid focus.
                 lastFocusedGridTitleID = nil
+            }
+            .onAppear {
+                consumeFocusHandoffIfNeeded(scrollProxy: scrollProxy)
+            }
+            .onChange(of: focusHandoffRequest) { _, _ in
+                consumeFocusHandoffIfNeeded(scrollProxy: scrollProxy)
             }
 
             .background(
@@ -164,7 +167,8 @@ struct CloudLibraryLibraryScreen: View, Equatable {
     nonisolated static func == (lhs: CloudLibraryLibraryScreen, rhs: CloudLibraryLibraryScreen) -> Bool {
         lhs.state == rhs.state &&
         lhs.tileLookup == rhs.tileLookup &&
-        lhs.preferredTitleID == rhs.preferredTitleID
+        lhs.preferredTitleID == rhs.preferredTitleID &&
+        lhs.focusHandoffRequest == rhs.focusHandoffRequest
     }
 }
 

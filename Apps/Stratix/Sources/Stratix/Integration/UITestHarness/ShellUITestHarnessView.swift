@@ -91,9 +91,15 @@ struct ShellUITestHarnessView: View {
         ).shouldConsumeBackEvent
     }
 
+    /// Optional so back-consumption can toggle without changing the view tree's structure.
+    private var exitCommandAction: (() -> Void)? {
+        guard shouldConsumeBackEvent else { return nil }
+        return { handleLocalBack() }
+    }
+
     var body: some View {
         shellScaffold
-            .applyExitCommandIfNeeded(shouldConsumeBackEvent, perform: handleLocalBack)
+            .onExitCommand(perform: exitCommandAction)
             .onPlayPauseCommand {
                 handleSettingsShortcut()
             }
@@ -447,17 +453,6 @@ private struct ShellUITestStreamOverlay: View {
                 await Task.yield()
                 isStopFocused = true
             }
-        }
-    }
-}
-
-private extension View {
-    @ViewBuilder
-    func applyExitCommandIfNeeded(_ enabled: Bool, perform action: @escaping () -> Void) -> some View {
-        if enabled {
-            onExitCommand(perform: action)
-        } else {
-            self
         }
     }
 }

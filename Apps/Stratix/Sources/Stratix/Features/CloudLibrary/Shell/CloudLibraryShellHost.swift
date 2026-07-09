@@ -51,14 +51,21 @@ struct CloudLibraryShellHost: View {
     }
 
     /// Mounts the hosted shell and applies shell-level remote-command handlers.
+    /// The exit handler is passed as an optional closure so toggling back-consumption
+    /// never changes the shell's structural identity (a conditional modifier branch
+    /// would rebuild the whole subtree and drop focus/scroll state).
     var body: some View {
         hostedShell
-            .applyExitCommandIfNeeded(shouldConsumeBackEvent) {
-                handleBack()
-            }
+            .onExitCommand(perform: exitCommandAction)
             .onPlayPauseCommand {
                 handleSettingsShortcut()
             }
+    }
+
+    /// Optional so back-consumption can toggle without changing the view tree's structure.
+    private var exitCommandAction: (() -> Void)? {
+        guard shouldConsumeBackEvent else { return nil }
+        return { handleBack() }
     }
 
     /// Builds the shell container and schedules presentation rebuild tasks off the current route state.
@@ -129,6 +136,7 @@ struct CloudLibraryShellHost: View {
             browsePresentation: presentationStore.browseRoutePresentation,
             searchText: queryState.searchText,
             browseActions: browseActions,
+            contentFocusRequest: focusState.contentFocusRequest,
             detailPath: detailPathBinding,
             detailOriginRoute: routeState.browseRouteToAppRoute(routeState.browseRoute),
             viewModel: viewModel,
@@ -463,15 +471,4 @@ enum CloudLibraryShellContentMode: Equatable {
     case browse
     case utility
     case detail
-}
-
-private extension View {
-    @ViewBuilder
-    func applyExitCommandIfNeeded(_ enabled: Bool, perform action: @escaping () -> Void) -> some View {
-        if enabled {
-            onExitCommand(perform: action)
-        } else {
-            self
-        }
-    }
 }

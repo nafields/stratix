@@ -87,6 +87,7 @@ struct CloudLibrarySettingsView: View {
                     }
                 }
                 .padding(28)
+                .animation(StratixTheme.Motion.routeTransition, value: selectedPane)
             }
             .frame(maxWidth: 1510, alignment: .topLeading)
         }
@@ -114,7 +115,7 @@ struct CloudLibrarySettingsView: View {
             }
 
             Text(selectedPane.subtitle)
-                .font(StratixTypography.rounded(15, weight: .medium, dynamicTypeSize: dynamicTypeSize))
+                .font(StratixTypography.rounded(18, weight: .medium, dynamicTypeSize: dynamicTypeSize))
                 .foregroundStyle(StratixTheme.Colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
 

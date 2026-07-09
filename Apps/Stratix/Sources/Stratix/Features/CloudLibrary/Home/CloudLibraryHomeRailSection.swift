@@ -20,10 +20,6 @@ extension CloudLibraryHomeScreen {
                             MediaTileView(
                                 state: titleItem.tile,
                                 onSelect: { onSelectRailItem(item) },
-                                forcedFocus: focusedTarget == .titleTile(
-                                    titleItem.tile.titleID,
-                                    sectionID: section.id
-                                ),
                                 presentation: .artworkOnly,
                                 artworkOverrideSize: CGSize(
                                     width: StratixTheme.Home.railTileWidth,

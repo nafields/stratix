@@ -18,10 +18,6 @@ extension CloudLibraryTitleDetailScreen {
                 ForEach(state.detailPanels) { panel in
                     DetailPanelCardView(panel: panel)
                         .focused($focusedDetailPanelID, equals: panel.id)
-                        .onMoveCommand { direction in
-                            guard direction == .up else { return }
-                            requestGalleryFocus()
-                        }
                 }
             }
             .focusSection()
@@ -37,11 +33,11 @@ private struct DetailPanelCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(panel.title)
-                .font(.system(size: 18, weight: .bold, design: .rounded))
+                .font(.system(size: 21, weight: .bold, design: .rounded))
                 .foregroundStyle(StratixTheme.Colors.textPrimary)
 
             Text(panel.body)
-                .font(.system(size: 15, weight: .medium, design: .rounded))
+                .font(.system(size: 18, weight: .medium, design: .rounded))
                 .foregroundStyle(StratixTheme.Colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }

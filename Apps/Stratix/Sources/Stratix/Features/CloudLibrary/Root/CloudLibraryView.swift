@@ -52,9 +52,14 @@ struct CloudLibraryView: View {
     var body: some View {
         mountedShell
         .fullScreenCover(item: $activeStreamContext, onDismiss: handleActiveStreamDismissed) { ctx in
-            StreamControllerInputHost(onOverlayToggle: {
-                streamController.requestOverlayToggle()
-            }) {
+            StreamControllerInputHost(
+                onOverlayToggle: {
+                    streamController.requestOverlayToggle()
+                },
+                onMenuPress: {
+                    streamController.requestOverlayToggle()
+                }
+            ) {
                 StreamView(context: ctx)
             }
             .ignoresSafeArea()
@@ -110,6 +115,7 @@ struct CloudLibraryView: View {
             }
         )
         .opacity(visibility.opacity)
+        .animation(StratixTheme.Motion.routeTransition, value: visibility)
         .allowsHitTesting(visibility.allowsHitTesting)
         .accessibilityHidden(visibility.isAccessibilityHidden)
         .overlay(alignment: .topLeading) {

@@ -38,6 +38,15 @@ extension CloudLibraryHomeScreen {
         case showAllCard(String)
     }
 
+    var isHeroFocused: Bool {
+        focusedTarget == .carouselPlay || focusedTarget == .carouselDetails
+    }
+
+    /// Restarts the auto-advance timer whenever the page changes or hero focus toggles.
+    var carouselAutoAdvanceTaskID: String {
+        "\(carouselIndex)-\(isHeroFocused)"
+    }
+
     var currentCarouselItem: CloudLibraryHomeCarouselItemViewState? {
         guard !state.carouselItems.isEmpty else { return nil }
         let clamped = max(0, min(carouselIndex, state.carouselItems.count - 1))
@@ -83,6 +92,16 @@ extension CloudLibraryHomeScreen {
             scheduleFocusSettled(targetLabel: cardID, titleID: nil)
             NavigationPerformanceTracker.recordFocusTarget(surface: "home", target: cardID)
         }
+    }
+
+    /// Applies a pending shell focus hand-off exactly once per generation so a stale
+    /// request never yanks focus after a detail pop or unrelated re-render.
+    func consumeFocusHandoffIfNeeded() {
+        guard let request = focusHandoffRequest,
+              request.route == .home,
+              request.generation != consumedFocusHandoffGeneration else { return }
+        consumedFocusHandoffGeneration = request.generation
+        requestFocusFromSideRail()
     }
 
     func requestFocusFromSideRail() {
@@ -179,6 +198,9 @@ extension CloudLibraryHomeScreen {
         carouselIndex = clamped
     }
 
+    /// Handles only the moves the focus engine cannot resolve itself (carousel paging and
+    /// side-rail entry at the leading edge). Right/down moves belong to the engine — issuing
+    /// a second, imperative focus change for them made focus visibly jump per press.
     func handlePlayButtonMove(_ direction: MoveCommandDirection) {
         switch direction {
         case .left:
@@ -187,10 +209,6 @@ extension CloudLibraryHomeScreen {
             } else {
                 onRequestSideRailEntry()
             }
-        case .right:
-            focusedTarget = .carouselDetails
-        case .down:
-            _ = requestFirstRailFocus()
         default:
             break
         }
@@ -198,12 +216,8 @@ extension CloudLibraryHomeScreen {
 
     func handleDetailsButtonMove(_ direction: MoveCommandDirection) {
         switch direction {
-        case .left:
-            focusedTarget = .carouselPlay
         case .right:
             moveCarousel(by: 1)
-        case .down:
-            _ = requestFirstRailFocus()
         default:
             break
         }
@@ -212,13 +226,8 @@ extension CloudLibraryHomeScreen {
     func handleRailMove(sectionIndex: Int, itemIndex: Int, direction: MoveCommandDirection) {
         recordMediaTileMoveDirection(direction)
 
-        guard !(direction == .left && itemIndex == 0) else {
-            onRequestSideRailEntry()
-            return
-        }
-
-        guard direction == .up, sectionIndex == 0 else { return }
-        focusedTarget = .carouselPlay
+        guard direction == .left, itemIndex == 0 else { return }
+        onRequestSideRailEntry()
     }
 
     func logHomeScreenDebug(_ message: @autoclosure () -> String) {

@@ -15,6 +15,7 @@ struct CloudLibraryHomeScreen: View, Equatable {
     var onFocusTileID: (TitleID?) -> Void = { _ in }
     var onSettledTileID: (TitleID?) -> Void = { _ in }
     var tileLookup: [TitleID: TileLookupEntry] = [:]
+    var focusHandoffRequest: CloudLibraryFocusState.ContentFocusRequest? = nil
 
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @FocusState var focusedTarget: HomeFocusTarget?
@@ -23,6 +24,7 @@ struct CloudLibraryHomeScreen: View, Equatable {
     @State var carouselIndex = 0
     @State private var scrollAnchorID: String?
     @State var pendingFocusTask: Task<Void, Never>?
+    @State var consumedFocusHandoffGeneration: Int?
 
     let tileFocusScale: CGFloat = StratixTheme.Home.tileFocusScale
     let tileFocusBreathing: CGFloat = StratixTheme.Home.tileFocusBreathing
@@ -33,7 +35,8 @@ struct CloudLibraryHomeScreen: View, Equatable {
     nonisolated static func == (lhs: CloudLibraryHomeScreen, rhs: CloudLibraryHomeScreen) -> Bool {
         lhs.state == rhs.state &&
         lhs.preferredTitleID == rhs.preferredTitleID &&
-        lhs.tileLookup == rhs.tileLookup
+        lhs.tileLookup == rhs.tileLookup &&
+        lhs.focusHandoffRequest == rhs.focusHandoffRequest
     }
 
     var body: some View {
@@ -56,7 +59,7 @@ struct CloudLibraryHomeScreen: View, Equatable {
                                     primaryActionTitle: nil
                                 )
                             )
-                            .frame(height: 600)
+                            .frame(minHeight: 600)
                         } else {
                             ForEach(Array(state.sections.enumerated()), id: \.element.id) { sectionIndex, section in
                                 rail(section: section, sectionIndex: sectionIndex)
@@ -72,15 +75,21 @@ struct CloudLibraryHomeScreen: View, Equatable {
         .scrollPosition(id: $scrollAnchorID)
         .scrollIndicators(.hidden)
         .gamePassDisableSystemFocusEffect()
-        .task(id: carouselIndex) {
-            guard state.carouselItems.count > 1 else { return }
-            try? await Task.sleep(for: .seconds(5))
+        .task(id: carouselAutoAdvanceTaskID) {
+            // Auto-advance pauses while the hero buttons are focused so the content the
+            // user is about to select never swaps out from under them.
+            guard state.carouselItems.count > 1, !isHeroFocused else { return }
+            try? await Task.sleep(for: .seconds(8))
             guard !Task.isCancelled else { return }
             moveCarousel(by: 1)
         }
         .onAppear {
             logHomeScreenDebug("appear \(stateSummary())")
             syncCarouselIndexIfNeeded()
+            consumeFocusHandoffIfNeeded()
+        }
+        .onChange(of: focusHandoffRequest) { _, _ in
+            consumeFocusHandoffIfNeeded()
         }
         .onDisappear {
             focusSettler.cancel()

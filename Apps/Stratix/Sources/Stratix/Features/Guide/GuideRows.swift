@@ -431,7 +431,7 @@ private struct GuideCompactFocusModifier: ViewModifier {
             .scaleEffect(isFocused ? focusScale : 1.0)
             .shadow(color: .black.opacity(isFocused ? 0.34 : 0.10), radius: isFocused ? 16 : 6, y: isFocused ? 8 : 3)
             .zIndex(isFocused ? 10 : 0)
-            .animation(reduceMotion ? nil : .easeOut(duration: 0.14), value: isFocused)
+            .animation(reduceMotion ? nil : StratixTheme.Motion.focus, value: isFocused)
     }
 }
 

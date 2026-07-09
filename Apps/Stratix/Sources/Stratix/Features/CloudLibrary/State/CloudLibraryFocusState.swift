@@ -9,11 +9,20 @@ import StratixModels
 @MainActor
 /// Stores shell-owned focus facts that survive route rebuilds and feed hero/background restoration.
 final class CloudLibraryFocusState {
+    /// A shell-issued request for a content surface to claim focus. Screens consume the
+    /// request by generation so a stale request is never re-applied after a detail pop.
+    /// Nonisolated so screen Equatable conformances can compare requests off the main actor.
+    nonisolated struct ContentFocusRequest: Equatable, Sendable {
+        let route: CloudLibraryBrowseRoute
+        let generation: Int
+    }
+
     var focusedTileIDsByRoute: [CloudLibraryBrowseRoute: TitleID] = [:]
     var settledHomeHeroTileID: TitleID?
     var settledLibraryHeroTileID: TitleID?
     var isSideRailExpanded = false
     var hasRequestedInitialContentFocus = false
+    private(set) var contentFocusRequest: ContentFocusRequest?
 
     /// Returns the last focused title for the given browse route when one exists.
     func focusedTileID(for route: CloudLibraryBrowseRoute) -> TitleID? {
@@ -49,9 +58,14 @@ final class CloudLibraryFocusState {
         }
     }
 
-    /// Exists as the shell-facing content-focus hook even when the underlying focus path is framework-owned.
+    /// Asks the active browse surface to claim focus (side-rail hand-off, back navigation,
+    /// stream dismissal, bootstrap). Each call bumps the generation so screens can tell a
+    /// fresh request from one they already consumed.
     func requestTopContentFocus(for route: CloudLibraryBrowseRoute) {
-        _ = route
+        contentFocusRequest = ContentFocusRequest(
+            route: route,
+            generation: (contentFocusRequest?.generation ?? 0) + 1
+        )
     }
 
     /// Exists as the shell-facing utility-focus hook even when the utility surface owns the concrete focus move.

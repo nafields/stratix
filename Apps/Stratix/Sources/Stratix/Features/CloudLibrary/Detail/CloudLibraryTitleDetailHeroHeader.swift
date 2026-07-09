@@ -68,9 +68,9 @@ extension CloudLibraryTitleDetailScreen {
                     if let contextLabel = state.contextLabel, !contextLabel.isEmpty {
                         HStack(spacing: 8) {
                             Image(systemName: "location.fill")
-                                .font(.system(size: 12, weight: .bold))
+                                .font(.system(size: 14, weight: .bold))
                             Text(contextLabel)
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .font(.system(size: 17, weight: .bold, design: .rounded))
                                 .lineLimit(1)
                         }
                         .foregroundStyle(StratixTheme.Colors.textMuted)
@@ -85,7 +85,7 @@ extension CloudLibraryTitleDetailScreen {
 
                     if let subtitle = state.subtitle, !subtitle.isEmpty {
                         Text(subtitle)
-                            .font(.system(size: 19, weight: .semibold, design: .rounded))
+                            .font(.system(size: 22, weight: .semibold, design: .rounded))
                             .foregroundStyle(StratixTheme.Colors.textSecondary)
                             .lineLimit(2)
                             .frame(maxWidth: textMaxWidth, alignment: .leading)
@@ -93,9 +93,9 @@ extension CloudLibraryTitleDetailScreen {
 
                     if let descriptionText = state.descriptionText, !descriptionText.isEmpty {
                         Text(descriptionText)
-                            .font(.system(size: 17, weight: .medium, design: .rounded))
+                            .font(.system(size: 20, weight: .medium, design: .rounded))
                             .foregroundStyle(StratixTheme.Colors.textSecondary)
-                            .lineLimit(3)
+                            .lineLimit(2)
                             .frame(maxWidth: textMaxWidth, alignment: .leading)
                     }
 
@@ -107,9 +107,9 @@ extension CloudLibraryTitleDetailScreen {
                     if let gallerySummaryText {
                         HStack(spacing: 10) {
                             Image(systemName: "photo.on.rectangle.angled")
-                                .font(.system(size: 13, weight: .bold))
+                                .font(.system(size: 15, weight: .bold))
                             Text(gallerySummaryText)
-                                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                .font(.system(size: 17, weight: .semibold, design: .rounded))
                                 .lineLimit(1)
                         }
                         .foregroundStyle(StratixTheme.Colors.textMuted)
@@ -118,9 +118,9 @@ extension CloudLibraryTitleDetailScreen {
                     if let achievementSummaryText {
                         HStack(spacing: 10) {
                             Image(systemName: "rosette")
-                                .font(.system(size: 13, weight: .bold))
+                                .font(.system(size: 15, weight: .bold))
                             Text(achievementSummaryText)
-                                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                .font(.system(size: 17, weight: .semibold, design: .rounded))
                                 .lineLimit(1)
                         }
                         .foregroundStyle(StratixTheme.Colors.textMuted)
@@ -241,7 +241,7 @@ extension CloudLibraryTitleDetailScreen {
         GlassCard(cornerRadius: 20, fill: Color.black.opacity(0.34), stroke: Color.white.opacity(0.12), shadowOpacity: 0.15) {
             VStack(alignment: .leading, spacing: 12) {
                 Text("Rating & info")
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(StratixTheme.Colors.textPrimary)
 
                 if let rating = state.ratingText, !rating.isEmpty {
@@ -252,7 +252,7 @@ extension CloudLibraryTitleDetailScreen {
 
                 if let legal = state.legalText, !legal.isEmpty {
                     Text(legal)
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(StratixTheme.Colors.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
