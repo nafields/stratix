@@ -88,7 +88,7 @@ extension MetalVideoRenderer {
 
         let presentationTexture: MTLTexture
 #if canImport(MetalFX)
-        if let spatialScaler, let spatialScalerOutputTexture {
+        if #available(tvOS 27.1, *), let spatialScaler, let spatialScalerOutputTexture {
             spatialScaler.colorTexture = outputTexture
             spatialScaler.outputTexture = spatialScalerOutputTexture
             spatialScaler.encode(commandBuffer: commandBuffer)

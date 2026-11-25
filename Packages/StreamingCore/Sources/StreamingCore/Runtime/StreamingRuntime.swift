@@ -126,7 +126,15 @@ actor StreamingRuntime {
                     )
                 }
             } else {
-                try await streamSession.waitUntilReady()
+                // xHome sessions go Provisioning -> Provisioned without passing through
+                // ReadyToConnect, so accept either; if the server does ask for the
+                // /connect auth step, perform it the same way the cloud path does.
+                let initialHomeState = try await streamSession.waitUntilReadyOrProvisioned()
+                if initialHomeState == .readyToConnect,
+                   let connectUserToken = msaUserToken, !connectUserToken.isEmpty {
+                    try await streamSession.sendMSALAuth(userToken: connectUserToken)
+                    try await streamSession.waitUntilProvisioned()
+                }
                 await notifyLifecycle(.readyToConnect)
             }
 

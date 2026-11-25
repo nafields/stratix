@@ -82,6 +82,60 @@ struct StreamingSessionTests {
 
     @MainActor
     @Test
+    func homeConnect_acceptsProvisionedStateWithNullErrorDetails() async {
+        // Real xHome sessions go Provisioning -> Provisioned (never ReadyToConnect)
+        // and report an all-null errorDetails object while healthy.
+        let bridge = RecordingBridge(
+            offerSDP: makeLocalOfferSDP(),
+            localCandidates: [
+                IceCandidatePayload(
+                    candidate: "a=end-of-candidates",
+                    sdpMLineIndex: 0,
+                    sdpMid: "0"
+                )
+            ],
+            connectionState: .connected
+        )
+        let client = makeClient(
+            responses: [
+                .json(statusCode: 200, pathSuffix: "/play", body: [
+                    "sessionPath": "v5/sessions/home/test-session",
+                    "sessionId": "session-provisioned",
+                    "state": "Provisioning"
+                ]),
+                .json(statusCode: 200, pathSuffix: "/state", body: [
+                    "state": "Provisioned",
+                    "detailedSessionState": 0,
+                    "errorDetails": ["code": NSNull(), "message": NSNull()]
+                ]),
+                .json(statusCode: 200, pathSuffix: "/sdp", body: [
+                    "sdp": makeRemoteAnswerSDP()
+                ]),
+                .empty(statusCode: 204, pathSuffix: "/ice"),
+                .json(statusCode: 200, pathSuffix: "/ice", body: [
+                    "iceCandidates": [
+                        [
+                            "candidate": "a=candidate:2 1 udp 2122260223 20.0.0.1 6000 typ host",
+                            "sdpMLineIndex": 0,
+                            "sdpMid": "0"
+                        ]
+                    ]
+                ]),
+                .empty(statusCode: 200, pathSuffix: "/test-session")
+            ]
+        )
+        let session = StreamingSession(apiClient: client, bridge: bridge)
+
+        await session.connect(type: .home, targetId: "console-1")
+
+        #expect(session.lifecycle == .connected)
+        #expect(bridge.didSetRemoteDescription == true)
+
+        await session.disconnect()
+    }
+
+    @MainActor
+    @Test
     func cloudConnect_missingMSATokenFailsBeforeWebRTCStarts() async {
         let bridge = RecordingBridge(
             offerSDP: makeLocalOfferSDP(),

@@ -39,7 +39,7 @@ extension MetalVideoRenderer {
 
         guard let requestedRung else {
             mtkView.drawableSize = CGSize(width: sourceWidth, height: sourceHeight)
-            spatialScaler = nil
+            spatialScalerStorage = nil
             spatialScalerOutputTexture = nil
             spatialScalerInputSize = MTLSize(width: 0, height: 0, depth: 1)
             spatialScalerOutputSize = MTLSize(width: 0, height: 0, depth: 1)
@@ -52,7 +52,7 @@ extension MetalVideoRenderer {
         switch requestedRung {
         case .passthrough:
             mtkView.drawableSize = CGSize(width: sourceWidth, height: sourceHeight)
-            spatialScaler = nil
+            spatialScalerStorage = nil
             spatialScalerOutputTexture = nil
             spatialScalerInputSize = MTLSize(width: 0, height: 0, depth: 1)
             spatialScalerOutputSize = MTLSize(width: 0, height: 0, depth: 1)
@@ -67,7 +67,7 @@ extension MetalVideoRenderer {
             processingOutputHeight = targetHeight
         default:
             mtkView.drawableSize = CGSize(width: sourceWidth, height: sourceHeight)
-            spatialScaler = nil
+            spatialScalerStorage = nil
             spatialScalerOutputTexture = nil
             spatialScalerInputSize = MTLSize(width: 0, height: 0, depth: 1)
             spatialScalerOutputSize = MTLSize(width: 0, height: 0, depth: 1)
@@ -81,8 +81,15 @@ extension MetalVideoRenderer {
             || targetHeight != spatialScalerOutputSize.height
             || sourceWidth != spatialScalerInputSize.width
             || sourceHeight != spatialScalerInputSize.height
-            || spatialScaler == nil
+            || spatialScalerStorage == nil
         else {
+            return
+        }
+
+        guard #available(tvOS 27.1, *) else {
+            spatialScalerStorage = nil
+            spatialScalerOutputTexture = nil
+            notifyCandidateFailedIfNeeded(requestedRung, reason: "MetalFX spatial scaler requires tvOS 27.1")
             return
         }
 

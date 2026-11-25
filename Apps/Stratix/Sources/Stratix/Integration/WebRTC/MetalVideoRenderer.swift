@@ -70,7 +70,14 @@ final class MetalVideoRenderer: NSObject, RTCVideoRenderer, MTKViewDelegate, @un
     var outputTexture: MTLTexture?
     var outputSize: MTLSize = MTLSize(width: 0, height: 0, depth: 1)
 #if canImport(MetalFX)
-    var spatialScaler: (any MTLFXSpatialScaler)?
+    /// Untyped storage: MTLFXSpatialScaler is tvOS 27.1+ in the current SDK and
+    /// stored properties can't carry availability.
+    var spatialScalerStorage: AnyObject?
+    @available(tvOS 27.1, *)
+    var spatialScaler: (any MTLFXSpatialScaler)? {
+        get { spatialScalerStorage as? any MTLFXSpatialScaler }
+        set { spatialScalerStorage = newValue }
+    }
     var spatialScalerOutputTexture: MTLTexture?
     var spatialScalerInputSize: MTLSize = MTLSize(width: 0, height: 0, depth: 1)
     var spatialScalerOutputSize: MTLSize = MTLSize(width: 0, height: 0, depth: 1)

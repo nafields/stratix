@@ -42,6 +42,29 @@ public struct StreamStateResponse: Codable, Sendable, Equatable {
         self.state = state
         self.errorDetails = errorDetails
     }
+
+    private enum CodingKeys: String, CodingKey {
+        case state
+        case errorDetails
+    }
+
+    private struct LenientErrorDetails: Decodable {
+        let code: String?
+        let message: String?
+    }
+
+    /// The server sends `"errorDetails":{"code":null,"message":null}` on healthy
+    /// sessions; treat a null code as "no error" instead of failing the decode.
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        state = try container.decode(String.self, forKey: .state)
+        if let details = try container.decodeIfPresent(LenientErrorDetails.self, forKey: .errorDetails),
+           let code = details.code {
+            errorDetails = ErrorDetails(code: code, message: details.message ?? "")
+        } else {
+            errorDetails = nil
+        }
+    }
 }
 
 public struct SdpExchangeResponse: Codable, Sendable, Equatable {

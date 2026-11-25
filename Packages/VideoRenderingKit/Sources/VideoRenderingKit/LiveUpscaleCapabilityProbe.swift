@@ -25,7 +25,7 @@ public struct LiveUpscaleCapabilityProbe: UpscaleCapabilityProbing {
 
     public func supportsMetal4FXSpatial(device: any MTLDevice) -> Bool {
         #if canImport(MetalFX)
-        if #available(tvOS 26, macOS 26, *) {
+        if #available(tvOS 27.1, macOS 26, *) {
             let supported = MTLFXSpatialScalerDescriptor.supportsMetal4FX(device)
             log.debug("Metal4FX spatial supported: \(supported)")
             return supported
@@ -88,9 +88,12 @@ public struct LiveUpscaleCapabilityProbe: UpscaleCapabilityProbing {
 
     public func supportsMetalFXSpatial(device: any MTLDevice) -> Bool {
         #if canImport(MetalFX)
-        let supported = MTLFXSpatialScalerDescriptor.supportsDevice(device)
-        log.debug("MetalFX spatial supported: \(supported)")
-        return supported
+        if #available(tvOS 27.1, macOS 26, *) {
+            let supported = MTLFXSpatialScalerDescriptor.supportsDevice(device)
+            log.debug("MetalFX spatial supported: \(supported)")
+            return supported
+        }
+        return false
         #else
         return false
         #endif
