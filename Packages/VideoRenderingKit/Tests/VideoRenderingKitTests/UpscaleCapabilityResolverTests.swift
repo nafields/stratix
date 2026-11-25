@@ -77,6 +77,17 @@ struct MockUpscaleCapabilityProbe: UpscaleCapabilityProbing {
         #expect(result == .vtFrameInterpolation)
     }
 
+    @Test func llfiExcludedInLowLatencyMode() {
+        let resolver = makeResolver(MockUpscaleCapabilityProbe(vtFrameInterpolation: true, metalFX: true))
+        let resolution = resolver.resolveCandidateResolution(
+            device: device, sourceW: 1920, sourceH: 1080, targetW: 3840, targetH: 2160,
+            excludeFrameInterpolation: true
+        )
+        #expect(!resolution.candidates.contains(.vtFrameInterpolation))
+        #expect(resolution.candidates.first == .metalFXSpatial)
+        #expect(resolution.skippedRungReasons["llfi"] != nil)
+    }
+
     @Test func llsrBeatsLLFIOnTrueTwoXTarget() {
         let resolver = makeResolver(MockUpscaleCapabilityProbe(scaleFactors: [2.0], vtFrameInterpolation: true))
         let result = resolver.resolve(device: device, sourceW: 1920, sourceH: 1080, targetW: 3840, targetH: 2160)

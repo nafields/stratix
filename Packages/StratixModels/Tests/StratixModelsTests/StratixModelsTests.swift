@@ -164,3 +164,26 @@ struct CloudLibraryProductDetailTests {
         #expect(summary.unlockPercent == 35)
     }
 }
+
+@Suite("StreamStateResponse")
+struct StreamStateResponseTests {
+
+    @Test func nullErrorDetailsDecodesAsNoError() throws {
+        let json = #"{"state":"Provisioned","detailedSessionState":0,"errorDetails":{"code":null,"message":null}}"#
+        let decoded = try JSONDecoder().decode(StreamStateResponse.self, from: Data(json.utf8))
+        #expect(decoded.state == "Provisioned")
+        #expect(decoded.errorDetails == nil)
+    }
+
+    @Test func populatedErrorDetailsDecode() throws {
+        let json = #"{"state":"Failed","errorDetails":{"code":"ConsoleUnavailable","message":"Console is offline"}}"#
+        let decoded = try JSONDecoder().decode(StreamStateResponse.self, from: Data(json.utf8))
+        #expect(decoded.errorDetails == .init(code: "ConsoleUnavailable", message: "Console is offline"))
+    }
+
+    @Test func missingErrorDetailsDecodesAsNoError() throws {
+        let json = #"{"state":"ReadyToConnect"}"#
+        let decoded = try JSONDecoder().decode(StreamStateResponse.self, from: Data(json.utf8))
+        #expect(decoded.errorDetails == nil)
+    }
+}

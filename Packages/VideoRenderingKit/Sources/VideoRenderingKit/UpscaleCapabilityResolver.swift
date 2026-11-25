@@ -77,7 +77,8 @@ public struct UpscaleCapabilityResolver: Sendable {
         sourceW: Int,
         sourceH: Int,
         targetW: Int,
-        targetH: Int
+        targetH: Int,
+        excludeFrameInterpolation: Bool = false
     ) -> UpscaleCandidateResolution {
         guard sourceW > 0, sourceH > 0, targetW > 0, targetH > 0 else {
             return invalidDimensionsResolution()
@@ -105,14 +106,20 @@ public struct UpscaleCapabilityResolver: Sendable {
             candidates: &candidates,
             skippedRungReasons: &skippedRungReasons
         )
-        appendFrameInterpolationCandidate(
-            sourceW: sourceW,
-            sourceH: sourceH,
-            targetW: targetW,
-            targetH: targetH,
-            candidates: &candidates,
-            skippedRungReasons: &skippedRungReasons
-        )
+        if excludeFrameInterpolation {
+            // LLFI buffers a frame (~33 ms at 60 fps); never trade that latency for upscaling
+            // when the user has asked for low latency.
+            skippedRungReasons["llfi"] = "excluded: low latency mode adds no buffered-frame upscalers"
+        } else {
+            appendFrameInterpolationCandidate(
+                sourceW: sourceW,
+                sourceH: sourceH,
+                targetW: targetW,
+                targetH: targetH,
+                candidates: &candidates,
+                skippedRungReasons: &skippedRungReasons
+            )
+        }
         appendMetalCandidate(
             device: device,
             candidate: .metalFXSpatial,
