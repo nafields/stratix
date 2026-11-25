@@ -41,6 +41,7 @@ final class RendererAttachmentCoordinator: NSObject {
     /// Configuration bundle derived from live settings and passed into the renderer pipeline.
     struct Configuration {
         var upscalingEnabled: Bool
+        var lowLatencyMode: Bool
         var frameProbeEnabled: Bool
         var hdrEnabled: Bool
         var floorBehavior: RenderLadderFloorBehavior
@@ -61,6 +62,7 @@ final class RendererAttachmentCoordinator: NSObject {
             }
             return Self(
                 upscalingEnabled: settingsStore.stream.upscalingEnabled,
+                lowLatencyMode: settingsStore.stream.lowLatencyMode,
                 frameProbeEnabled: settingsStore.diagnostics.frameProbe,
                 hdrEnabled: settingsStore.stream.hdrEnabled,
                 floorBehavior: floorBehavior,
@@ -121,9 +123,11 @@ final class RendererAttachmentCoordinator: NSObject {
     private var sampleRendererSnapshot: StreamSurfaceModel.RendererTelemetrySnapshot = .cleared
     private var metalRendererSnapshot: StreamSurfaceModel.RendererTelemetrySnapshot = .cleared
     private var upscalingEnabled = true
+    private var lowLatencyMode = true
     private var floorBehavior: RenderLadderFloorBehavior = .sampleFloor
     private var lastAppliedTrackIdentity: ObjectIdentifier?
     private var lastAppliedUpscalingEnabled: Bool?
+    private var lastAppliedLowLatencyMode: Bool?
     private var lastAppliedFloorBehavior: RenderLadderFloorBehavior?
     private var lastAppliedFrameProbeEnabled: Bool?
     private var lastAppliedContainerBounds: CGSize?
@@ -263,6 +267,7 @@ final class RendererAttachmentCoordinator: NSObject {
         hasReportedRendererDecodeFailure = false
         lastAppliedTrackIdentity = nil
         lastAppliedUpscalingEnabled = nil
+        lastAppliedLowLatencyMode = nil
         lastAppliedFloorBehavior = nil
         lastAppliedFrameProbeEnabled = nil
         lastAppliedContainerBounds = nil
@@ -273,6 +278,7 @@ final class RendererAttachmentCoordinator: NSObject {
     private func applyConfiguration(_ configuration: Configuration) {
         callbacks = configuration.callbacks
         upscalingEnabled = configuration.upscalingEnabled
+        lowLatencyMode = configuration.lowLatencyMode
         floorBehavior = configuration.floorBehavior
         setFrameProbeEnabled(configuration.frameProbeEnabled)
         sampleBufferRenderer.hdrEnabled = configuration.hdrEnabled
@@ -536,7 +542,8 @@ final class RendererAttachmentCoordinator: NSObject {
             targetW: target.width,
             targetH: target.height,
             upscalingEnabled: upscalingEnabled,
-            floorBehavior: floorBehavior
+            floorBehavior: floorBehavior,
+            lowLatencyMode: lowLatencyMode
         )
         let planChanged = ladderPlan != nextPlan
         ladderPlan = nextPlan
@@ -618,6 +625,7 @@ final class RendererAttachmentCoordinator: NSObject {
         let trackChanged = attachedTrack !== newTrack
         let frameProbeChanged = lastAppliedFrameProbeEnabled != frameProbeEnabled
         let settingsChanged = lastAppliedUpscalingEnabled != upscalingEnabled
+            || lastAppliedLowLatencyMode != lowLatencyMode
             || lastAppliedFloorBehavior != floorBehavior
             || frameProbeChanged
             || lastAppliedContainerBounds != containerBounds
@@ -640,6 +648,7 @@ final class RendererAttachmentCoordinator: NSObject {
         guard trackChanged || settingsChanged else { return }
         lastAppliedTrackIdentity = newTrack.map(ObjectIdentifier.init)
         lastAppliedUpscalingEnabled = upscalingEnabled
+        lastAppliedLowLatencyMode = lowLatencyMode
         lastAppliedFloorBehavior = floorBehavior
         lastAppliedFrameProbeEnabled = frameProbeEnabled
         lastAppliedContainerBounds = containerBounds

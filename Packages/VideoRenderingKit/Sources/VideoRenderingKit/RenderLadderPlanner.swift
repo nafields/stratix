@@ -94,7 +94,8 @@ public struct RenderLadderPlanner: Sendable {
         targetW: Int,
         targetH: Int,
         upscalingEnabled: Bool,
-        floorBehavior: RenderLadderFloorBehavior
+        floorBehavior: RenderLadderFloorBehavior,
+        lowLatencyMode: Bool = false
     ) -> RenderLadderPlan {
         let sourceDimensions = RenderLadderDimensions(
             width: max(1, sourceW),
@@ -127,7 +128,8 @@ public struct RenderLadderPlanner: Sendable {
             sourceW: sourceDimensions.width,
             sourceH: sourceDimensions.height,
             targetW: desiredProcessingTarget.width,
-            targetH: desiredProcessingTarget.height
+            targetH: desiredProcessingTarget.height,
+            excludeFrameInterpolation: lowLatencyMode
         )
 
         let floorRung: RenderLadderRung = floorBehavior == .metalFloor && device != nil ? .passthrough : .sampleBuffer
